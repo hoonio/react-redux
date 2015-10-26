@@ -5,26 +5,24 @@ window.React = React;
 const mountNode = document.getElementById('app');
 
 var App = React.createClass({
-  getDefaultProps:function(){
+  getInitialState:function(){
     return {
-      txt: 'this is a default prop',
-      cat: 0
+      txt: 'the state txt'
     }
   },
-  propTypes: {
-    txt: React.PropTypes.string,
-    cat: React.PropTypes.number.isRequired
+  update:function(e){
+    this.setState({txt: e.target.value})
   },
   render: function(){
-    var txt = this.props.txt;
+    var txt = this.state.txt;
     return (
       <div>
-        <b>BOLD</b>
+        <input type="text" onChange={this.update} />
         <h1>{txt}</h1>
       </div>
     );
   }
 });
 
-React.render(<App />, mountNode);
+React.render(<App txt="this is the props value" />, mountNode);
 // React.render(<Home/>, mountNode);
