@@ -4,23 +4,45 @@ import Home from './components/home';
 window.React = React;
 const mountNode = document.getElementById('app');
 
-var App = React.createClass({
-  render:function(){
-    return <Button>I <Heart /> React</Button>
-  }
-});
-
 var Button = React.createClass({
+  getInitialState: function(){
+    return {val: 0}
+  },
+  update:function(){
+    this.setState({val: this.state.val+1});
+  },
+  componentWillMount:function(){
+    console.log('mounting');
+  },
   render:function(){
-    return <button>{this.props.children}</button>
+    console.log('rendering');
+    return <button onClick={this.update}>{this.state.val}</button>
+  },
+  componentDidMount:function(){
+    console.log('mounted');
+  },
+  componentWillUnmount:function(){
+    console.log('bye!');
   }
 });
 
-var Heart = React.createClass({
+var App = React.createClass({
+  mount:function(){
+    React.render(<Button />, document.getElementById('count'));
+  },
+  unmount:function(){
+    React.unmountComponentAtNode(document.getElementById('count'));
+  },
   render:function(){
-    return <span className="glyphicon glyphicon-heart"></span>
+    return(
+      <div>
+        <button onClick={this.mount}>Mount</button>
+        <button onClick={this.unmount}>Unmount</button>
+        <div id="count"></div>
+      </div>
+    );
   }
 });
 
-React.render(<App txt="this is the props value" />, mountNode);
+React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
