@@ -12,17 +12,17 @@ var Button = React.createClass({
     this.setState({val: this.state.val+1});
   },
   componentWillMount:function(){
-    console.log('mounting');
+    this.setState({m:2})
   },
   render:function(){
     console.log('rendering');
-    return <button onClick={this.update}>{this.state.val}</button>
+    return <button onClick={this.update}>{this.state.val*this.state.m}</button>
   },
   componentDidMount:function(){
-    console.log('mounted');
+    this.inc = setInterval(this.update,500)
   },
   componentWillUnmount:function(){
-    console.log('bye!');
+    clearInterval(this.inc);
   }
 });
 
