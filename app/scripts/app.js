@@ -4,27 +4,42 @@ import Home from './components/home';
 window.React = React;
 const mountNode = document.getElementById('app');
 
-var Button = React.createClass({
-  getInitialState: function(){
-    return {increasing:false}
+var ReactMixin = {
+  getInitialState:function(){
+    return {count:0}
   },
-  update:function(){
-    this.setProps({val: this.props.val+1});
+  componentWillMount:function(){
+    console.log('will mount!');
   },
-  componentWillReceiveProps:function(nextProps){
-    this.setState({increasing: nextProps.val > this.props.val})
-  },
-  shouldComponentUpdate:function(nextProps,nextState){
-    return nextProps.val % 5 === 0;
-  },
+  incrementCount:function(){
+    this.setState({count: this.state.count+1})
+  }
+}
+
+var App = React.createClass({
+  mixins:[ReactMixin],
   render:function(){
-    console.log(this.state.increasing);
-    return <button onClick={this.update}>{this.props.val}</button>
-  },
-  componentDidUpdate:function(prevProps,prevState){
-    console.log('prevProps',prevProps);
+    return <div><Button txt="this is the button" /><br /><Label txt="this is the label" /></div>
   }
 });
 
-React.render(<Button val={0} />, mountNode);
+var Button = React.createClass({
+  mixins:[ReactMixin],
+  render:function(){
+    return <button onClick={this.incrementCount}>{this.props.txt} - {this.state.count}</button>
+  }
+});
+
+var Label = React.createClass({
+  mixins:[ReactMixin],
+  componentWillMount:function(){
+    setInterval(this.incrementCount,1000);
+  },
+  render:function(){
+    return <label>{this.props.txt} - {this.state.count}</label>
+  }
+});
+
+
+React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
