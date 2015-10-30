@@ -6,43 +6,25 @@ const mountNode = document.getElementById('app');
 
 var Button = React.createClass({
   getInitialState: function(){
-    return {val: 0}
+    return {increasing:false}
   },
   update:function(){
-    this.setState({val: this.state.val+1});
+    this.setProps({val: this.props.val+1});
   },
-  componentWillMount:function(){
-    this.setState({m:2})
+  componentWillReceiveProps:function(nextProps){
+    this.setState({increasing: nextProps.val > this.props.val})
+  },
+  shouldComponentUpdate:function(nextProps,nextState){
+    return nextProps.val % 5 === 0;
   },
   render:function(){
-    console.log('rendering');
-    return <button onClick={this.update}>{this.state.val*this.state.m}</button>
+    console.log(this.state.increasing);
+    return <button onClick={this.update}>{this.props.val}</button>
   },
-  componentDidMount:function(){
-    this.inc = setInterval(this.update,500)
-  },
-  componentWillUnmount:function(){
-    clearInterval(this.inc);
+  componentDidUpdate:function(prevProps,prevState){
+    console.log('prevProps',prevProps);
   }
 });
 
-var App = React.createClass({
-  mount:function(){
-    React.render(<Button />, document.getElementById('count'));
-  },
-  unmount:function(){
-    React.unmountComponentAtNode(document.getElementById('count'));
-  },
-  render:function(){
-    return(
-      <div>
-        <button onClick={this.mount}>Mount</button>
-        <button onClick={this.unmount}>Unmount</button>
-        <div id="count"></div>
-      </div>
-    );
-  }
-});
-
-React.render(<App />, mountNode);
+React.render(<Button val={0} />, mountNode);
 // React.render(<Home/>, mountNode);
