@@ -4,42 +4,72 @@ import Home from './components/home';
 window.React = React;
 const mountNode = document.getElementById('app');
 
-var ReactMixin = {
-  getInitialState:function(){
-    return {count:0}
-  },
-  componentWillMount:function(){
-    console.log('will mount!');
-  },
-  incrementCount:function(){
-    this.setState({count: this.state.count+1})
-  }
-}
-
 var App = React.createClass({
-  mixins:[ReactMixin],
-  render:function(){
-    return <div><Button txt="this is the button" /><br /><Label txt="this is the label" /></div>
-  }
-});
-
-var Button = React.createClass({
-  mixins:[ReactMixin],
-  render:function(){
-    return <button onClick={this.incrementCount}>{this.props.txt} - {this.state.count}</button>
-  }
-});
-
-var Label = React.createClass({
-  mixins:[ReactMixin],
-  componentWillMount:function(){
-    setInterval(this.incrementCount,1000);
+  getInitialState:function(){
+    return {
+      red: 0
+    }
   },
-  render:function(){
-    return <label>{this.props.txt} - {this.state.count}</label>
+  update:function(){
+    this.setState({
+      red: this.refs.red.refs.inp.getDOMNode().value
+    });
+  },
+  render: function(){
+    return (
+      <div>
+        <NumInput
+          ref="red"
+          min={0}
+          max={255}
+          step={1}
+          val={+this.state.red}
+          type="number"
+          label="Red"
+          update={this.update} />
+      </div>
+    );
   }
 });
 
+var NumInput = React.createClass({
+  propTypes: {
+    min: React.PropTypes.number,
+    max: React.PropTypes.number,
+    step: React.PropTypes.number,
+    val: React.PropTypes.number,
+    label: React.PropTypes.string,
+    update: React.PropTypes.func.isRequired,
+    type: React.PropTypes.oneOf(['number', 'range'])
+  },
+  getDefaultProps:function(){
+    return {
+      min: 0,
+      max: 0,
+      step: 1,
+      val: 0,
+      label: '',
+      type: 'range'
+    }
+  },
+  render: function(){
+    var label = this.props.label !== '' ?
+      <label>{this.props.label} {this.props.val}</label> : ''
+    return (
+      <div>
+        <input
+          ref="inp"
+          type={this.props.type}
+          min={this.props.min}
+          max={this.props.max}
+          step={this.props.step}
+          defaultValue={this.props.val}
+          onChange={this.props.update} />
+          {label}
+      </div>
+    );
+  }
+})
 
 React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
