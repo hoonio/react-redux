@@ -16,11 +16,12 @@
     "gulp-ruby-sass": "^1.0.0-alpha",
     "gulp-size": "^1.2.0",
     "gulp-sync": "^0.1.4",
-    "gulp-useref": "^1.1.1",
     "gulp-uglify": "^1.1.0",
+    "gulp-useref": "^1.1.1",
     "gulp-util": "^3.0.3",
     "gulp-webserver": "^0.9.0",
     "react": "^0.13.2",
+    "react-addons": "^0.9.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.3.0"
   },

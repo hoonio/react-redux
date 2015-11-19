@@ -1,40 +1,44 @@
 import React from 'react';
+import Addons from 'react-addons';
 import Home from './components/home';
 
 window.React = React;
 const mountNode = document.getElementById('app');
 
-var PersonTable = React.createClass({
+var App = React.createClass({
+  mixins:[Addons.LinkedStateMixin],
   getInitialState:function(){
     return {
-      data: [
-        {id: 1, fname: "Simon", lname: "Bailey"},
-        {id: 2, fname: "Thomas", lname: "Bailey"},
-        {id: 3, fname: "Will", lname: "Bailey"},
-        {id: 4, fname: "Kent", lname: "Bailey"},
-      ]
+      name:'',
+      email:'',
+      phone:''
     }
   },
-
-  render:function(){
-    var rows = this.state.data.map(function(person, i){
-      return <PersonRow data={person} key={i} />
-    });
-    return <table>{rows}</table>
-  }
-});
-
-var PersonRow = React.createClass({
+  // update:function(){
+  //   this.setState({
+  //     name:this.refs.name.getDOMNode().value,
+  //     email:this.refs.email.getDOMNode().value
+  //   })
+  // },
   render:function(){
     return (
-      <tr>
-        <td>{this.props.data.id}</td>
-        <td>{this.props.data.fname}</td>
-        <td>{this.props.data.lname}</td>
-      </tr>
+      <form>
+        <div>
+          <input valueLink={this.linkState('name')} type="text" placeholder="Name" />
+          <label>*{this.state.name}*</label>
+        </div>
+        <div>
+          <input valueLink={this.linkState('email')} type="text" placeholder="Email" />
+          <label>*{this.state.email}*</label>
+        </div>
+        <div>
+          <input valueLink={this.linkState('phone')} type="text" placeholder="Phone" />
+          <label>*{this.state.phone}*</label>
+        </div>
+      </form>
     )
   }
 });
 
-React.render(<PersonTable />, mountNode);
+React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
