@@ -7,69 +7,33 @@ const mountNode = document.getElementById('app');
 var App = React.createClass({
   getInitialState:function(){
     return {
-      red: 0
+      data: []
     }
   },
-  update:function(){
-    this.setState({
-      red: this.refs.red.refs.inp.getDOMNode().value
-    });
+  componentWillMount:function(){
+    reqwest({
+      url:'http://filltext.com/?rows=10&val={randomNumber}',
+      type: 'jsonp',
+      success:function(resp){
+        this.setState({data:resp});
+        this.renderChart(this.state.data);
+      }.bind(this)
+    })
+  },
+  renderChart: function(dataset){
+    d3.select('#chart').selectAll('div')
+      .data(dataset)
+      .enter()
+      .append('div')
+      .attr('class', 'bar')
+      .style('height', function(d){
+        return d.val*5+'px';
+      });
   },
   render: function(){
-    return (
-      <div>
-        <NumInput
-          ref="red"
-          min={0}
-          max={255}
-          step={1}
-          val={+this.state.red}
-          type="number"
-          label="Red"
-          update={this.update} />
-      </div>
-    );
+    return <div id="chart"></div>
   }
 });
-
-var NumInput = React.createClass({
-  propTypes: {
-    min: React.PropTypes.number,
-    max: React.PropTypes.number,
-    step: React.PropTypes.number,
-    val: React.PropTypes.number,
-    label: React.PropTypes.string,
-    update: React.PropTypes.func.isRequired,
-    type: React.PropTypes.oneOf(['number', 'range'])
-  },
-  getDefaultProps:function(){
-    return {
-      min: 0,
-      max: 0,
-      step: 1,
-      val: 0,
-      label: '',
-      type: 'range'
-    }
-  },
-  render: function(){
-    var label = this.props.label !== '' ?
-      <label>{this.props.label} {this.props.val}</label> : ''
-    return (
-      <div>
-        <input
-          ref="inp"
-          type={this.props.type}
-          min={this.props.min}
-          max={this.props.max}
-          step={this.props.step}
-          defaultValue={this.props.val}
-          onChange={this.props.update} />
-          {label}
-      </div>
-    );
-  }
-})
 
 React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
