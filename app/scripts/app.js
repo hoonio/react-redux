@@ -5,23 +5,28 @@ window.React = React;
 const mountNode = document.getElementById('app');
 
 var App = React.createClass({
-  getInitialState:function(){
-    return {
-      data: []
+  // getInitialState:function(){
+  //   return {
+  //     data: []
+  //   }
+  // },
+  // componentWillMount:function(){
+  //   reqwest({
+  //     url:'http://filltext.com/?rows=10&val={randomNumber}',
+  //     type: 'jsonp',
+  //     success:function(resp){
+  //       this.setState({data:resp});
+  //       this.renderChart(this.state.data);
+  //     }.bind(this)
+  //   })
+  // },
+  componentWillReceiveProp:function(nextProps){
+    if(nextProps.data){
+      this.renderChart(nextProps.data)
     }
   },
-  componentWillMount:function(){
-    reqwest({
-      url:'http://filltext.com/?rows=10&val={randomNumber}',
-      type: 'jsonp',
-      success:function(resp){
-        this.setState({data:resp});
-        this.renderChart(this.state.data);
-      }.bind(this)
-    })
-  },
   renderChart: function(dataset){
-    d3.select('#chart').selectAll('div')
+    d3.select('#'+this.props.target).selectAll('div')
       .data(dataset)
       .enter()
       .append('div')
@@ -31,9 +36,10 @@ var App = React.createClass({
       });
   },
   render: function(){
-    return <div id="chart"></div>
+    return React.DOM.div({id:this.props.target});
+    // return <div id="chart"></div>
   }
 });
 
-React.render(<App />, mountNode);
+// React.render(<App />, mountNode);
 // React.render(<Home/>, mountNode);
