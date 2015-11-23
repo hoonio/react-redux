@@ -38,7 +38,7 @@
           $http.jsonp('http://filltext.com/?rows=10&val={randomNumber}&callback=JSON_CALLBACK').success(function(d){
             $scope.data = d
           })
-        }])
+        }]),
       .directive('rctChart',function(){
         return {
           restrict:'E',
@@ -47,8 +47,7 @@
             scope.$watch('data',function(n,o){
               React.renderComponent(
                 App({data:scope.data,target:scope.id}),
-                elm[0]
-              )
+                elm[0])
             })
           }
         }

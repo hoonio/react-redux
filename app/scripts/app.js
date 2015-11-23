@@ -1,4 +1,5 @@
 import React from 'react';
+import Addons from 'react-addons';
 import Home from './components/home';
 
 window.React = React;
