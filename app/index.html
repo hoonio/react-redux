@@ -25,34 +25,12 @@
     <!-- bower:js -->
     <!-- <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/reqwest/reqwest.js"></script> -->
-    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/react/react.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/d3/d3.js"></script> -->
     <!-- endbower -->
     <!-- endbuild -->
     <script src="scripts/app.js"></script>
-    <script>
-    angular.module('RNG',[])
-      .controller('chartController',['$http','$scope',
-        function($http,$scope){
-          $http.jsonp('http://filltext.com/?rows=10&val={randomNumber}&callback=JSON_CALLBACK').success(function(d){
-            $scope.data = d
-          })
-        }]),
-      .directive('rctChart',function(){
-        return {
-          restrict:'E',
-          scope:{data:'=',id:'@'},
-          link:function(scope,elm,attrs){
-            scope.$watch('data',function(n,o){
-              React.renderComponent(
-                App({data:scope.data,target:scope.id}),
-                elm[0])
-            })
-          }
-        }
-      })
-    </script>
 
   </body>
 </html>
