@@ -1,9 +1,10 @@
 {
   "name": "hoonio",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
     "bootstrap-sass-official": "^3.3.2",
-    "reqwest": "~2.0.5",
-    "d3": "~3.5.9"
+    "d3": "~3.5.9",
+    "react-bootstrap": "~0.28.1",
+    "reqwest": "~2.0.5"
   }
 }
