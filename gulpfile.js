@@ -90,6 +90,14 @@ gulp.task('serve', function() {
     }));
 });
 
+gulp.task('deploy', function() {
+  return gulp.src('dist/**/*')
+    .pipe($.deployGit({
+      repository: 'https://hoonio@hoonio-stage.scm.azurewebsites.net:443/hoonio-stage.git',
+      verbose: true
+    }));
+});
+
 gulp.task('set-production', function() {
   process.env.NODE_ENV = 'production';
 });
