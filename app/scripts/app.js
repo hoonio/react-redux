@@ -4,6 +4,7 @@ import Home from './components/home';
 
 window.React = React;
 const mountNode = document.getElementById('app');
+const mountHome = document.getElementById('home');
 
 var App = React.createClass({
   mixins:[Addons.LinkedStateMixin],
@@ -41,4 +42,4 @@ var App = React.createClass({
 });
 
 React.render(<App />, mountNode);
-// React.render(<Home/>, mountNode);
+React.render(<Home/>, mountHome);
