@@ -7273,6 +7273,16 @@ body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
+  padding-top: 50px;
+  padding-left: 100px;
+}
+
+.bar {
+  display: inline-block;
+  width: 20px;
+  height: 75px;
+  margin-right: 2px;
+  background-color: teal;
 }
 
 .hero-unit {

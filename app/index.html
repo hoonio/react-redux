@@ -12,28 +12,48 @@
     <link rel="stylesheet" href="styles/main.css">
 
   </head>
-  <body>
+  <body ng-app="RNG">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div ng-controller="chartController">
+      <rctChart data="data" id="rchart"></rctChart>
+    </div>
     <div id="app"></div>
     <div id="home"></div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/reqwest/reqwest.js"></script> -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="scripts/app.js"></script>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
+    angular.module('RNG',[])
+      .controller('chartController',['$http','$scope',
+        function($http,$scope){
+          $http.jsonp('http://filltext.com/?rows=10&val={randomNumber}&callback=JSON_CALLBACK').success(function(d){
+            $scope.data = d
+          })
+        }]),
+      .directive('rctChart',function(){
+        return {
+          restrict:'E',
+          scope:{data:'=',id:'@'},
+          link:function(scope,elm,attrs){
+            scope.$watch('data',function(n,o){
+              React.renderComponent(
+                App({data:scope.data,target:scope.id}),
+                elm[0])
+            })
+          }
+        }
+      })
     </script>
+
   </body>
 </html>

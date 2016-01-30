@@ -7,37 +7,39 @@ const mountNode = document.getElementById('app');
 const mountHome = document.getElementById('home');
 
 var App = React.createClass({
-  mixins:[Addons.LinkedStateMixin],
-  getInitialState:function(){
-    return {
-      name:'',
-      email:'',
-      phone:''
-    }
-  },
-  // update:function(){
-  //   this.setState({
-  //     name:this.refs.name.getDOMNode().value,
-  //     email:this.refs.email.getDOMNode().value
+  // getInitialState:function(){
+  //   return {
+  //     data: []
+  //   }
+  // },
+  // componentWillMount:function(){
+  //   reqwest({
+  //     url:'http://filltext.com/?rows=10&val={randomNumber}',
+  //     type: 'jsonp',
+  //     success:function(resp){
+  //       this.setState({data:resp});
+  //       this.renderChart(this.state.data);
+  //     }.bind(this)
   //   })
   // },
-  render:function(){
-    return (
-      <form>
-        <div>
-          <input valueLink={this.linkState('name')} type="text" placeholder="Name" />
-          <label>*{this.state.name}*</label>
-        </div>
-        <div>
-          <input valueLink={this.linkState('email')} type="text" placeholder="Email" />
-          <label>*{this.state.email}*</label>
-        </div>
-        <div>
-          <input valueLink={this.linkState('phone')} type="text" placeholder="Phone" />
-          <label>*{this.state.phone}*</label>
-        </div>
-      </form>
-    )
+  componentWillReceiveProp:function(nextProps){
+    if(nextProps.data){
+      this.renderChart(nextProps.data)
+    }
+  },
+  renderChart: function(dataset){
+    d3.select('#'+this.props.target).selectAll('div')
+      .data(dataset)
+      .enter()
+      .append('div')
+      .attr('class', 'bar')
+      .style('height', function(d){
+        return d.val*5+'px';
+      });
+  },
+  render: function(){
+    return React.DOM.div({id:this.props.target});
+    // return <div id="chart"></div>
   }
 });
 
