@@ -1,6 +1,9 @@
 {
   "name": "hoonio",
   "version": "0.0.0",
+  "description": "React.js site for Hoonio",
+  "repository": "github.com/hoonio/react",
+  "license": "",
   "dependencies": {},
   "devDependencies": {
     "babelify": "^6.0.2",

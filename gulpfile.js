@@ -94,7 +94,8 @@ gulp.task('deploy', function() {
   return gulp.src('dist/**/*')
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-stage.scm.azurewebsites.net:443/hoonio-stage.git',
-      verbose: true
+      verbose: true,
+      debug: true
     }));
 });
 
