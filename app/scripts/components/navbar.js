@@ -16,15 +16,17 @@ export default class extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary navbar-light bg-faded">
-        <button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-          &#9776;
-        </button>
-        <div className="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-          <a className="navbar-brand" href="#">Hoonio</a>
-          <ul className="nav navbar-nav">{this.state.items.map(this.renderItem)}</ul>
-        </div>
-      </nav>
+      <div className="row">
+        <nav className="navbar navbar-dark bg-primary navbar-light bg-faded">
+          <button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+            &#9776;
+          </button>
+          <div className="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+            <a className="navbar-brand" href="#">Hoonio</a>
+            <ul className="nav navbar-nav">{this.state.items.map(this.renderItem)}</ul>
+          </div>
+        </nav>
+      </div>
     );
   }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Addons from 'react-addons';
 import Home from './components/home';
 import Nav from './components/navbar';
+import Portfolio from './components/Portfolio';
 
 window.React = React;
 const mountNode = document.getElementById('app');
@@ -24,9 +25,10 @@ var App = React.createClass({
   // },
   render:function(){
     return (
+      <div></div>
     )
   }
 });
 
-React.render(<Home/>, mountNode);
+React.render(<Portfolio />, mountNode);
 React.render(<Nav />, mountNav);
