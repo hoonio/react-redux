@@ -15,9 +15,9 @@ export default class extends React.Component {
   render() {
     return (
       <div className="hero-unit">
-        <h1>'Allo, 'Allo!</h1>
+        <h1>Hoonio Rocks!!!!</h1>
         <p>Home page content<br/>
-           You now also have:</p>
+           The page will now change</p>
         <ul>{this.state.items.map(this.renderItem)}</ul>
       </div>
     );

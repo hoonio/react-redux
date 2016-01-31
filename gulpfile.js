@@ -91,11 +91,10 @@ gulp.task('serve', function() {
 });
 
 gulp.task('deploy', function() {
-  return gulp.src('dist')
+  return gulp.src('dist/**/*')
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-stage.scm.azurewebsites.net:443/hoonio-stage.git',
-      verbose: true,
-      debug: true
+      prefix: 'dist'
     }));
 });
 
