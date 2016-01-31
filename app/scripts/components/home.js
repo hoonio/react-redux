@@ -16,7 +16,7 @@ export default class extends React.Component {
     return (
       <div className="hero-unit">
         <h1>'Allo, 'Allo!</h1>
-        <p>This is a React component.<br/>
+        <p>Home page content<br/>
            You now also have:</p>
         <ul>{this.state.items.map(this.renderItem)}</ul>
       </div>

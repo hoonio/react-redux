@@ -23,34 +23,61 @@ var mountHome = document.getElementById('home');
 var App = _react2['default'].createClass({
   displayName: 'App',
 
-  // getInitialState:function(){
-  //   return {
-  //     data: []
-  //   }
-  // },
-  // componentWillMount:function(){
-  //   reqwest({
-  //     url:'http://filltext.com/?rows=10&val={randomNumber}',
-  //     type: 'jsonp',
-  //     success:function(resp){
-  //       this.setState({data:resp});
-  //       this.renderChart(this.state.data);
-  //     }.bind(this)
+  mixins: [_reactAddons2['default'].LinkedStateMixin],
+  getInitialState: function getInitialState() {
+    return {
+      name: '',
+      email: '',
+      phone: ''
+    };
+  },
+  // update:function(){
+  //   this.setState({
+  //     name:this.refs.name.getDOMNode().value,
+  //     email:this.refs.email.getDOMNode().value
   //   })
   // },
-  componentWillReceiveProp: function componentWillReceiveProp(nextProps) {
-    if (nextProps.data) {
-      this.renderChart(nextProps.data);
-    }
-  },
-  renderChart: function renderChart(dataset) {
-    d3.select('#' + this.props.target).selectAll('div').data(dataset).enter().append('div').attr('class', 'bar').style('height', function (d) {
-      return d.val * 5 + 'px';
-    });
-  },
   render: function render() {
-    return _react2['default'].DOM.div({ id: this.props.target });
-    // return <div id="chart"></div>
+    return _react2['default'].createElement(
+      'form',
+      null,
+      _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement('input', { valueLink: this.linkState('name'), type: 'text', placeholder: 'Name' }),
+        _react2['default'].createElement(
+          'label',
+          null,
+          '*',
+          this.state.name,
+          '*'
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement('input', { valueLink: this.linkState('email'), type: 'text', placeholder: 'Email' }),
+        _react2['default'].createElement(
+          'label',
+          null,
+          '*',
+          this.state.email,
+          '*'
+        )
+      ),
+      _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement('input', { valueLink: this.linkState('phone'), type: 'text', placeholder: 'Phone' }),
+        _react2['default'].createElement(
+          'label',
+          null,
+          '*',
+          this.state.phone,
+          '*'
+        )
+      )
+    );
   }
 });
 
@@ -106,7 +133,7 @@ var _default = (function (_React$Component) {
         _react2['default'].createElement(
           'p',
           null,
-          'This is a React component.',
+          'Home page content',
           _react2['default'].createElement('br', null),
           'You now also have:'
         ),
