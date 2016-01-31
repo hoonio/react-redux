@@ -1,10 +1,11 @@
 import React from 'react';
 import Addons from 'react-addons';
 import Home from './components/home';
+import Nav from './components/navbar';
 
 window.React = React;
 const mountNode = document.getElementById('app');
-const mountHome = document.getElementById('home');
+const mountNav = document.getElementById('nav');
 
 var App = React.createClass({
   mixins:[Addons.LinkedStateMixin],
@@ -23,23 +24,9 @@ var App = React.createClass({
   // },
   render:function(){
     return (
-      <form>
-        <div>
-          <input valueLink={this.linkState('name')} type="text" placeholder="Name" />
-          <label>*{this.state.name}*</label>
-        </div>
-        <div>
-          <input valueLink={this.linkState('email')} type="text" placeholder="Email" />
-          <label>*{this.state.email}*</label>
-        </div>
-        <div>
-          <input valueLink={this.linkState('phone')} type="text" placeholder="Phone" />
-          <label>*{this.state.phone}*</label>
-        </div>
-      </form>
     )
   }
 });
 
-React.render(<App />, mountNode);
-React.render(<Home/>, mountHome);
+React.render(<Home/>, mountNode);
+React.render(<Nav />, mountNav);

@@ -7,7 +7,10 @@ export default class extends React.Component {
       items: [
         'Browserify',
         'Babel',
-        'Bootstrap'
+        'Bootstrap',
+        'D3',
+        'Python',
+        'Node.js'
       ]
     };
   }
