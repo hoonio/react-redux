@@ -49,6 +49,13 @@ gulp.task('scripts', function() {
   return bundler.bundle();
 });
 
+gulp.task('server', function() {
+  return gulp.src('app/server.js')
+  .pipe($.uglify())
+  .pipe(gulp.dest('dist/'))
+  .pipe($.size());
+})
+
 gulp.task('html', function() {
   var assets = $.useref.assets();
   return gulp.src('app/*.html')
@@ -120,7 +127,7 @@ gulp.task('minify', ['minify:js', 'minify:css']);
 
 gulp.task('clean', del.bind(null, 'dist'));
 
-gulp.task('bundle', ['html', 'styles', 'scripts', 'images', 'fonts', 'extras']);
+gulp.task('bundle', ['html', 'server', 'styles', 'scripts', 'images', 'fonts', 'extras']);
 
 gulp.task('clean-bundle', sync(['clean', 'bundle']));
 
@@ -135,6 +142,7 @@ gulp.task('default', ['build']);
 gulp.task('watch', sync(['clean-bundle', 'serve']), function() {
   bundler.watch();
   gulp.watch('app/*.html', ['html']);
+  gulp.watch('app/server.js', ['server']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/images/**/*', ['images']);
   gulp.watch('app/fonts/**/*', ['fonts']);
