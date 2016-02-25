@@ -22,7 +22,7 @@ var bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('dist/scripts'));
+      .pipe(gulp.dest('dist/public/scripts'));
   },
   watch: function() {
     this.w && this.w.on('update', this.bundle.bind(this));
@@ -40,7 +40,7 @@ gulp.task('styles', function() {
     })
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('dist/public/styles'))
     .pipe($.size());
 });
 
@@ -49,13 +49,19 @@ gulp.task('scripts', function() {
   return bundler.bundle();
 });
 
+gulp.task('server', function() {
+  return gulp.src('app/server.js')
+    .pipe(gulp.dest('dist/'))
+    .pipe($.size())
+})
+
 gulp.task('html', function() {
   var assets = $.useref.assets();
   return gulp.src('app/*.html')
     .pipe(assets)
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist/public'))
     .pipe($.size());
 });
 
@@ -66,34 +72,34 @@ gulp.task('images', function() {
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('dist/public/images'))
     .pipe($.size());
 });
 
 gulp.task('fonts', function() {
   return gulp.src(['app/fonts/**/*', 'app/bower_components/bootstrap-sass-official/assets/fonts/**/*'])
-    .pipe(gulp.dest('dist/fonts'))
+    .pipe(gulp.dest('dist/public/fonts'))
     .pipe($.size());
 });
 
 gulp.task('extras', function () {
   return gulp.src(['app/*.txt', 'app/*.ico'])
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist/public/'))
     .pipe($.size());
 });
 
 gulp.task('serve', function() {
-  gulp.src('dist')
+  gulp.src('dist/public')
     .pipe($.webserver({
       livereload: true,
       port: 9000
     }));
 });
 
-gulp.task('deploy', function() {
+gulp.task('deploy', ['build'], function() {
   return gulp.src('dist/**/*')
     .pipe($.deployGit({
-      repository: 'https://hoonio@hoonio-stage.scm.azurewebsites.net:443/hoonio-stage.git',
+      repository: 'https://hoonio@hoonio-root.scm.azurewebsites.net:443/hoonio-root.git',
       prefix: 'dist'
     }));
 });
@@ -103,16 +109,16 @@ gulp.task('set-production', function() {
 });
 
 gulp.task('minify:js', function() {
-  return gulp.src('dist/scripts/**/*.js')
+  return gulp.src('dist/public/scripts/**/*.js')
     .pipe($.uglify())
-    .pipe(gulp.dest('dist/scripts/'))
+    .pipe(gulp.dest('dist/public/scripts/'))
     .pipe($.size());
 });
 
 gulp.task('minify:css', function() {
-  return gulp.src('dist/styles/**/*.css')
+  return gulp.src('dist/public/styles/**/*.css')
     .pipe($.minifyCss())
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('dist/public/styles'))
     .pipe($.size());
 });
 
@@ -120,7 +126,7 @@ gulp.task('minify', ['minify:js', 'minify:css']);
 
 gulp.task('clean', del.bind(null, 'dist'));
 
-gulp.task('bundle', ['html', 'styles', 'scripts', 'images', 'fonts', 'extras']);
+gulp.task('bundle', ['html', 'styles', 'server', 'scripts', 'images', 'fonts', 'extras']);
 
 gulp.task('clean-bundle', sync(['clean', 'bundle']));
 

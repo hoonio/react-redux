@@ -4,6 +4,14 @@
   "description": "React.js site for Hoonio",
   "repository": "github.com/hoonio/react",
   "license": "",
+  "engines": {
+    "node": ">=5.5.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "nodemon dist/server.js"
+  },
   "dependencies": {
     "express": "~4.0"
   },
@@ -27,15 +35,13 @@
     "gulp-useref": "^1.1.1",
     "gulp-util": "^3.0.3",
     "gulp-webserver": "^0.9.0",
+    "nodemon": "^1.9.0",
     "react": "^0.13.2",
     "react-addons": "^0.9.0",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.3.0"
-  },
-  "engines": {
-    "node": ">=0.10.0"
   },
   "browserify": {
     "transform": [
