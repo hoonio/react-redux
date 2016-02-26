@@ -10,7 +10,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon dist/server.js"
+    "test": "nodemon dist/server.js"
   },
   "dependencies": {
     "express": "~4.0"
