@@ -141,6 +141,7 @@ gulp.task('default', ['build']);
 gulp.task('watch', sync(['clean-bundle', 'serve']), function() {
   bundler.watch();
   gulp.watch('app/*.html', ['html']);
+  gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('app/server.js', ['server']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/images/**/*', ['images']);
