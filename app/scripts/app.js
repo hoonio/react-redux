@@ -1,13 +1,10 @@
 import React from 'react';
 import Addons from 'react-addons';
-import Router from './routes';
-import Home from './components/home';
 import Nav from './components/navbar';
-import Portfolio from './components/Portfolio';
-import Main from './components/Main';
+import { Router, Route, hashHistory } from 'react-router';
+import Home from './components/home';
+import Portfolio from './components/portfolio';
 
-window.React = React;
-const mountNode = document.getElementById('app');
 
 var App = React.createClass({
   getInitialState(){
@@ -27,11 +24,14 @@ var App = React.createClass({
     return (
       <div className="container">
         <Nav />
-        <Main />
-        <Portfolio />
+        <Router history={hashHistory}>
+          <Route path="/" component={Home}/>
+          <Route path="/portfolio" component={Portfolio}/>
+
+        </Router>
       </div>
     )
   }
 });
 
-React.render(<App />, mountNode);
+React.render(<App />, document.getElementById('app'));
