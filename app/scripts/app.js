@@ -27,7 +27,6 @@ var App = React.createClass({
         <Router history={hashHistory}>
           <Route path="/" component={Home}/>
           <Route path="/portfolio" component={Portfolio}/>
-
         </Router>
       </div>
     )
