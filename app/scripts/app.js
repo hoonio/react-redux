@@ -4,7 +4,7 @@ import Nav from './components/navbar';
 import { Router, Route, hashHistory } from 'react-router';
 import Home from './components/home';
 import Portfolio from './components/portfolio';
-
+import Profile from './components/profile';
 
 var App = React.createClass({
   getInitialState(){
@@ -27,6 +27,7 @@ var App = React.createClass({
         <Router history={hashHistory}>
           <Route path="/" component={Home}/>
           <Route path="/portfolio" component={Portfolio}/>
+          <Route path="/profile" component={Profile}/>
         </Router>
       </div>
     )
