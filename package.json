@@ -13,7 +13,6 @@
     "test": "nodemon dist/server.js"
   },
   "dependencies": {
-    "compression": "^1.6.1",
     "express": "~4.0"
   },
   "devDependencies": {

@@ -3,10 +3,8 @@ var express = require('express')
   , http    = require('http')
   , https   = require('https')
   , path    = require('path')
-  , compression = require('compression')
 
 var app = express()
-app.use(compression())
 app.set('port', process.env.PORT || 8000)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
