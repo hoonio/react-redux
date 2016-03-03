@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router'
 
 export default class extends React.Component {
   constructor(props) {
@@ -16,14 +17,18 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div>
         <nav className="navbar navbar-dark bg-primary navbar-light bg-faded">
           <button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
             &#9776;
           </button>
           <div className="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
             <a className="navbar-brand" href="#">Hoonio</a>
-            <ul className="nav navbar-nav">{this.state.items.map(this.renderItem)}</ul>
+            <ul role="nav" className="nav navbar-nav">
+              <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+              <li className="nav-item"><Link to="/portfolio" className="nav-link">Portfolio</Link></li>
+              <li className="nav-item"><Link to="/profile" className="nav-link">Profile</Link></li>
+            </ul>
           </div>
         </nav>
       </div>
