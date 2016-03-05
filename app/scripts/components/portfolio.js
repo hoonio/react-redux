@@ -12,6 +12,7 @@ export default class extends React.Component {
       ],
       data: []
     };
+
     reqwest({
       url:'http://filltext.com/?rows=10&val={randomNumber}',
       type: 'jsonp',
@@ -23,13 +24,26 @@ export default class extends React.Component {
   }
 
   renderChart(dataset) {
-    d3.select('#chart').selectAll('div')
+    var svg = d3.select('#chart').append('svg')
+      .attr('width', 400)
+      .attr('height', 300);
+
+    var multiplier = 8;
+
+    svg.selectAll('rect')
       .data(dataset)
       .enter()
-      .append('div')
+      .append('rect')
       .attr('class', 'bar')
-      .style('height', function(d){
-        return d.val*5+'px';
+      .attr('x', function(d,index){
+        return index*22 + 2;
+      })
+      .attr('y', function(d){
+        return 300 - d.val*multiplier;
+      })
+      .attr('width', 20)
+      .attr('height', function(d){
+        return d.val*multiplier;
      });
   }
 
