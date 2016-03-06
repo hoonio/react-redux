@@ -6,6 +6,7 @@ import Template from './template';
 import Home from './components/home';
 import Portfolio from './components/portfolio';
 import Profile from './components/profile';
+import Canvas from './components/canvas';
 
 render((
   <div className="page-top">
@@ -14,6 +15,7 @@ render((
         <IndexRoute component={Home}/>
         <Route path="portfolio" component={Portfolio}/>
         <Route path="profile" component={Profile}/>
+        <Route path="canvas" component={Canvas}/>
       </Route>
     </Router>
   </div>

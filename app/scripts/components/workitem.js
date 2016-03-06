@@ -9,7 +9,7 @@ export default (props) => {
     <div className="card">
       <div className="card-block">
         <h4 className="card-title">{props.item.gsx$title.$t}</h4>
-        <h6 className="card-subtitle text-muted">{props.item.gsx$client.$t}</h6>
+        <h6 className="card-subtitle text-muted">{props.item.gsx$period.$t} {props.item.gsx$client.$t}</h6>
       </div>
       <img className="card-img-top img-fluid" src={props.item.gsx$image.$t} alt={props.item.gsx$imagealt.$t} />
       <div className="card-block">
