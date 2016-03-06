@@ -1,15 +1,11 @@
 import React from 'react';
+import WorkItem from './WorkItem';
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        'macat',
-        'helpage',
-        'telrock',
-        'autharium'
-      ],
+      items: [],
       data: []
     };
     reqwest({
@@ -18,6 +14,13 @@ export default class extends React.Component {
       success:function(resp){
         this.setState({data:resp});
         this.renderChart(this.state.data);
+      }.bind(this)
+    });
+    reqwest({
+      url:'https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script',
+      type: 'jsonp',
+      success:(resp) => {
+        this.setState({items: resp.feed.entry});
       }.bind(this)
     });
   }
@@ -39,22 +42,9 @@ export default class extends React.Component {
         <div id="chart"></div>
         <h1>Portfolio</h1>
         <p>Here are all the works</p>
-        {this.state.items.map(this.renderCard)}
-      </div>
-    );
-  }
-
-  renderCard(item, index) {
-    return (
-      <div className="col-sm-4">
-        <div className="card" key={index}>
-          <img className="card-img-top" data-src="..." alt="Card image cap" />
-          <div className="card-block">
-            <h4 className="card-title">{item}</h4>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the </p>
-            <a href="#" className="btn btn-primary">Button</a>
-          </div>
-        </div>
+        {this.state.items.map( item => {
+          return <WorkItem item={item} />
+        })}
       </div>
     );
   }
