@@ -15,6 +15,7 @@ export default React.createClass({
               <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
               <NavLink to="/portfolio">Portfolio</NavLink>
               <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/canvas">Canvas</NavLink>
             </ul>
           </div>
         </nav>
