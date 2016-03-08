@@ -16,6 +16,7 @@ export default React.createClass({
               <NavLink to="/portfolio">Portfolio</NavLink>
               <NavLink to="/profile">Profile</NavLink>
               <NavLink to="/canvas">Canvas</NavLink>
+              <li className="nav-item"><a className="nav-link" href='/helpage'>AgeWatch</a></li>
             </ul>
           </div>
         </nav>
