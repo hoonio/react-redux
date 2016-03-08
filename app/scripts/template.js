@@ -3,7 +3,7 @@ import Nav from './components/navbar';
 
 export default (props) => {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Nav />
       {props.children}
     </div>
