@@ -1,16 +1,24 @@
 import React from 'react'
 import NavLink from './navlink'
 
-export default React.createClass({
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMenu: false
+    };
+  }
+
   render() {
+    let toggleStyle = (this.state.showMenu) ? {display:'block'}:{display:'none'};
     return (
-      <div>
+      <div className="row">
         <nav className="navbar navbar-dark bg-primary navbar-light bg-faded">
-          <button className="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+          <button className="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})} data-target="#exCollapsingNavbar2">
             &#9776;
           </button>
-          <div className="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-            <a className="navbar-brand" href="#">Hoonio</a>
+          <a className="navbar-brand" href="/"><img className="logo" src="http://hoon.io/logo-transparent"/></a>
+          <div className="navbar-toggleable-xs pull-sm-right" style={toggleStyle} id="exCollapsingNavbar2">
             <ul role="nav" className="nav navbar-nav">
               <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
               <NavLink to="/portfolio">Portfolio</NavLink>
@@ -23,4 +31,4 @@ export default React.createClass({
       </div>
     );
   }
-})
+}
