@@ -50,7 +50,7 @@
 
 	var _reactAddonsTestUtils2 = _interopRequireDefault(_reactAddonsTestUtils);
 
-	var _portfolio = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../scripts/components/portfolio\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _portfolio = __webpack_require__(159);
 
 	var _portfolio2 = _interopRequireDefault(_portfolio);
 
@@ -20139,6 +20139,180 @@
 
 	module.exports = deprecated;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(160);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _WorkItem = __webpack_require__(161);
+
+	var _WorkItem2 = _interopRequireDefault(_WorkItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _class = function (_React$Component) {
+	  _inherits(_class, _React$Component);
+
+	  function _class(props) {
+	    _classCallCheck(this, _class);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, props));
+
+	    _this.state = {
+	      items: []
+	    };
+	    reqwest({
+	      url: 'https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script',
+	      type: 'jsonp',
+	      success: function success(resp) {
+	        _this.organizeData(resp.feed.entry);
+	        _this.setState({ items: resp.feed.entry });
+	      }
+	    });
+	    return _this;
+	  }
+
+	  _createClass(_class, [{
+	    key: 'organizeData',
+	    value: function organizeData(source) {
+	      console.log(source);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container-fluid', id: 'portfolio' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Portfolio'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Here are all the works'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'card-columns' },
+	          this.state.items.map(function (item, index) {
+	            return _react2.default.createElement(_WorkItem2.default, { item: item, key: index });
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return _class;
+	}(_react2.default.Component);
+
+	exports.default = _class;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(16);
+
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(160);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (_ref) {
+	  var item = _ref.item;
+	  var index = _ref.index;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "card" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "card-block" },
+	      _react2.default.createElement(
+	        "h4",
+	        { className: "card-title" },
+	        item.gsx$title.$t
+	      ),
+	      _react2.default.createElement(
+	        "h6",
+	        { className: "card-subtitle text-muted" },
+	        item.gsx$period.$t,
+	        " ",
+	        item.gsx$client.$t
+	      )
+	    ),
+	    _react2.default.createElement("img", { className: item.gsx$image.$t ? 'card-img-top img-fluid' : 'invisible', src: item.gsx$image.$t, alt: item.gsx$imagealt.$t }),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "card-block" },
+	      _react2.default.createElement("p", { className: item.gsx$description.$t ? 'card-text' : 'invisible', dangerouslySetInnerHTML: createMarkup(item.gsx$description.$t) }),
+	      _react2.default.createElement(
+	        "p",
+	        { className: item.gsx$stacks.$t ? 'card-text' : 'invisible' },
+	        listStacks(item.gsx$stacks.$t).map(function (stack, index) {
+	          return _react2.default.createElement(
+	            "button",
+	            { type: "button", className: "btn-sm btn-secondary", key: index },
+	            stack
+	          );
+	        })
+	      ),
+	      _react2.default.createElement(
+	        "a",
+	        { href: item.gsx$link.$t, className: "btn btn-primary card-link" },
+	        "Demo"
+	      ),
+	      _react2.default.createElement(
+	        "a",
+	        { href: item.gsx$sourcecode.$t, className: item.gsx$sourcecode.$t ? 'card-link' : 'invisible' },
+	        "Code"
+	      )
+	    )
+	  );
+	};
+
+	var listStacks = function listStacks(stringText) {
+	  var arr = stringText.split(", ");
+	  console.log(arr);
+	  return arr;
+	};
+
+	var createMarkup = function createMarkup(htmlString) {
+	  return { __html: htmlString };
+	};
 
 /***/ }
 /******/ ]);
