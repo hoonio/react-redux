@@ -29,7 +29,7 @@ export default class extends React.Component {
 
   render() {
     return(
-      <div id="canvas">
+      <div id="canvas" className="container">
         <h1>Canvas</h1>
         <p>Playground for D3.js experiments</p>
         <div id="chart"></div>
