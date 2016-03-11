@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from './product';
 
 export default class extends React.Component {
   constructor(props) {
@@ -11,6 +12,26 @@ export default class extends React.Component {
         'D3',
         'Python',
         'Node.js'
+      ],
+      products: [
+        {
+          'heading': 'Feria de Junio',
+          'body': 'Recitals by and with Hoonio, with vision to deliver music in order to enlighten the audience, provide a different angle on their view on the world we live in, and foundation for musicians of next generation to proactively pursue their passion.',
+          'img': 'https://lh3.googleusercontent.com/-rJvz1oFhO8M/VV5qRPmP4gI/AAAAAAACjvo/UaSPg1n27f4/w980-h551-Ic42/feria-2015-header.jpg',
+          'imageOn': 'right'
+        },
+        {
+          'heading': 'Global AgeWatch Index 2015',
+          'body': 'Data visualization for HelpAge International which aims to support elderly around the globe. The work was featured in press coverage by <a target="_blank" title="Best and worst places to be old: interactive map" href="http://bit.ly/19YDIBV">The Guardian</a> and <a target="_blank" title="Lepiej niż w Polsce seniorom żyje się w Albanii, na Litwie czy Białorusi. Najgorzej jest z opieką zdrowotną Cały tekst" href="http://bit.ly/1fIVwIv">Wyborcza.pl</a>',
+          'img': 'https://lh3.googleusercontent.com/-TzWilRcgbbc/UktfVGEL8oI/AAAAAAAB5Sk/cPk3nN6PWOo/w980-h551/frontcover-agewatch.jpg',
+          'imageOn': 'left'
+        },
+        {
+          'heading': 'Densha de Tokyo',
+          'body': 'iOS application providing comprehensive guide for Tokyo Metropolitan Transit System. Tokyo\'s complex railway structure along with multiple private railway companies requires a different approach for creating an integrated transpiration guide to suit many of the commuters from the suburbs. Densha de Tokyo would like to take a different approach by providing a customized map with additional rail services including JR and major private lines.',
+          'img': 'https://lh3.googleusercontent.com/-sQSx-LtdT3g/VcaHUL1Z2oI/AAAAAAACjxo/Sr3OXnVK2Og/s800-Ic42/denshadetokyo.jpg',
+          'imageOn': 'right'
+        }
       ]
     };
   }
@@ -64,56 +85,8 @@ export default class extends React.Component {
             </div>
           </div>
         </section>
-        <div className="content-section-a">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-5 col-lg-offset-1 col-sm-6 col-sm-push-6">
-                <div className="row">
-                  <img className="img-responsive img-fluid img-rounded pull-sm-right" src="https://lh3.googleusercontent.com/-rJvz1oFhO8M/VV5qRPmP4gI/AAAAAAACjvo/UaSPg1n27f4/w980-h551-Ic42/feria-2015-header.jpg" alt="" />
-                </div>
-              </div>
-              <div className="col-lg-5 col-sm-6 col-sm-pull-6">
-                <hr className="section-heading-spacer" />
-                <div className="clearfix"></div>
-                <h2 className="section-heading">Feria de Junio</h2>
-                <p className="lead">Recitals by and with Hoonio, with vision to deliver music in order to enlighten the audience, provide a different angle on their view on the world we live in, and foundation for musicians of next generation to proactively pursue their passion.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="content-section-b">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6 col-xs12">
-                <hr className="section-heading-spacer" />
-                <div className="clearfix"></div>
-                <h2 className="section-heading">Global AgeWatch Index 2015</h2>
-                <p className="lead">Data visualization for HelpAge International which aims to support elderly around the globe. The work was featured in press coverage by <a target="_blank" title="Best and worst places to be old: interactive map" href="http://bit.ly/19YDIBV">The Guardian</a> and <a target="_blank" title="Lepiej niż w Polsce seniorom żyje się w Albanii, na Litwie czy Białorusi. Najgorzej jest z opieką zdrowotną Cały tekst" href="http://bit.ly/1fIVwIv">Wyborcza.pl</a></p>
-              </div>
-              <div className="col-lg-5 col-sm-pull-6 col-sm-6 col-xs-12">
-              <div className="row">
-                <img className="img-responsive img-fluid img-rounded pull-sm-right" src="https://lh3.googleusercontent.com/-TzWilRcgbbc/UktfVGEL8oI/AAAAAAAB5Sk/cPk3nN6PWOo/w980-h551/frontcover-agewatch.jpg" alt="" /></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="content-section-a">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-5 col-sm-6">
-                <hr className="section-heading-spacer" />
-                <div className="clearfix"></div>
-                <h2 className="section-heading">Densha de Tokyo</h2>
-                <p className="lead">iOS application providing comprehensive guide for Tokyo Metropolitan Transit System. Tokyo's complex railway structure along with multiple private railway companies requires a different approach for creating an integrated transpiration guide to suit many of the commuters from the suburbs. Densha de Tokyo would like to take a different approach by providing a customized map with additional rail services including JR and major private lines.</p>
-              </div>
-              <div className="col-lg-5 col-lg-offset-2 col-sm-6">
-                <div className="row">
-                  <img className="img-responsive img-fluid img-rounded pull-sm-right" src="https://lh3.googleusercontent.com/-sQSx-LtdT3g/VcaHUL1Z2oI/AAAAAAACjxo/Sr3OXnVK2Og/s800-Ic42/denshadetokyo.jpg" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {this.state.products.map((product, index)=>(<Product prod={product} key={index} />))}
+
         <section id="contact">
           <div className="container">
             <div className="row">
