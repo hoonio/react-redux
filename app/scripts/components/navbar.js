@@ -25,7 +25,7 @@ export default class extends React.Component {
                 <NavLink to="/portfolio">Portfolio</NavLink>
                 <NavLink to="/profile">Profile</NavLink>
                 <NavLink to="/canvas">Canvas</NavLink>
-                <li className="nav-item"><a className="nav-link" href='/helpage'>AgeWatch</a></li>
+                <li className="nav-item"><a className="nav-link" href='/#contact'>Contact</a></li>
               </ul>
             </div>
           </div>
