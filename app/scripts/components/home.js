@@ -74,7 +74,7 @@ export default class extends React.Component {
                 <p className="lead">Recitals by and with Hoonio, with vision to deliver music in order to enlighten the audience, provide a different angle on their view on the world we live in, and foundation for musicians of next generation to proactively pursue their passion.</p>
               </div>
               <div className="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img className="img-responsive" src="https://lh3.googleusercontent.com/-rJvz1oFhO8M/VV5qRPmP4gI/AAAAAAACjvo/UaSPg1n27f4/w980-h551-Ic42/feria-2015-header.jpg" alt="" />
+                <img className="img-responsive img-fluid img-rounded pull-sm-right" src="https://lh3.googleusercontent.com/-rJvz1oFhO8M/VV5qRPmP4gI/AAAAAAACjvo/UaSPg1n27f4/w980-h551-Ic42/feria-2015-header.jpg" alt="" />
               </div>
             </div>
           </div>

@@ -6,7 +6,9 @@ export default (props) => {
   return (
     <div className="index">
       <Nav />
-      {props.children}
+      <div className="page">
+        {props.children}
+      </div>
       <Footer />
     </div>
   )

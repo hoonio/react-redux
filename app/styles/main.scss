@@ -28,6 +28,11 @@ body {
   }
 }
 
+.page {
+  padding-top: 54px;
+  min-height: 100vh;
+}
+
 /* homepage */
 #home {
   header {
@@ -66,7 +71,6 @@ body {
 
 /* profile - CV */
 #profile {
-
 }
 
 /* portfolio - Works */
@@ -90,10 +94,13 @@ body {
 }
 
 footer {
-  padding: 2rem 0 1rem;
   background: $md-navy;
   text-align: center;
   color: white;
+  padding: 0.5rem 0;
+  @include media-breakpoint-up(md) {
+    padding: 1rem 0;
+  }
 
   a {
     color: white;
@@ -104,17 +111,19 @@ footer {
   }
 
   p#copyright {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
   }
 
-  ul.social-buttons li {
-    a span i.hoonio-stack-1x {
-      color: $md-navy;
+  ul {
+    margin-bottom: 0;
+    &.social-buttons li {
+      a span i.hoonio-stack-1x {
+        color: $md-navy;
+      }
     }
-  }
-
-  ul.list-inline:not(.social-buttons){
-    margin-top: 0.5rem;
+    &.list-inline:not(.social-buttons){
+      margin-top: 0.5rem;
+    }
   }
 
   .list-inline-item{
