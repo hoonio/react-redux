@@ -26,6 +26,19 @@ body {
   img.logo {
     height: 30px;
   }
+
+  .navbar-toggler {
+    color: white;
+  }
+
+  @include media-breakpoint-down(xs) {
+    #nav-home {
+      display: none;
+    }
+    .navbar-nav .nav-item {
+      width: 100%;
+    }
+  }
 }
 
 .page {
@@ -70,7 +83,7 @@ body {
   }
 
   section {
-    padding: 50px 0;
+    padding: 5rem 0;
     h2.section-heading {
       font-size: 40px;
       margin-top: 0;
@@ -85,7 +98,7 @@ body {
       margin-bottom: 75px;
     }
     @include media-breakpoint-up(md) {
-        padding: 150px 0;
+        padding: 3rem 0;
     }
 
     &#products {
