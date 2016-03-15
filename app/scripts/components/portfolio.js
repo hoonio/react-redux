@@ -24,8 +24,6 @@ export default class extends React.Component {
   render() {
     return (
       <div className="container-fluid" id="portfolio">
-        <h1>Portfolio</h1>
-        <p>Here are all the works</p>
         <div className="card-columns">
           {this.state.items.map((item, index) => ( <WorkItem item={item} key={index} />
           ))}

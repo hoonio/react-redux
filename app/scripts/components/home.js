@@ -1,17 +1,24 @@
 import React from 'react';
 import Product from './product';
+import Service from './service';
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        'Browserify',
-        'Babel',
-        'Bootstrap',
-        'D3',
-        'Python',
-        'Node.js'
+      services: [
+        {
+          'heading': 'head1',
+          'body': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit'
+        },
+        {
+          'heading': 'head2',
+          'body': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit'
+        },
+        {
+          'heading': 'head3',
+          'body': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit'
+        }
       ],
       products: [
         {
@@ -28,7 +35,7 @@ export default class extends React.Component {
         },
         {
           'heading': 'Densha de Tokyo',
-          'body': 'iOS application providing comprehensive guide for Tokyo Metropolitan Transit System. Tokyo\'s complex railway structure along with multiple private railway companies requires a different approach for creating an integrated transpiration guide to suit many of the commuters from the suburbs. Densha de Tokyo would like to take a different approach by providing a customized map with additional rail services including JR and major private lines.',
+          'body': 'iOS application providing comprehensive guide for Tokyo Metropolitan Transit System, covering additional rail services including JR and major private lines.',
           'img': 'https://lh3.googleusercontent.com/-sQSx-LtdT3g/VcaHUL1Z2oI/AAAAAAACjxo/Sr3OXnVK2Og/s800-Ic42/denshadetokyo.jpg',
           'imageOn': 'right'
         }
@@ -40,48 +47,14 @@ export default class extends React.Component {
     return (
       <div id="home">
         <header>
-          <div className="container">
-            <div className="row">
-              <div className="intro-text">
-                <img className="logo" src="http://hoon.io/logo144" />
-                Bridging the gap between ideas and technology
-              </div>
-            </div>
+          <div className="intro-text">
+            <p>Bridging the gap between ideas and technology</p>
           </div>
         </header>
         <section id="services">
           <div className="container">
-            <div className="row">
-              <div className="col-lg-12 text-center">
-                <h2 className="section-heading">Services</h2>
-                <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-              </div>
-            </div>
             <div className="row text-center">
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 className="service-heading">E-Commerce</h4>
-                <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-              </div>
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 className="service-heading">Responsive Design</h4>
-                <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-              </div>
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i className="fa fa-lock fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 className="service-heading">Web Security</h4>
-                <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-              </div>
+              {this.state.services.map((service, index)=>(<Service serv={service} key={index} />))}
             </div>
           </div>
         </section>

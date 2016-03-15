@@ -29,7 +29,6 @@ body {
 }
 
 .page {
-  margin-top: 54px;
   min-height: 84vh;
 }
 
@@ -46,6 +45,28 @@ body {
     background-size: cover;
     min-height: 35em;
     height: 100vh;
+  }
+
+  .intro-text {
+    text-align: center;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-direction: column;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
+    height: 100vh;
+    p {
+      font-size: 1.5rem;
+      color: white;
+
+    }
   }
 
   section {
@@ -78,7 +99,8 @@ body {
 }
 
 /* portfolio - Works */
-#Portfolio {
+#portfolio {
+  margin-top: 1rem;
   .btn-sm {
     padding: 0.1rem 0.25rem;
     font-size: 0.75rem;
@@ -88,6 +110,7 @@ body {
 
 /* canvas - D3 Visualization */
 #canvas {
+  margin-top: 1rem;
   .bar {
     display: inline-block;
     width: 20px;

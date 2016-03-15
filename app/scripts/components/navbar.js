@@ -12,7 +12,7 @@ export default class extends React.Component {
   render() {
     let toggleStyle = (this.state.showMenu) ? {display:'block'}:{display:'none'};
     return (
-      <nav className="navbar navbar-default navbar-fixed-top bg-faded">
+      <nav className="navbar navbar-default bg-faded">
         <div className="container">
           <div className="row">
             <button className="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})} data-target="#exCollapsingNavbar2">
