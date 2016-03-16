@@ -99,6 +99,14 @@ gulp.task('serve', function() {
 gulp.task('deploy', ['build'], function() {
   return gulp.src('dist/**/*')
     .pipe($.deployGit({
+      repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
+      prefix: 'dist'
+    }));
+});
+
+gulp.task('release', ['build'], function() {
+  return gulp.src('dist/**/*')
+    .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-root.scm.azurewebsites.net:443/hoonio-root.git',
       prefix: 'dist'
     }));
