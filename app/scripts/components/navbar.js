@@ -25,6 +25,7 @@ export default class extends React.Component {
                 <NavLink to="/portfolio" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Portfolio</NavLink>
                 <NavLink to="/profile" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Profile</NavLink>
                 <NavLink to="/canvas" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Canvas</NavLink>
+                <li className="nav-item"><a className="nav-link" href="http://blog.hoonio.com">Blog</a></li>
                 <li className="nav-item"><a className="nav-link" href='/#contact'>Contact</a></li>
               </ul>
             </div>

@@ -96,7 +96,7 @@ gulp.task('serve', function() {
     }));
 });
 
-gulp.task('deploy', ['build'], function() {
+gulp.task('deploy', function() {
   return gulp.src('dist/**/*')
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
