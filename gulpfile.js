@@ -50,7 +50,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('server', function() {
-  return gulp.src('app/server.js')
+  return gulp.src(['app/server.js', 'package.json'])
     .pipe(gulp.dest('dist/'))
     .pipe($.size());
 });
@@ -96,7 +96,7 @@ gulp.task('serve', function() {
     }));
 });
 
-gulp.task('deploy', function() {
+gulp.task('deploy', ['build'], function() {
   return gulp.src('dist/**/*')
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
