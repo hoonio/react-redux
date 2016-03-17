@@ -26,7 +26,7 @@ export default class extends React.Component {
       products: [
         {
           'heading': 'Feria de Junio',
-          'body': 'Recitals by and with Hoonio, with vision to deliver music in order to enlighten the audience, provide a different angle on their view on the world we live in, and foundation for musicians of next generation to proactively pursue their passion.<br /><a href="http://hoon.io/feriaApp"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" width="135px"/></a>',
+          'body': 'Recitals by and with Hoonio, with vision to deliver music in order to enlighten the audience, provide a different angle on their view on the world we live in, and foundation for musicians of next generation to proactively pursue their passion.<br /><a href="http://hoon.io/feriaApp"><img class="appstore-badge" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" width="135px"/></a>',
           'target': 'http://feria.hoonio.com',
           'img': 'https://lh3.googleusercontent.com/-rJvz1oFhO8M/VV5qRPmP4gI/AAAAAAACjvo/UaSPg1n27f4/w980-h551-Ic42/feria-2015-header.jpg',
           'imageOn': 'right'
@@ -40,7 +40,7 @@ export default class extends React.Component {
         },
         {
           heading: 'Densha de Tokyo',
-          body: 'iOS application providing comprehensive guide for Tokyo Metropolitan Transit System, covering additional rail services including JR and major private lines. <br /><a href="http://hoon.io/1DWTTNa"><img src="https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/images/badge-download-on-the-app-store-jp.svg" /></a>',
+          body: 'iOS application providing comprehensive guide for Tokyo Metropolitan Transit System, covering additional rail services including JR and major private lines. <br /><a href="http://hoon.io/1DWTTNa"><img class="playstore-badge" src="https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/images/badge-download-on-the-app-store-jp.svg" /></a>',
           target: 'http://hoon.io/1DWTTNa',
           img: 'https://lh3.googleusercontent.com/-sQSx-LtdT3g/VcaHUL1Z2oI/AAAAAAACjxo/Sr3OXnVK2Og/s800-Ic42/denshadetokyo.jpg',
           imageOn: 'right'

@@ -41,8 +41,14 @@ body {
   }
 }
 
+/* page general */
 .page {
   min-height: 84vh;
+}
+
+/* sitewide components */
+.appstore-badge, .playstore-badge{
+  margin: 1rem 0;
 }
 
 /* homepage */
