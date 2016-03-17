@@ -18,7 +18,7 @@ export default class extends React.Component {
             <button className="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})} data-target="#exCollapsingNavbar2">
               &#9776;
             </button>
-            <a className="navbar-brand" href="/"><img className="logo" src="http://hoon.io/logo-transparent"/></a>
+            <a className="navbar-brand" href="/"><img className="logo" src="https://lh3.googleusercontent.com/-xLJDIl8LBcM/VV0GwIRMygI/AAAAAAACeA4/1IOmES6TSUA/w172-h30-Ic42/hoonio-logo-2014.png"/></a>
             <div className="navbar-toggleable-xs pull-sm-right" style={toggleStyle} id="exCollapsingNavbar2">
               <ul role="nav" className="nav navbar-nav">
                 <NavLink to="/" id="nav-home" onlyActiveOnIndex>Home</NavLink>
