@@ -9,6 +9,7 @@ app.set('port', process.env.PORT || 8000)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
 app.use(express.static(publicPath))
+app.use('/.well-known', express.static('.well-known'));
 
 app.use(function(req, res, next) {
   console.log(req.method, 'at', req.path)
@@ -34,7 +35,12 @@ app.get('/error/:reqpage', function(req, res){
   res.status(404).send('No page named' + req.params.reqpage + ' found')
 })
 
+app.get('/.well-known/acme-challenge/:fileid', function(req, res){
+  res.send('Requesting '+fileid)
+})
+
 app.get('/*', function(req, res){
+  console.log('redirect to React router')
   var page = fs.readFileSync(publicPath + '/index.html').toString()
   res.send(page)
 })
