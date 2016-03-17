@@ -40,7 +40,6 @@ app.get('/.well-known/acme-challenge/:fileid', function(req, res){
 })
 
 app.get('/*', function(req, res){
-  console.log('redirect to React router')
   var page = fs.readFileSync(publicPath + '/index.html').toString()
   res.send(page)
 })
