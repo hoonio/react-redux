@@ -7,7 +7,7 @@ export default class extends React.Component {
       data: []
     };
     reqwest({
-      url:'http://filltext.com/?rows=10&val={randomNumber}',
+      url:'//filltext.com/?rows=10&val={randomNumber}',
       type: 'jsonp',
       success:function(resp){
         this.setState({data:resp});
