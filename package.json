@@ -9,7 +9,7 @@
   },
   "main": "dist/server.js",
   "scripts": {
-    "start": "nodemon dist/server.js",
+    "start": "node dist/server.js",
     "test": "webpack-dev-server"
   },
   "dependencies": {

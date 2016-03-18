@@ -50,7 +50,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('server', function() {
-  return gulp.src(['app/server.js', 'package.json'])
+  return gulp.src(['app/server.js', 'package.json', 'web.config'])
     .pipe(gulp.dest('dist/'))
     .pipe($.size());
 });
