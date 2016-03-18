@@ -26,11 +26,11 @@ export default (props) => (
       </div>
       <div className="row">
         <div className="col-md-12 text-center">
-          <div className="form-group">
-            <textarea className="form-control" name="entry.2.single" id="entry_2" placeholder="Message" rows="6" required data-validation-required-message="Please enter a message."></textarea>
-            <p className="help-block text-danger"></p>
-          </div>
+          <textarea className="form-control" name="entry.2.single" id="entry_2" placeholder="Message" rows="6" required data-validation-required-message="Please enter a message."></textarea>
+          <p className="help-block text-danger"></p>
         </div>
+      </div>
+      <div className="row">
         <div className="col-lg-12 text-center">
           <div id="success"></div>
           <button type="submit" className="btn btn-xl">Send Message</button>
