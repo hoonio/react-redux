@@ -1,14 +1,13 @@
-'use strict';
+const gulp       = require('gulp');
+const $          = require('gulp-load-plugins')();
+const sync       = $.sync(gulp).sync;
+const del        = require('del');
+const webpack = require('webpack-stream');
+const browserify = require('browserify');
+const watchify   = require('watchify');
+const source     = require('vinyl-source-stream');
 
-var gulp       = require('gulp');
-var $          = require('gulp-load-plugins')();
-var sync       = $.sync(gulp).sync;
-var del        = require('del');
-var browserify = require('browserify');
-var watchify   = require('watchify');
-var source     = require('vinyl-source-stream');
-
-var bundler = {
+const bundler = {
   w: null,
   init: function() {
     this.w = watchify(browserify({
@@ -31,6 +30,12 @@ var bundler = {
     this.w && this.w.close();
   }
 };
+
+gulp.task('webpack', () => {
+  return gulp.src('app/scripts/app.js')
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('dist/public/scripts/'))
+})
 
 gulp.task('styles', function() {
   return $.rubySass('app/styles/main.scss', {

@@ -1,9 +1,9 @@
 module.exports = {
-  entry: "./app/tests/components/portfolio.spec.js",
+  entry: "./app/scripts/app.js",
   output: {
-    path: './app/tests',
-    filename: "spec.js",
-    publicPath: '/tests'
+    path: './dist/public/scripts',
+    filename: "app.js",
+    publicPath: '/scripts'
   },
   module: {
     loaders: [{
