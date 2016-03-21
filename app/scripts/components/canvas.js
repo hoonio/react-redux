@@ -1,4 +1,5 @@
 import React from 'react';
+import Todo from './todo'
 
 export default class extends React.Component {
   constructor(props) {
@@ -33,6 +34,8 @@ export default class extends React.Component {
         <h1>Canvas</h1>
         <p>Playground for D3.js experiments</p>
         <div id="chart"></div>
+        <h1>Redux Todo App</h1>
+        <Todo />
       </div>
     );
   }

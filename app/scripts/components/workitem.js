@@ -21,8 +21,7 @@ export default ({item, index}) => (
 );
 
 const listStacks = (stringText) => {
-  let arr = stringText.split(", ")
-  console.log(arr);
+  const arr = stringText.split(', ')
   return arr
 }
 

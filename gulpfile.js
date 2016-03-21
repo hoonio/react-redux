@@ -10,12 +10,13 @@ const source     = require('vinyl-source-stream');
 const bundler = {
   w: null,
   init: function() {
-    this.w = watchify(browserify({
+    const b = browserify({
       entries: ['./app/scripts/app.js'],
       insertGlobals: true,
       cache: {},
       packageCache: {}
-    }));
+    });
+    this.w = watchify(b);
   },
   bundle: function() {
     return this.w && this.w.bundle()
@@ -25,6 +26,14 @@ const bundler = {
   },
   watch: function() {
     this.w && this.w.on('update', this.bundle.bind(this));
+  },
+  test: () =>{
+    console.log('test has begun')
+    b.external('react-dom');
+    b.external('react-dom/server');
+    b.external('react-addons-test-utils');
+    const enzyme = 'enzyme';
+    // const wrapper = enzyme.mount(<Home />);
   },
   stop: function() {
     this.w && this.w.close();
@@ -148,6 +157,10 @@ gulp.task('build', ['clean-bundle'], bundler.stop.bind(bundler));
 gulp.task('build:production', sync(['set-production', 'build', 'minify']));
 
 gulp.task('serve:production', sync(['build:production', 'serve']));
+
+gulp.task('test', () => {
+  bundler.test();
+})
 
 gulp.task('default', ['build']);
 

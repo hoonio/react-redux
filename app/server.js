@@ -29,7 +29,7 @@ app.get('/express', function(req, res) {
 app.get('/helpage(.html)?', function(req, res) {
   var data = fs.readFileSync(publicPath + '/helpage.html').toString()
   res.send(data)
-});
+})
 
 app.get('/error/:reqpage', function(req, res){
   res.status(404).send('No page named' + req.params.reqpage + ' found')
