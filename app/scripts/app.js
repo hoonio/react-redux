@@ -13,6 +13,7 @@ render((
         <IndexRoute component={Home}/>
         <Route path="portfolio" component={Portfolio}/>
         <Route path="profile" component={Profile}/>
+        <Route path="profile.html" component={Profile}/>
         <Route path="canvas" component={Canvas}/>
         <Route path="*" component={Home}/>
       </Route>
