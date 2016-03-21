@@ -5,6 +5,12 @@
 $md-navy: #0D47A1;
 $md-red: #D50000;
 
+$homepage-cover-path: 'https://lh3.googleusercontent.com/-uxpIOwYZfCM/VvAE1gOGbGI/AAAAAAAC14A/vAgBkPaGDF8vN3MqG1C8UzMMbsZm-F3VACCo';
+$homepage-cover-fullsize: '/w2500-h1667-Ic42';
+$homepage-cover-tablet: '/w1536-h1024-Ic42';
+$homepage-cover-phone: '/w1400-h736-Ic42';
+$homepage-cover-filename: '/Modestas-Urbonas-bridge.jpeg';
+
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -54,16 +60,28 @@ body {
 /* homepage */
 #home {
   header {
-    background-image: -moz-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://lh3.googleusercontent.com/-wNR84-Qn9QM/Vb34fpeKa-I/AAAAAAACjrM/O_ptXGN6F-Y/s800-Ic42/Modestas-Urbonas-bridge.jpeg");
-    background-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), -webkit-image-set( url(https://lh3.googleusercontent.com/-wNR84-Qn9QM/Vb34fpeKa-I/AAAAAAACjrM/O_ptXGN6F-Y/s800-Ic42/Modestas-Urbonas-bridge.jpeg) 1x, url(https://lh3.googleusercontent.com/-wNR84-Qn9QM/Vb34fpeKa-I/AAAAAAACjrM/O_ptXGN6F-Y/s800-Ic42/Modestas-Urbonas-bridge.jpeg) 2x);
-    background-image: -ms-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://lh3.googleusercontent.com/-wNR84-Qn9QM/Vb34fpeKa-I/AAAAAAACjrM/O_ptXGN6F-Y/s800-Ic42/Modestas-Urbonas-bridge.jpeg");
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://lh3.googleusercontent.com/-wNR84-Qn9QM/Vb34fpeKa-I/AAAAAAACjrM/O_ptXGN6F-Y/s800-Ic42/Modestas-Urbonas-bridge.jpeg");
+    background-image: -moz-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-phone+$homepage-cover-filename)});
+    background-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), -webkit-image-set( url(#{($homepage-cover-path+$homepage-cover-phone+$homepage-cover-filename)}) 1x, url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)}) 2x);
+    background-image: -ms-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-phone+$homepage-cover-filename)});
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-phone+$homepage-cover-filename)});
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
     min-height: 35em;
     height: 100vh;
+    @include media-breakpoint-up(md) {
+      background-image: -moz-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-tablet+$homepage-cover-filename)});
+      background-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), -webkit-image-set( url(#{($homepage-cover-path+$homepage-cover-tablet+$homepage-cover-filename)}) 1x, url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)}) 2x);
+      background-image: -ms-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-tablet+$homepage-cover-filename)});
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-tablet+$homepage-cover-filename)});
+    }
+    @include media-breakpoint-up(lg) {
+      background-image: -moz-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)});
+      background-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)});
+      background-image: -ms-linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)});
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(#{($homepage-cover-path+$homepage-cover-fullsize+$homepage-cover-filename)});
+    }
   }
 
   .intro-text {
