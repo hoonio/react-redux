@@ -21,7 +21,7 @@ export default class extends React.Component {
     console.log('Render D3')
     let dataset = []
     // dataset = dataset.map((val) => val*Math.random())
-    for (let i=0; i<15; i++){
+    for (let i=0; i<75; i++){
       dataset.push(Math.random()*10)
     }
     console.log(dataset);
@@ -44,6 +44,10 @@ export default class extends React.Component {
       .domain([0, d3.max(dataset) * 1.1])
       .range([0, h]);
 
+    const colorScale = d3.scale.linear()
+      .domain([0, d3.max(dataset)])
+      .range(['orange', 'purple']);
+
     svg.selectAll('div')
       .data(dataset)
       .enter()
@@ -58,7 +62,8 @@ export default class extends React.Component {
       .attr('width', 20)
       .style('height', function(d){
         return yScale(d);
-     });
+     })
+     .attr('fill', colorScale);
   }
 
   componentDidMount() {
