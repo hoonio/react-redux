@@ -25,7 +25,7 @@ export default class extends React.Component {
       dataset.push(Math.random()*10)
     }
     console.log(dataset);
-    const w = 400
+    const w = 600
     const h = 300
 
     // d3.select('#chart').selectAll('div')
@@ -40,30 +40,32 @@ export default class extends React.Component {
       .attr('width', w)
       .attr('height', h);
 
-    let yScale = d3.scale.linear()
+    const xScale = d3.scale.ordinal()
+      .domain(dataset)
+      .rangeBands([0, w], 0.01, 1);
+
+    const yScale = d3.scale.linear()
       .domain([0, d3.max(dataset) * 1.1])
       .range([0, h]);
 
-    const colorScale = d3.scale.linear()
-      .domain([0, d3.max(dataset)])
-      .range(['orange', 'purple']);
+    const colorScale = d3.scale.quantize()
+      .domain([0, dataset.length])
+      .range(['yellow', 'orange', 'purple']);
+
+    // const colorScale = d3.scale.quantile()
+    //   .domain([0, 10, dataset.length]-10, dataset.length)
+    //   .range(['yellow', 'orange', 'green', 'purple']);
 
     svg.selectAll('div')
       .data(dataset)
       .enter()
       .append('rect')
       .attr('class', 'bar')
-      .attr('x', function(d,i) {
-        return i*20+2;
-      })
-      .attr('y', function(d) {
-        return 300 - yScale(d);
-      })
-      .attr('width', 20)
-      .style('height', function(d){
-        return yScale(d);
-     })
-     .attr('fill', colorScale);
+      .attr('x', (d) => xScale(d))
+      .attr('y', (d) => 300 - yScale(d))
+      .attr('width', xScale.rangeBand())
+      .style('height', (d) => yScale(d))
+      .attr('fill', (d, i) => colorScale(i))
   }
 
   componentDidMount() {
