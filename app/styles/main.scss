@@ -155,12 +155,15 @@ body {
 /* canvas - D3 Visualization */
 #canvas {
   margin-top: 1rem;
-  .bar {
-    display: inline-block;
-    width: 20px;
-    height: 75px;
-    margin-right: 2px;
-    fill: teal;
+  #chart {
+    background-color: white;
+    .bar {
+      display: inline-block;
+      width: 20px;
+      height: 75px;
+      margin-right: 2px;
+      fill: teal;
+    }
   }
 }
 

@@ -19,7 +19,14 @@ export default class extends React.Component {
   renderChart(remoteData) {
 
     console.log('Render D3')
-    let dataset = [5,10,15,20,25]
+    let dataset = []
+    // dataset = dataset.map((val) => val*Math.random())
+    for (let i=0; i<15; i++){
+      dataset.push(Math.random()*10)
+    }
+    console.log(dataset);
+    const w = 400
+    const h = 300
 
     // d3.select('#chart').selectAll('div')
     //   .data(dataset)
@@ -29,10 +36,13 @@ export default class extends React.Component {
     //   .style('height', function(d){
     //     return d.val*8+'px';
     // });
-    var svg = d3.select('#chart').append('svg')
-      .attr('width', 400)
-      .attr('height', 300);
-    console.log(svg)
+    const svg = d3.select('#chart').append('svg')
+      .attr('width', w)
+      .attr('height', h);
+
+    let yScale = d3.scale.linear()
+      .domain([0, d3.max(dataset) * 1.1])
+      .range([0, h]);
 
     svg.selectAll('div')
       .data(dataset)
@@ -42,12 +52,12 @@ export default class extends React.Component {
       .attr('x', function(d,i) {
         return i*20+2;
       })
-        .attr('y', function(d) {
-          return 300 - d*8
-        })
+      .attr('y', function(d) {
+        return 300 - yScale(d);
+      })
       .attr('width', 20)
       .style('height', function(d){
-        return d*8;
+        return yScale(d);
      });
   }
 
