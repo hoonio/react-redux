@@ -21,8 +21,12 @@ export default class extends React.Component {
     console.log('Render D3')
     let dataset = []
     // dataset = dataset.map((val) => val*Math.random())
-    for (let i=0; i<75; i++){
-      dataset.push(Math.random()*10)
+    for (let i=0; i<25; i++){
+      dataset.push({
+        x: Math.random()*100,
+        y: Math.random()*100,
+        r: Math.random()*30
+      })
     }
     console.log(dataset);
     const w = 600
@@ -40,31 +44,26 @@ export default class extends React.Component {
       .attr('width', w)
       .attr('height', h);
 
-    const xScale = d3.scale.ordinal()
-      .domain(dataset)
-      .rangeBands([0, w], 0.01, 1);
+    const xScale = d3.scale.linear()
+      .domain([0, 100])
+      .range([0, w]);
 
     const yScale = d3.scale.linear()
-      .domain([0, d3.max(dataset) * 1.1])
-      .range([0, h]);
+      .domain([0, d3.max(dataset, (d) => d.y )])
+      .range([h, 0]);
 
     const colorScale = d3.scale.quantize()
       .domain([0, dataset.length])
       .range(['yellow', 'orange', 'purple']);
 
-    // const colorScale = d3.scale.quantile()
-    //   .domain([0, 10, dataset.length]-10, dataset.length)
-    //   .range(['yellow', 'orange', 'green', 'purple']);
-
-    svg.selectAll('div')
+    svg.selectAll('circle')
       .data(dataset)
       .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('x', (d) => xScale(d))
-      .attr('y', (d) => 300 - yScale(d))
-      .attr('width', xScale.rangeBand())
-      .style('height', (d) => yScale(d))
+      .append('circle')
+      .attr('class', 'bubble')
+      .attr('cx', (d) => xScale(d.x))
+      .attr('cy', (d) => yScale(d.y))
+      .attr('r', (d) => d.r)
       .attr('fill', (d, i) => colorScale(i))
   }
 
