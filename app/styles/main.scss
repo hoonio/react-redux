@@ -163,6 +163,21 @@ body {
       height: 75px;
       margin-right: 2px;
     }
+    .dot {
+      fill-opacity: 0.7;
+      stroke: black;
+    }
+    .active {
+      fill: red;
+      fill-opacity: 0.5;
+      stroke-width: 3px;
+    }
+    .axis path, .axis line {
+      fill: none;
+      stroke: #000;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
   }
 }
 
