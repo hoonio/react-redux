@@ -1,11 +1,14 @@
 import React from 'react';
+import _ from 'lodash';
 
 export default class extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      data: []
-    };
+      dataset: []
+    }
+    this.initializeDataset()
+    this.updatePlot = this.updatePlot.bind(this)
     // reqwest({
     //   url:'//filltext.com/?rows=10&val={randomNumber}',
     //   type: 'jsonp',
@@ -16,80 +19,96 @@ export default class extends React.Component {
     // });
   }
 
-  renderChart(remoteData) {
+  initializeDataset() {
+    this.state.dataset = _.map(_.range(25), (i) => ({
+      x: Math.round(Math.random() * 100),
+      y: Math.round(Math.random() * 100),
+      r: Math.round(5 + Math.random() * 10)
+    }))
+  }
 
-    console.log('Render D3')
-    let dataset = []
-    // dataset = dataset.map((val) => val*Math.random())
-    for (let i=0; i<25; i++){
-      dataset.push({
-        x: Math.random()*100,
-        y: Math.random()*100,
-        r: Math.random()*30+5
-      })
-    }
-    console.log(dataset);
+  updatePlot() {
+    console.log('update the plot')
+    _.each(this.state.dataset, function (datum) {
+      datum.x = Math.round(Math.random() * 100);
+      datum.y = Math.round(Math.random() * 100);
+      datum.r = Math.round(5 + Math.random() * 10);
+    })
+
+    // this.renderChart()
+
+    this.state.svg.selectAll('circle')
+      .transition()
+      .duration(500)
+      .ease('elastic')
+      .attr('cx', (d) => this.state.xScale(d.x))
+      .attr('cy', (d) => this.state.yScale(d.y))
+      .attr('r', (d) => d.r)
+
+  }
+
+  renderChart() {
     const margin = { top: 20, right: 20, bottom: 40, left: 40 }
     const w = 600 - margin.left - margin.right
     const h = 300 - margin.top - margin.bottom
 
     // d3.select('#chart').selectAll('div')
-    //   .data(dataset)
+    //   .data(this.state.dataset)
     //   .enter()
     //   .append('div')
     //   .attr('class', 'bar')
     //   .style('height', function(d){
     //     return d.val*8+'px';
     // });
-    const svg = d3.select('#chart').append('svg')
+    this.state.svg = d3.select('#chart').append('svg')
       .attr('width', w + margin.left + margin.right)
       .attr('height', h + margin.top + margin.bottom)
       .append('g')
       .attr('transform', 'translate(' + margin.left +', ' + margin.top + ')');
 
-    const xScale = d3.scale.linear()
-      .domain([0, d3.max(dataset, (d) => d.x)])
+    this.state.xScale = d3.scale.linear()
+      .domain([0, d3.max(this.state.dataset, (d) => d.x)])
       .range([0, w]);
 
     const xAxis = d3.svg.axis()
-      .scale(xScale)
+      .scale(this.state.xScale)
       .orient('bottom')
       .ticks(5)
       .innerTickSize(6)
       .outerTickSize(12)
       .tickPadding(12);
 
-    svg.append('g')
+    this.state.svg.append('g')
       .attr('class', 'x axis')
       .attr('transform', 'translate(0, '+ (h + 0) + ')')
       .call(xAxis);
 
-    const yScale = d3.scale.linear()
-      .domain([0, d3.max(dataset, (d) => d.y )])
+    this.state.yScale = d3.scale.linear()
+      .domain([0, d3.max(this.state.dataset, (d) => d.y )])
       .range([h, 0]);
 
     const yAxis = d3.svg.axis()
-      .scale(yScale)
+      .scale(this.state.yScale)
       .orient('left');
 
-    svg.append('g')
+    this.state.svg.append('g')
       .attr('class', 'y axis')
       .attr('transform', 'translate(0, 0)')
       .call(yAxis);
 
-    const colorScale = d3.scale.quantize()
-      .domain([0, dataset.length])
+    this.state.colorScale = d3.scale.quantize()
+      .domain([0, this.state.dataset.length])
       .range(['yellow', 'orange', 'purple']);
 
-    svg.selectAll('circle')
-      .data(dataset)
+    this.state.svg.selectAll('circle')
+      .data(this.state.dataset)
       .enter()
       .append('circle')
       .attr('class', 'dot')
-      .attr('cx', (d) => xScale(d.x))
-      .attr('cy', (d) => yScale(d.y))
+      .attr('cx', (d) => this.state.xScale(d.x))
+      .attr('cy', (d) => this.state.yScale(d.y))
       .attr('r', (d) => d.r)
-      .attr('fill', (d,i) => colorScale(i))
+      .attr('fill', (d,i) => this.state.colorScale(i))
       .on('mouseover', function(d){
         d3.select(this).classed('active', true)
       })
@@ -105,7 +124,7 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    this.renderChart(this.state.data)
+    this.renderChart()
   }
 
   render() {
@@ -114,6 +133,8 @@ export default class extends React.Component {
         <h1>Canvas</h1>
         <p>Playground for D3.js experiments</p>
         <div id="chart"></div>
+        <br />
+        <button onClick={this.updatePlot} type="button" className="btn btn-success-outline">Update</button>
       </div>
     );
   }
