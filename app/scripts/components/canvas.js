@@ -9,14 +9,6 @@ export default class extends React.Component {
     }
     this.initializeDataset()
     this.updatePlot = this.updatePlot.bind(this)
-    // reqwest({
-    //   url:'//filltext.com/?rows=10&val={randomNumber}',
-    //   type: 'jsonp',
-    //   success:function(resp){
-    //     this.setState({data:resp});
-    //     this.renderChart(this.state.data);
-    //   }.bind(this)
-    // });
   }
 
   initializeDataset() {
@@ -28,22 +20,28 @@ export default class extends React.Component {
   }
 
   updatePlot() {
-    console.log('update the plot')
-    _.each(this.state.dataset, function (datum) {
+    const steppedTransition = (selection, dur) => {
+      selection
+        .transition()
+        .duration(dur)
+        .ease('elastic')
+        .attr('cx', (d) => this.state.xScale(d.x))
+        .attr('cy', (d) => this.state.yScale(d.y))
+        .attr('r', (d) => d.r)
+    }
+
+    const newData = (datum) => {
       datum.x = Math.round(Math.random() * 100);
       datum.y = Math.round(Math.random() * 100);
       datum.r = Math.round(5 + Math.random() * 10);
-    })
+    }
 
-    // this.renderChart()
+    console.log('update the plot')
 
     this.state.svg.selectAll('circle')
-      .transition()
-      .duration(500)
-      .ease('elastic')
-      .attr('cx', (d) => this.state.xScale(d.x))
-      .attr('cy', (d) => this.state.yScale(d.y))
-      .attr('r', (d) => d.r)
+      .filter((d) => d.x < 50)
+      .each(newData)
+      .call(steppedTransition, 2000)
 
   }
 
