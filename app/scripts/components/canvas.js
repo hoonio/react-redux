@@ -39,7 +39,7 @@ export default class extends React.Component {
     console.log('update the plot')
 
     this.state.svg.selectAll('circle')
-      .filter((d) => d.x < 50)
+      .filter((d) => d.x > 0)
       .each(newData)
       .call(steppedTransition, 2000)
 
