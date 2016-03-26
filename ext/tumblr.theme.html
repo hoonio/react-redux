@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<!--
+	Hoonio v2.2
+	https://www.hoonio.com
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="text:Google Analytics UA Code" content="UA-3890189-1" />
+  <meta name="google-site-verification" content="kspemVHrzDTDzWLqgYlV4QPUKdGBJJjdozkTiNYluig" />
+
+  <meta name="text:Application Stylesheet URL" content="" />
+  <meta name="if:Show Description On Index" content="1" />
+
+  <!-- Sharing Buttons -->
+  <meta name="if:Show Tweet Button" content="1" />
+  <meta name="text:Tweet Via Account" content="" />
+  <meta name="text:Tweet Follow Account" content="" />
+  <meta name="if:Show Like Button" content="1" />
+
+  <!-- Comments -->
+  <meta name="text:Disqus Shortname" content="" />
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="{MetaDescription}" />
+
+  <link rel="icon" href="http://hoon.io/favicon64" type="image/x-icon">
+  <link rel="apple-touch-icon-precomposed" href="http://hoon.io/favicon288" type="image/png">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+  <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
+
+  <!-- ======== STYLES ======== -->
+  <link rel="stylesheet" href="https://www.hoonio.com/styles/main.css" type="text/css">
+  <style type="text/css">
+  /* --- high-level --- */
+    /* --- tags --- */
+
+    .tags {
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      margin-bottom: 5px;
+    }
+    /* --- entry --- */
+
+    .entry {
+      background-color: #EEEEEE;
+      border-radius: 5px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .entry > * {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .date {
+      margin-bottom: 10px;
+    }
+
+    .entry .title {
+      margin-bottom: 10px;
+    }
+
+    .entry h2 {
+      margin-top: 20px;
+    }
+    /* --- speech bubble: visually connects entries to authors --- */
+
+    .speech-bubble {
+      background-image: url(http://static.tumblr.com/vv8cdma/4AAm155zf/speech-bubble.png);
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      padding: 0;
+      left: -16px;
+      top: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .speech-bubble {
+        display: none;
+      }
+    }
+    /* --- author --- */
+
+    .author {
+      margin-bottom: 10px;
+    }
+
+    .author img {
+      float: left;
+      background-color: white;
+    }
+
+    .author .author-name {
+      line-height: 16px;
+      padding-top: 8px;
+      margin-left: 64px;
+    }
+
+    .author .author-name .attribution {
+      font-size: 80%;
+    }
+
+    @media (max-width: 980px) {
+      .author img {
+        float: none;
+      }
+      .author .author-name {
+        margin-left: 0;
+      }
+    }
+    /* --- notes and comments --- */
+
+    .notes-container,
+    .comments-container {
+      background-color: white;
+      border-radius: 5px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .notes-container .notes,
+    .comments-container #disqus_thread {
+      padding: 20px;
+      margin: 0;
+    }
+
+    .notes-container ol.notes {
+      list-style: none;
+    }
+    /* --- sharing links ---*/
+
+    .share-links {
+      margin-top: 10px;
+    }
+  </style>
+  {block:IfApplicationStylesheetURL}
+  <!-- Import application styling -->
+  <link href="{text:Application Stylesheet URL}" rel="stylesheet"> {/block:IfApplicationStylesheetURL}
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <div id="app">
+    <div class="index">
+
+      <!-- Header -->
+      <nav class="navbar navbar-default bg-faded" >
+        <div class="container-fluid" >
+          <div class="row" >
+            <button class="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" onclick="toggleMenu()" >☰</button>
+            <a class="navbar-brand" href="#" >
+              <img class="logo" src="https://lh3.googleusercontent.com/-xLJDIl8LBcM/VV0GwIRMygI/AAAAAAACeA4/1IOmES6TSUA/w172-h30-Ic42/hoonio-logo-2014.png" >
+            </a>
+            <div class="navbar-toggleable-xs pull-sm-right" style="display:none;" id="exCollapsingNavbar2" >
+              <ul role="nav" class="nav navbar-nav" >
+                <li class="nav-item" >
+                  <a id="nav-home" class="nav-link" href="https://www.hoonio.com" >Home</a>
+                </li>
+                <li class="nav-item" >
+                  <a class="nav-link" href="https://www.hoonio.com/portfolio" >Portfolio</a>
+                </li>
+                <li class="nav-item" >
+                  <a class="nav-link" href="https://www.hoonio.com/profile" >Profile</a>
+                </li>
+                <li class="nav-item" >
+                  <a class="nav-link" href="https://www.hoonio.com/canvas" >Canvas</a>
+                </li>
+                <li class="nav-item" >
+                  <a class="nav-link active" href="http://blog.hoonio.com" >Blog</a>
+                </li>
+                <li class="nav-item" >
+                  <a class="nav-link" href="https://www.hoonio.com/#contact" >Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="page">
+        <article id="main">
+
+          {block:IndexPage}{/block:IndexPage} <!-- Blog posts  -->
+          <section class="plain">
+            <hr>
+
+            <div class="container">
+              <div class="row posts">
+                <!-- Odd column -->
+                {block:IndexPage}
+
+                <div class="col-sm-6">
+                  {/block:IndexPage}{block:PermalinkPage}
+
+                  <div class="col-sm-12">
+                    {/block:PermalinkPage} {block:Posts}{block:Odd}
+
+                    <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
+                      {block:GroupMembers}
+
+                      <div class="speech-bubble"></div>{/block:GroupMembers}
+
+                      <div class="title">
+                        {block:Title}
+
+                        <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                      </div><!-- .title -->
+
+                      <div class="POST">
+                        <!-- ANSWER -->
+                        {block:Answer}
+
+                        <div class="QUOTEINFO">
+                          <div class="QUOTEMARK"></div>
+
+                          <div class="TEXT">
+                            {Question}
+                          </div>
+                        </div>
+
+                        <p>{lang:Asked by Asker}</p>
+
+                        <div class="BREAK"></div>
+
+                        <div class="RESPONSE">
+                          {Answer}
+                        </div>{/block:Answer} <!-- /ANSWER -->
+                         <!-- TEXT -->
+                         {block:Text}{Body}{/block:Text} <!-- /TEXT -->
+                         <!-- VIDEO -->
+                         {block:Video}
+
+                        <div class="media">
+                          {Video-400}
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Video} <!-- /VIDEO -->
+                         <!-- PHOTO -->
+                         {block:Photo}
+
+                        <div class="CENTER">
+                          {LinkOpenTag} {block:IndexPage} <a href="{Permalink}">{/block:IndexPage} {block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage} <img src="{block:IndexPage}{PhotoURL-500}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" width="100%"> {block:IndexPage}</a>{/block:IndexPage} {LinkCloseTag}<br>
+                          <br>
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo} <!-- /PHOTO -->
+                         <!-- PHOTOSET -->
+                         {block:Photoset}
+
+                        <ul>
+                          <li class="post photoset">
+                            <div class="CENTER">
+                              {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
+
+                              <div class="caption">
+                                {Caption}
+                              </div>{/block:Caption}
+                            </div>
+                          </li>
+
+                          <li style="list-style: none">{/block:Photoset} <!-- /PHOTOSET -->
+                             <!-- QUOTE -->
+                             {block:Quote}
+
+                            <div class="QUOTEINFO">
+                              <div class="QUOTEMARK"></div>
+
+                              <div class="TEXT">
+                                <h3>{Quote}</h3>
+                              </div>
+                            </div>
+
+                            <div class="BREAK"></div>{block:Source}
+
+                            <div class="BY">
+                              {Source}
+                            </div>{/block:Source} {/block:Quote} <!-- /QUOTE -->
+                             <!-- LINK -->
+                             {block:Link}
+
+                            <div class="THE-LINK">
+                              <a href="{URL}" target="{Target}">{Name}</a>
+                            </div>
+
+                            <div class="INFO">
+                              <a href="{URL}" target="{Target}">{URL}</a>
+                            </div>{block:Description}
+
+                            <div class="MARGIN">
+                              {Description}
+                            </div>{/block:Description} {/block:Link} <!-- /LINK -->
+                             <!-- CHAT -->
+                             {block:Chat}
+
+                            <ul class="CHAT">
+                              <li style="list-style: none">{block:Lines}</li>
+
+                              <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
+
+                              <li style="list-style: none">{/block:Lines}</li>
+                            </ul>{/block:Chat} <!-- /CHAT -->
+                             <!-- AUDIO -->
+                             {block:Audio}
+
+                            <div class="PLAYER">
+                              <div class="ALBUMART">
+                                {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
+                              </div>
+
+                              <div class="OVERLAY">
+                                <div class="OBJ">
+                                  {AudioPlayerGrey}
+                                </div>
+
+                                <div class="COUNT">
+                                  This track has had {PlayCountWithLabel}
+                                </div>
+
+                                <div class="TRACK">
+                                  {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
+                                </div>
+                              </div>
+                            </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio} <!-- /AUDIO -->
+                          </li>
+                        </ul>
+                      </div><!-- /end of contents POST -->
+                      {block:GroupMembers}
+
+                      <div class="author">
+                        <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-48}" class="thumbnail"></a>
+
+                        <div class="author-name">
+                          <span class="attribution">Posted by</span><br>
+                          <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                        </div>
+
+                        <div style="clear: both"></div>
+                      </div>{/block:GroupMembers}
+
+                      <div class="tags">
+                        {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini" href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}<br>
+                        {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton} {block:IfShowLikeButton}
+
+                        <div class="fb-like" data-href="{PlaintextPermalink}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
+                      </div><!-- .tags -->
+                    </div><!-- .post .entry -->
+                    {/block:Odd}{/block:Posts}
+                  </div><!-- col-sm-6 -->
+                  <!-- Even column -->
+
+                  <div class="col-sm-6">
+                    {block:Posts}{block:Even}
+
+                    <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
+                      {block:GroupMembers}
+
+                      <div class="speech-bubble"></div>{/block:GroupMembers}
+
+                      <div class="title">
+                        {block:Title}
+
+                        <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                      </div><!-- .title -->
+
+                      <div class="POST">
+                        <!-- ANSWER -->
+                        {block:Answer}
+
+                        <div class="QUOTEINFO">
+                          <div class="QUOTEMARK"></div>
+
+                          <div class="TEXT">
+                            {Question}
+                          </div>
+                        </div>
+
+                        <p>{lang:Asked by Asker}</p>
+
+                        <div class="BREAK"></div>
+
+                        <div class="RESPONSE">
+                          {Answer}
+                        </div>{/block:Answer} <!-- /ANSWER -->
+                         <!-- TEXT -->
+                         {block:Text}{Body}{/block:Text} <!-- /TEXT -->
+                         <!-- VIDEO -->
+                         {block:Video}
+
+                        <div class="media">
+                          {Video-400}
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Video} <!-- /VIDEO -->
+                         <!-- PHOTO -->
+                         {block:Photo}
+
+                        <div class="CENTER">
+                          {LinkOpenTag} <a href="{Permalink}"><img alt="{PhotoAlt}" src="{PhotoURL-500}" width="100%"></a> {LinkCloseTag}<br>
+                          <br>
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo} <!-- /PHOTO -->
+                         <!-- PHOTOSET -->
+                         {block:Photoset}
+
+                        <ul>
+                          <li class="post photoset">
+                            <div class="CENTER">
+                              {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
+
+                              <div class="caption">
+                                {Caption}
+                              </div>{/block:Caption}
+                            </div>
+                          </li>
+
+                          <li style="list-style: none">{/block:Photoset} <!-- /PHOTOSET -->
+                             <!-- QUOTE -->
+                             {block:Quote}
+
+                            <div class="QUOTEINFO">
+                              <div class="QUOTEMARK"></div>
+
+                              <div class="TEXT">
+                                <h3>{Quote}</h3>
+                              </div>
+                            </div>
+
+                            <div class="BREAK"></div>{block:Source}
+
+                            <div class="BY">
+                              {Source}
+                            </div>{/block:Source} {/block:Quote} <!-- /QUOTE -->
+                             <!-- LINK -->
+                             {block:Link}
+
+                            <div class="THE-LINK">
+                              <a href="{URL}" target="{Target}">{Name}</a>
+                            </div>
+
+                            <div class="INFO">
+                              <a href="{URL}" target="{Target}">{URL}</a>
+                            </div>{block:Description}
+
+                            <div class="MARGIN">
+                              {Description}
+                            </div>{/block:Description} {/block:Link} <!-- /LINK -->
+                             <!-- CHAT -->
+                             {block:Chat}
+
+                            <ul class="CHAT">
+                              <li style="list-style: none">{block:Lines}</li>
+
+                              <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
+
+                              <li style="list-style: none">{/block:Lines}</li>
+                            </ul>{/block:Chat} <!-- /CHAT -->
+                             <!-- AUDIO -->
+                             {block:Audio}
+
+                            <div class="PLAYER">
+                              <div class="ALBUMART">
+                                {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
+                              </div>
+
+                              <div class="OVERLAY">
+                                <div class="OBJ">
+                                  {AudioPlayerGrey}
+                                </div>
+
+                                <div class="COUNT">
+                                  This track has had {PlayCountWithLabel}
+                                </div>
+
+                                <div class="TRACK">
+                                  {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
+                                </div>
+                              </div>
+                            </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio} <!-- /AUDIO -->
+                          </li>
+                        </ul>
+                      </div><!-- /end of contents POST -->
+                      {block:GroupMembers}
+
+                      <div class="author">
+                        <a href="{PostAuthorURL}"><img src="{PostAuthorPortraitURL-48}" class="thumbnail"></a>
+
+                        <div class="author-name">
+                          <span class="attribution">Posted by</span><br>
+                          <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                        </div>
+
+                        <div style="clear: both"></div>
+                      </div>{/block:GroupMembers}
+
+                      <div class="tags">
+                        {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini" href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}<br>
+                        {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton} {block:IfShowLikeButton}
+
+                        <div class="fb-like" data-href="{ShortURL}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
+                      </div><!-- .tags -->
+                    </div><!-- .post .entry -->
+                    {/block:Even}{/block:Posts}
+                  </div><!-- col-sm-6 -->
+                </div><!-- .row .posts -->
+                {block:Pagination}
+
+                <ul class="pager">
+                  <li style="list-style: none">{block:PreviousPage}</li>
+
+                  <li><a href="{PreviousPage}">{lang:Previous page}</a></li>
+
+                  <li style="list-style: none">{/block:PreviousPage} {block:NextPage}</li>
+
+                  <li><a href="{NextPage}">{lang:Next page}</a></li>
+
+                  <li style="list-style: none">{/block:NextPage}</li>
+                </ul>{/block:Pagination}
+              </div><!-- .container -->
+            </div>
+          </section>
+        </article>
+      </div>
+      <footer>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <p id="copyright">
+                <span>© 2006-<script type="text/javascript">
+                  var thisYear = new Date().getFullYear();
+                  document.write(thisYear);
+                </script></span>
+                <a href="http://www.hoonio.com">Hoonio Ltd.</a>
+              </p>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item"><a href="http://hoon.io/link2fb"><span class="hoonio hoonio-stack hoonio-lg"> </span></a></li>
+
+                <li class="list-inline-item"><a href="http://hoon.io/1wGEoKi"><span class="hoonio hoonio-stack hoonio-lg"> </span></a></li>
+
+                <li class="list-inline-item"><a href="http://hoon.io/link2yt"><span class="hoonio hoonio-stack hoonio-lg"> </span></a></li>
+              </ul>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="http://blog.hoonio.com">Blog</a></li>
+
+                <li class="list-inline-item"><a href="http://feria.hoonio.com">Feria</a></li>
+
+                <li class="list-inline-item"><a href="http://wiki.hoonio.com">Wiki</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript">
+      var showMenu = false
+      function toggleMenu() {
+        showMenu = !showMenu
+        console.log('toggle' + showMenu)
+        if (showMenu) {
+          document.getElementById("exCollapsingNavbar2").style.display = 'block';
+        }
+        else {
+          document.getElementById("exCollapsingNavbar2").style.display = 'none';
+        }
+      }
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-7NKB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <script type="text/javascript">
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-7NKB');
+    </script>
+    {block:IfShowLikeButton}
+      <div id="fb-root"></div>
+      <script type="text/javascript">
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=325405900855984";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
+    {/block:IfShowLikeButton}
+    {block:IfShowTweetButton}
+      <script type="text/javascript">
+  ! function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+      }(document, "script", "twitter-wjs");
+      </script>
+    {/block:IfShowTweetButton}
+    {block:IfDisqusShortname}
+      <script type="text/javascript">
+  //<![CDATA[
+      (function() {
+      var links = document.getElementsByTagName('a');
+      var query = '?';
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].href.indexOf('#disqus_thread') >= 0) {
+          query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+      }
+      document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+      //]]>
+      </script>
+    {/block:IfDisqusShortname}
+</body>
+</html>
