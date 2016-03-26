@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogPost from './blogpost'
+import BlogSnippet from './blog-snippet'
 
 export default class extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class extends React.Component {
       dataReady: false
     };
     reqwest({
-      url:'https://api.tumblr.com/v2/blog/blog.hoonio.com/posts?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6',
+      url:'https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6',
       type: 'jsonp',
       success:(resp) => {
         this.setState({posts: resp.response.posts, dataReady: true})
@@ -24,10 +24,10 @@ export default class extends React.Component {
         <div className="container" id="portfolio">
           <div className="card-columns">
             {this.state.posts.map((post, index) => {
-              switch(post.type) {
-                case "quote": return <div className="card" key={index}>{post.slug}</div>
-                default: return <BlogPost post={post} key={index} />
-              }
+              const textPortion = post.summary.split('**')
+              const title = (textPortion.length > 2) ? textPortion[1] : ''
+              const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion
+              return <BlogSnippet post={post} title={title} snippet={snippet} key={index} />
             })}
           </div>
         </div>
