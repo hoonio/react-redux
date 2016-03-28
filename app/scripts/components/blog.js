@@ -21,7 +21,7 @@ export default class extends React.Component {
     console.log('rendering started' + this.state.dataReady)
     console.log(this.state.posts)
       return (
-        <div className="container" id="portfolio">
+        <div className="container" id="blog">
           <div className="card-columns">
             {this.state.posts.map((post, index) => {
               const textPortion = post.summary.split('**')

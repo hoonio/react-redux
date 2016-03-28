@@ -187,335 +187,371 @@
         </div>
       </nav>
       <div class="page">
-        <article id="main">
+        <div class="container" id="blog">
+          {block:IndexPage}{/block:IndexPage}
+          <!-- Blog posts  -->
+          <div class="row posts">
+            <!-- Odd column -->
+            {block:IndexPage}
 
-          {block:IndexPage}{/block:IndexPage} <!-- Blog posts  -->
-          <section class="plain">
+            <div class="col-sm-6">
+              {/block:IndexPage}{block:PermalinkPage}
 
-            <div class="container">
-              <div class="row posts">
-                <!-- Odd column -->
-                {block:IndexPage}
+              <div class="col-sm-12">
+                {/block:PermalinkPage} {block:Posts}{block:Odd}
 
-                <div class="col-sm-6">
-                  {/block:IndexPage}{block:PermalinkPage}
+                <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
+                  {block:GroupMembers}
 
-                  <div class="col-sm-12">
-                    {/block:PermalinkPage} {block:Posts}{block:Odd}
+                  <div class="speech-bubble"></div>{/block:GroupMembers}
 
-                    <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
-                      {block:GroupMembers}
+                  <div class="title">
+                    {block:Title}
 
-                      <div class="speech-bubble"></div>{/block:GroupMembers}
+                    <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                  </div>
+                  <!-- .title -->
 
-                      <div class="title">
-                        {block:Title}
+                  <div class="POST">
+                    <!-- ANSWER -->
+                    {block:Answer}
 
-                        <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                      </div><!-- .title -->
+                    <div class="QUOTEINFO">
+                      <div class="QUOTEMARK"></div>
 
-                      <div class="POST">
-                        <!-- ANSWER -->
-                        {block:Answer}
+                      <div class="TEXT">
+                        {Question}
+                      </div>
+                    </div>
+
+                    <p>{lang:Asked by Asker}</p>
+
+                    <div class="BREAK"></div>
+
+                    <div class="RESPONSE">
+                      {Answer}
+                    </div>{/block:Answer}
+                    <!-- /ANSWER -->
+                    <!-- TEXT -->
+                    {block:Text}{Body}{/block:Text}
+                    <!-- /TEXT -->
+                    <!-- VIDEO -->
+                    {block:Video}
+
+                    <div class="media">
+                      {Video-400}
+                    </div>{block:Caption}{Caption}{/block:Caption} {/block:Video}
+                    <!-- /VIDEO -->
+                    <!-- PHOTO -->
+                    {block:Photo}
+
+                    <div class="CENTER">
+                      {LinkOpenTag} {block:IndexPage} <a href="{Permalink}">{/block:IndexPage} {block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage} <img src="{block:IndexPage}{PhotoURL-500}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" width="100%"> {block:IndexPage}</a>{/block:IndexPage}
+                      {LinkCloseTag}
+                      <br>
+                      <br>
+                    </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo}
+                    <!-- /PHOTO -->
+                    <!-- PHOTOSET -->
+                    {block:Photoset}
+
+                    <ul>
+                      <li class="post photoset">
+                        <div class="CENTER">
+                          {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
+
+                          <div class="caption">
+                            {Caption}
+                          </div>{/block:Caption}
+                        </div>
+                      </li>
+
+                      <li style="list-style: none">{/block:Photoset}
+                        <!-- /PHOTOSET -->
+                        <!-- QUOTE -->
+                        {block:Quote}
 
                         <div class="QUOTEINFO">
                           <div class="QUOTEMARK"></div>
 
                           <div class="TEXT">
-                            {Question}
+                            <h3>{Quote}</h3>
                           </div>
                         </div>
 
-                        <p>{lang:Asked by Asker}</p>
+                        <div class="BREAK"></div>{block:Source}
 
-                        <div class="BREAK"></div>
+                        <div class="BY">
+                          {Source}
+                        </div>{/block:Source} {/block:Quote}
+                        <!-- /QUOTE -->
+                        <!-- LINK -->
+                        {block:Link}
 
-                        <div class="RESPONSE">
-                          {Answer}
-                        </div>{/block:Answer} <!-- /ANSWER -->
-                         <!-- TEXT -->
-                         {block:Text}{Body}{/block:Text} <!-- /TEXT -->
-                         <!-- VIDEO -->
-                         {block:Video}
-
-                        <div class="media">
-                          {Video-400}
-                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Video} <!-- /VIDEO -->
-                         <!-- PHOTO -->
-                         {block:Photo}
-
-                        <div class="CENTER">
-                          {LinkOpenTag} {block:IndexPage} <a href="{Permalink}">{/block:IndexPage} {block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage} <img src="{block:IndexPage}{PhotoURL-500}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" width="100%"> {block:IndexPage}</a>{/block:IndexPage} {LinkCloseTag}<br>
-                          <br>
-                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo} <!-- /PHOTO -->
-                         <!-- PHOTOSET -->
-                         {block:Photoset}
-
-                        <ul>
-                          <li class="post photoset">
-                            <div class="CENTER">
-                              {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
-
-                              <div class="caption">
-                                {Caption}
-                              </div>{/block:Caption}
-                            </div>
-                          </li>
-
-                          <li style="list-style: none">{/block:Photoset} <!-- /PHOTOSET -->
-                             <!-- QUOTE -->
-                             {block:Quote}
-
-                            <div class="QUOTEINFO">
-                              <div class="QUOTEMARK"></div>
-
-                              <div class="TEXT">
-                                <h3>{Quote}</h3>
-                              </div>
-                            </div>
-
-                            <div class="BREAK"></div>{block:Source}
-
-                            <div class="BY">
-                              {Source}
-                            </div>{/block:Source} {/block:Quote} <!-- /QUOTE -->
-                             <!-- LINK -->
-                             {block:Link}
-
-                            <div class="THE-LINK">
-                              <a href="{URL}" target="{Target}">{Name}</a>
-                            </div>
-
-                            <div class="INFO">
-                              <a href="{URL}" target="{Target}">{URL}</a>
-                            </div>{block:Description}
-
-                            <div class="MARGIN">
-                              {Description}
-                            </div>{/block:Description} {/block:Link} <!-- /LINK -->
-                             <!-- CHAT -->
-                             {block:Chat}
-
-                            <ul class="CHAT">
-                              <li style="list-style: none">{block:Lines}</li>
-
-                              <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
-
-                              <li style="list-style: none">{/block:Lines}</li>
-                            </ul>{/block:Chat} <!-- /CHAT -->
-                             <!-- AUDIO -->
-                             {block:Audio}
-
-                            <div class="PLAYER">
-                              <div class="ALBUMART">
-                                {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
-                              </div>
-
-                              <div class="OVERLAY">
-                                <div class="OBJ">
-                                  {AudioPlayerGrey}
-                                </div>
-
-                                <div class="COUNT">
-                                  This track has had {PlayCountWithLabel}
-                                </div>
-
-                                <div class="TRACK">
-                                  {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
-                                </div>
-                              </div>
-                            </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio} <!-- /AUDIO -->
-                          </li>
-                        </ul>
-                      </div><!-- /end of contents POST -->
-                      {block:GroupMembers}
-
-                      <div class="author">
-                        <div class="author-name">
-                          <span class="attribution">Posted by</span><br>
-                          <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                        <div class="THE-LINK">
+                          <a href="{URL}" target="{Target}">{Name}</a>
                         </div>
 
-                        <div style="clear: both"></div>
-                      </div>{/block:GroupMembers}
+                        <div class="INFO">
+                          <a href="{URL}" target="{Target}">{URL}</a>
+                        </div>{block:Description}
 
-                      <div class="tags">
-                        {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini" href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}<br>
-                        {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton} {block:IfShowLikeButton}
+                        <div class="MARGIN">
+                          {Description}
+                        </div>{/block:Description} {/block:Link}
+                        <!-- /LINK -->
+                        <!-- CHAT -->
+                        {block:Chat}
 
-                        <div class="fb-like" data-href="{PlaintextPermalink}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
-                      </div><!-- .tags -->
-                    </div><!-- .post .entry -->
-                    {/block:Odd}{/block:Posts}
-                  </div><!-- col-sm-6 -->
-                  <!-- Even column -->
+                        <ul class="CHAT">
+                          <li style="list-style: none">{block:Lines}</li>
 
-                  <div class="col-sm-6">
-                    {block:Posts}{block:Even}
+                          <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
 
-                    <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
-                      {block:GroupMembers}
+                          <li style="list-style: none">{/block:Lines}</li>
+                        </ul>{/block:Chat}
+                        <!-- /CHAT -->
+                        <!-- AUDIO -->
+                        {block:Audio}
 
-                      <div class="speech-bubble"></div>{/block:GroupMembers}
+                        <div class="PLAYER">
+                          <div class="ALBUMART">
+                            {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
+                          </div>
 
-                      <div class="title">
-                        {block:Title}
+                          <div class="OVERLAY">
+                            <div class="OBJ">
+                              {AudioPlayerGrey}
+                            </div>
 
-                        <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                      </div><!-- .title -->
+                            <div class="COUNT">
+                              This track has had {PlayCountWithLabel}
+                            </div>
 
-                      <div class="POST">
-                        <!-- ANSWER -->
-                        {block:Answer}
+                            <div class="TRACK">
+                              {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
+                            </div>
+                          </div>
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio}
+                        <!-- /AUDIO -->
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /end of contents POST -->
+                  {block:GroupMembers}
+
+                  <div class="author">
+                    <div class="author-name">
+                      <span class="attribution">Posted by</span>
+                      <br>
+                      <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                    </div>
+
+                    <div style="clear: both"></div>
+                  </div>{/block:GroupMembers}
+
+                  <div class="tags">
+                    {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini"
+                      href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}
+                    <br> {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton}
+                    {block:IfShowLikeButton}
+
+                    <div class="fb-like" data-href="{PlaintextPermalink}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
+                  </div>
+                  <!-- .tags -->
+                </div>
+                <!-- .post .entry -->
+                {/block:Odd}{/block:Posts}
+              </div>
+              <!-- col-sm-6 -->
+              <!-- Even column -->
+
+              <div class="col-sm-6">
+                {block:Posts}{block:Even}
+
+                <div class="post entry {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">
+                  {block:GroupMembers}
+
+                  <div class="speech-bubble"></div>{/block:GroupMembers}
+
+                  <div class="title">
+                    {block:Title}
+
+                    <h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                  </div>
+                  <!-- .title -->
+
+                  <div class="POST">
+                    <!-- ANSWER -->
+                    {block:Answer}
+
+                    <div class="QUOTEINFO">
+                      <div class="QUOTEMARK"></div>
+
+                      <div class="TEXT">
+                        {Question}
+                      </div>
+                    </div>
+
+                    <p>{lang:Asked by Asker}</p>
+
+                    <div class="BREAK"></div>
+
+                    <div class="RESPONSE">
+                      {Answer}
+                    </div>{/block:Answer}
+                    <!-- /ANSWER -->
+                    <!-- TEXT -->
+                    {block:Text}{Body}{/block:Text}
+                    <!-- /TEXT -->
+                    <!-- VIDEO -->
+                    {block:Video}
+
+                    <div class="media">
+                      {Video-400}
+                    </div>{block:Caption}{Caption}{/block:Caption} {/block:Video}
+                    <!-- /VIDEO -->
+                    <!-- PHOTO -->
+                    {block:Photo}
+
+                    <div class="CENTER">
+                      {LinkOpenTag}
+                      <a href="{Permalink}"><img alt="{PhotoAlt}" src="{PhotoURL-500}" width="100%"></a> {LinkCloseTag}
+                      <br>
+                      <br>
+                    </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo}
+                    <!-- /PHOTO -->
+                    <!-- PHOTOSET -->
+                    {block:Photoset}
+
+                    <ul>
+                      <li class="post photoset">
+                        <div class="CENTER">
+                          {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
+
+                          <div class="caption">
+                            {Caption}
+                          </div>{/block:Caption}
+                        </div>
+                      </li>
+
+                      <li style="list-style: none">{/block:Photoset}
+                        <!-- /PHOTOSET -->
+                        <!-- QUOTE -->
+                        {block:Quote}
 
                         <div class="QUOTEINFO">
                           <div class="QUOTEMARK"></div>
 
                           <div class="TEXT">
-                            {Question}
+                            <h3>{Quote}</h3>
                           </div>
                         </div>
 
-                        <p>{lang:Asked by Asker}</p>
+                        <div class="BREAK"></div>{block:Source}
 
-                        <div class="BREAK"></div>
+                        <div class="BY">
+                          {Source}
+                        </div>{/block:Source} {/block:Quote}
+                        <!-- /QUOTE -->
+                        <!-- LINK -->
+                        {block:Link}
 
-                        <div class="RESPONSE">
-                          {Answer}
-                        </div>{/block:Answer} <!-- /ANSWER -->
-                         <!-- TEXT -->
-                         {block:Text}{Body}{/block:Text} <!-- /TEXT -->
-                         <!-- VIDEO -->
-                         {block:Video}
-
-                        <div class="media">
-                          {Video-400}
-                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Video} <!-- /VIDEO -->
-                         <!-- PHOTO -->
-                         {block:Photo}
-
-                        <div class="CENTER">
-                          {LinkOpenTag} <a href="{Permalink}"><img alt="{PhotoAlt}" src="{PhotoURL-500}" width="100%"></a> {LinkCloseTag}<br>
-                          <br>
-                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Photo} <!-- /PHOTO -->
-                         <!-- PHOTOSET -->
-                         {block:Photoset}
-
-                        <ul>
-                          <li class="post photoset">
-                            <div class="CENTER">
-                              {LinkOpenTag} {block:IndexPage}{Photoset-500}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage} {block:Caption}
-
-                              <div class="caption">
-                                {Caption}
-                              </div>{/block:Caption}
-                            </div>
-                          </li>
-
-                          <li style="list-style: none">{/block:Photoset} <!-- /PHOTOSET -->
-                             <!-- QUOTE -->
-                             {block:Quote}
-
-                            <div class="QUOTEINFO">
-                              <div class="QUOTEMARK"></div>
-
-                              <div class="TEXT">
-                                <h3>{Quote}</h3>
-                              </div>
-                            </div>
-
-                            <div class="BREAK"></div>{block:Source}
-
-                            <div class="BY">
-                              {Source}
-                            </div>{/block:Source} {/block:Quote} <!-- /QUOTE -->
-                             <!-- LINK -->
-                             {block:Link}
-
-                            <div class="THE-LINK">
-                              <a href="{URL}" target="{Target}">{Name}</a>
-                            </div>
-
-                            <div class="INFO">
-                              <a href="{URL}" target="{Target}">{URL}</a>
-                            </div>{block:Description}
-
-                            <div class="MARGIN">
-                              {Description}
-                            </div>{/block:Description} {/block:Link} <!-- /LINK -->
-                             <!-- CHAT -->
-                             {block:Chat}
-
-                            <ul class="CHAT">
-                              <li style="list-style: none">{block:Lines}</li>
-
-                              <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
-
-                              <li style="list-style: none">{/block:Lines}</li>
-                            </ul>{/block:Chat} <!-- /CHAT -->
-                             <!-- AUDIO -->
-                             {block:Audio}
-
-                            <div class="PLAYER">
-                              <div class="ALBUMART">
-                                {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
-                              </div>
-
-                              <div class="OVERLAY">
-                                <div class="OBJ">
-                                  {AudioPlayerGrey}
-                                </div>
-
-                                <div class="COUNT">
-                                  This track has had {PlayCountWithLabel}
-                                </div>
-
-                                <div class="TRACK">
-                                  {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
-                                </div>
-                              </div>
-                            </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio} <!-- /AUDIO -->
-                          </li>
-                        </ul>
-                      </div><!-- /end of contents POST -->
-                      {block:GroupMembers}
-
-                      <div class="author">
-                        <div class="author-name">
-                          <span class="attribution">Posted by</span><br>
-                          <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                        <div class="THE-LINK">
+                          <a href="{URL}" target="{Target}">{Name}</a>
                         </div>
 
-                        <div style="clear: both"></div>
-                      </div>{/block:GroupMembers}
+                        <div class="INFO">
+                          <a href="{URL}" target="{Target}">{URL}</a>
+                        </div>{block:Description}
 
-                      <div class="tags">
-                        {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini" href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}<br>
-                        {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton} {block:IfShowLikeButton}
+                        <div class="MARGIN">
+                          {Description}
+                        </div>{/block:Description} {/block:Link}
+                        <!-- /LINK -->
+                        <!-- CHAT -->
+                        {block:Chat}
 
-                        <div class="fb-like" data-href="{ShortURL}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
-                      </div><!-- .tags -->
-                    </div><!-- .post .entry -->
-                    {/block:Even}{/block:Posts}
-                  </div><!-- col-sm-6 -->
-                </div><!-- .row .posts -->
-                {block:Pagination}
+                        <ul class="CHAT">
+                          <li style="list-style: none">{block:Lines}</li>
 
-                <ul class="pager">
-                  <li style="list-style: none">{block:PreviousPage}</li>
+                          <li class="{Alt} {UserNumber}">{block:Label} <strong>{Label}</strong> {/block:Label}{Line}</li>
 
-                  <li><a href="{PreviousPage}">{lang:Previous page}</a></li>
+                          <li style="list-style: none">{/block:Lines}</li>
+                        </ul>{/block:Chat}
+                        <!-- /CHAT -->
+                        <!-- AUDIO -->
+                        {block:Audio}
 
-                  <li style="list-style: none">{/block:PreviousPage} {block:NextPage}</li>
+                        <div class="PLAYER">
+                          <div class="ALBUMART">
+                            {block:AlbumArt} <img alt="" src="{AlbumArtURL}">{/block:AlbumArt}
+                          </div>
 
-                  <li><a href="{NextPage}">{lang:Next page}</a></li>
+                          <div class="OVERLAY">
+                            <div class="OBJ">
+                              {AudioPlayerGrey}
+                            </div>
 
-                  <li style="list-style: none">{/block:NextPage}</li>
-                </ul>{/block:Pagination}
-              </div><!-- .container -->
+                            <div class="COUNT">
+                              This track has had {PlayCountWithLabel}
+                            </div>
+
+                            <div class="TRACK">
+                              {block:TrackName} <strong>{TrackName}</strong>{/block:TrackName} {block:Artist} by <a href="http://last.fm/{Artist}">{Artist}</a>{/block:Artist}
+                            </div>
+                          </div>
+                        </div>{block:Caption}{Caption}{/block:Caption} {/block:Audio}
+                        <!-- /AUDIO -->
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- /end of contents POST -->
+                  {block:GroupMembers}
+
+                  <div class="author">
+                    <div class="author-name">
+                      <span class="attribution">Posted by</span>
+                      <br>
+                      <a href="{PostAuthorURL}" target="_blank">{PostAuthorTitle}</a>
+                    </div>
+
+                    <div style="clear: both"></div>
+                  </div>{/block:GroupMembers}
+
+                  <div class="tags">
+                    {block:Date} {block:NotReblog} <a href="{Permalink}">{lang:Posted TimeAgo}</a>{/block:NotReblog} {block:Reblog}{lang:PostTypeNoun reblogged from ReblogParentTitle 2}{/block:Reblog} {/block:Date} {block:HasTags}with tags: {block:Tags}<a class="tag btn btn-mini"
+                      href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags} {block:IfDisqusShortname} <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>{/block:IfDisqusShortname}
+                    <br> {block:IfShowTweetButton} <a href="https://twitter.com/share" class="twitter-share-button" data-url="{ShortURL}" data-text="{PlaintextTitle}" data-via="{PlaintextTweetViaAccount}" data-related="{PlaintextTweetFollowAccount}">Tweet</a> {/block:IfShowTweetButton}
+                    {block:IfShowLikeButton}
+
+                    <div class="fb-like" data-href="{ShortURL}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande"></div>{/block:IfShowLikeButton}
+                  </div>
+                  <!-- .tags -->
+                </div>
+                <!-- .post .entry -->
+                {/block:Even}{/block:Posts}
+              </div>
+              <!-- col-sm-6 -->
             </div>
-          </section>
-        </article>
+            <!-- .row .posts -->
+            {block:Pagination}
+
+            <ul class="pager">
+              <li style="list-style: none">{block:PreviousPage}</li>
+
+              <li><a href="{PreviousPage}">{lang:Previous page}</a></li>
+
+              <li style="list-style: none">{/block:PreviousPage} {block:NextPage}</li>
+
+              <li><a href="{NextPage}">{lang:Next page}</a></li>
+
+              <li style="list-style: none">{/block:NextPage}</li>
+            </ul>{/block:Pagination}
+          </div>
+          <!-- .container -->
+        </div>
+      </div>
       </div>
       <footer>
         <div class="container-fluid">
