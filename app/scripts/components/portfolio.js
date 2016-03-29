@@ -11,14 +11,9 @@ export default class extends React.Component {
       url:'https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script',
       type: 'jsonp',
       success:(resp) => {
-        this.organizeData(resp.feed.entry);
         this.setState({items: resp.feed.entry});
       }
     });
-  }
-
-  organizeData(source) {
-    console.log(source);
   }
 
   render() {

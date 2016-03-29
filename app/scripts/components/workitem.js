@@ -10,7 +10,7 @@ export default ({item, index}) => (
       <img className={item.gsx$image.$t ? 'card-img-top img-fluid' : 'invisible'} src={item.gsx$image.$t} alt={item.gsx$imagealt.$t} />
     </a>
     <div className="card-block">
-      <p className={item.gsx$description.$t ? 'card-text' : 'invisible'} dangerouslySetInnerHTML={createMarkup(item.gsx$description.$t)} />
+      <p className={item.gsx$description.$t ? 'card-text' : 'invisible'} dangerouslySetInnerHTML={{__html: item.gsx$description.$t}} />
       <p className={item.gsx$stacks.$t ? 'card-text' : 'invisible'}>{listStacks(item.gsx$stacks.$t).map((stack, index) => (
         <button type="button" className="btn-sm btn-secondary" key={index}>{stack}</button>
       ))}</p>
