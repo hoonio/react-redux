@@ -1,5 +1,5 @@
 import React from 'react';
-import Todo from './todo'
+// import Todo from '../todo/TodoStore'
 import _ from 'lodash';
 
 export default class extends React.Component {
@@ -129,11 +129,15 @@ export default class extends React.Component {
   render() {
     return(
       <div id="canvas" className="container">
-        <h1>Canvas</h1>
-        <p>Playground for D3.js experiments</p>
-        <div id="chart"></div>
-        <h1>Redux Todo App</h1>
-        <Todo />
+        <div className="row">
+          <h1>Canvas</h1>
+          <p>Playground for D3.js experiments</p>
+          <div id="chart"></div>
+        </div>
+        <div style={{marginTop: 5+'rem'}}></div>
+        <div className="row">
+          <h1>Redux Todo App</h1>
+        </div>
       </div>
     );
   }

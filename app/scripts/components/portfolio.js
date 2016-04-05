@@ -19,12 +19,6 @@ export default class extends React.Component {
   render() {
     return (
       <div className="container" id="portfolio">
-        <div className="row">
-          <button className="btn btn-primary">React.js</button>
-          <button className="btn btn-primary">AngularJS</button>
-          <button className="btn btn-primary">Node.js</button>
-          <button className="btn btn-primary">D3.js</button>
-        </div>
         <div className="card-columns">
           {this.state.items.map((item, index) => ( <WorkItem item={item} key={index} />
           ))}
