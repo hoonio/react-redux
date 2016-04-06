@@ -22,8 +22,8 @@ export default class extends React.Component {
             <div className="navbar-toggleable-xs pull-sm-right" style={toggleStyle} id="exCollapsingNavbar2">
               <ul role="nav" className="nav navbar-nav">
                 <NavLink to="/" id="nav-home" onlyActiveOnIndex>Home</NavLink>
-                <NavLink to="/portfolio" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Portfolio</NavLink>
                 <NavLink to="/profile" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Profile</NavLink>
+                <NavLink to="/portfolio" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Portfolio</NavLink>
                 <NavLink to="/canvas" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Canvas</NavLink>
                 <NavLink to="/blog" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Blog</NavLink>
                 <li className="nav-item"><a className="nav-link" href='/#contact'>Contact</a></li>

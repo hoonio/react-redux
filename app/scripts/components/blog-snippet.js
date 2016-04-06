@@ -2,7 +2,7 @@ import React from 'react'
 
 export default ({ post, title, snippet, index }) => (
   <div className="card">
-    <a className={post.photos ? 'photo-link' : 'invisible'} href={'https://www.hoonio.com/blog/'+post.slug}>
+    <a className={post.photos ? 'photo-link' : 'invisible'} href={post.post_url}>
       <img className='card-img-top img-fluid' src={post.photos[0].alt_sizes[2].url} alt={post.summary} />
     </a>
     <div className="card-block">
