@@ -34,6 +34,11 @@
   <!-- ======== STYLES ======== -->
   <link rel="stylesheet" href="https://www.hoonio.com/styles/main.css" type="text/css">
   <style type="text/css">
+    @media (max-width: 543px) {
+      .navbar #nav-blog { display: none; }
+      .navbar #nav-home { display: block; margin-left: 1rem; }
+    }
+
   /* --- high-level --- */
     /* --- tags --- */
 
@@ -177,7 +182,7 @@
                   <a class="nav-link" href="https://www.hoonio.com/canvas" >Canvas</a>
                 </li>
                 <li class="nav-item" >
-                  <a class="nav-link active" href="http://blog.hoonio.com" >Blog</a>
+                  <a id="nav-blog" class="nav-link active" href="http://blog.hoonio.com" >Blog</a>
                 </li>
                 <li class="nav-item" >
                   <a class="nav-link" href="https://www.hoonio.com/#contact" >Contact</a>
