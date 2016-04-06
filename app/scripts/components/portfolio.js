@@ -1,29 +1,41 @@
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { getPortfolioIfNeeded } from '../actions'
 import WorkItem from './WorkItem';
 
-export default class extends React.Component {
+class Portfolio extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    };
-    reqwest({
-      url:'https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script',
-      type: 'jsonp',
-      success:(resp) => {
-        this.setState({items: resp.feed.entry});
-      }
-    });
+    super(props)
+  }
+
+  componentDidMount() {
+    console.log('component did mount')
+    this.props.dispatch( getPortfolioIfNeeded() )
   }
 
   render() {
+    let workItems = null
+    if (this.props.items) {
+      workItems = ( this.props.items.map((item, index) => ( <WorkItem item={item} key={index} />
+      )))
+    }
+
     return (
       <div className="container" id="portfolio">
         <div className="card-columns">
-          {this.state.items.map((item, index) => ( <WorkItem item={item} key={index} />
-          ))}
+          {workItems}
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log('bind below object')
+  console.log(state)
+  return { items: state.portfolio.items }
+}
+
+export default connect(mapStateToProps)(Portfolio)
