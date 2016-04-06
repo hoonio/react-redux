@@ -1,5 +1,8 @@
+import 'babel-polyfill'
+import fetch from 'isomorphic-fetch'
+import jsonp from 'jsonp-es6'
 import { createStore } from 'redux'
-import { connect, dispatch } from 'react-redux'
+import { connect, dispatch, getState } from 'react-redux'
 
 export const REQUEST_BLOG = 'REQUEST_BLOG'
 
@@ -17,19 +20,18 @@ const receiveBlog = (json) => ({
 export const getBlog = () => {
   return (dispatch) => {
     dispatch(requestBlog())
-    console.log('blogreduce called')
-    reqwest({
-      url:'https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6',
-      type: 'jsonp',
-      success:(resp) => {
-        console.log(resp.response.posts)
+    return jsonp('https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6')
+      .then(resp => {
         dispatch(receiveBlog(resp.response.posts))
-        return resp.response.posts
-      },
-      error: (err) => {
-        dispatch(receiveBlog(err))
-        return err
-      }
-    })
+      })
+  }
+}
+
+export const getBlogIfNeeded = () => {
+  return (dispatch, getState) => {
+    if (getState().blog.ready) {
+      return
+    }
+    return dispatch(getBlog())
   }
 }

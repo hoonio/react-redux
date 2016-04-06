@@ -1,42 +1,44 @@
-import React from 'react';
+import React from 'react'
+import { bindActionCreators } from 'redux'
 import BlogSnippet from './blog-snippet'
 import { connect } from 'react-redux'
-import { getBlog } from '../actions'
+import * as BlogActions from '../actions'
 
 class Blog extends React.Component {
-  constructor(props) {
-    super(props)
-    this.props.dispatch( getBlog() )
-  }
 
-  static fetchBlog({ params, store }) {
-    return store.dispatch( getBlog() )
+  static fetchData(dispatch) {
+    let blogActions = bindActionCreators(BlogActions, dispatch)
+    return Promise.all([ blogActions.getBlogIfNeeded() ])
   }
 
   componentDidMount() {
-
+    if (!this.posts) {
+      this.constructor.fetchData(this.props.dispatch)
+    }
   }
 
   render() {
-    console.log(this.posts)
+    let blogPosts = null
+    if (this.props.posts) {
+      blogPosts = ( this.props.posts.map((post, index) => {
+        const textPortion = post.summary.split('**')
+        const title = (textPortion.length > 2) ? textPortion[1] : ''
+        const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion
+        return <BlogSnippet post={post} title={title} snippet={snippet} key={index} />
+      }))
+    }
+
     return (
       <div className="container" id="blog">
         <div className="card-columns">
-          {this.posts.map((post, index) => {
-            const textPortion = post.summary.split('**')
-            const title = (textPortion.length > 2) ? textPortion[1] : ''
-            const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion
-            return <BlogSnippet post={post} title={title} snippet={snippet} key={index} />
-          })}
+          {blogPosts}
         </div>
       </div>
     )
   }
-
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return { posts: state.blog.posts }
 }
 
