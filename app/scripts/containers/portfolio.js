@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { getPortfolioIfNeeded } from '../actions'
-import WorkItem from './WorkItem';
+import WorkItem from '../components/WorkItem';
 
 class Portfolio extends React.Component {
   constructor(props) {

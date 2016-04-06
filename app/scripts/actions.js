@@ -1,5 +1,4 @@
 import 'babel-polyfill'
-import fetch from 'isomorphic-fetch'
 import jsonp from 'jsonp-es6'
 import { createStore } from 'redux'
 import { connect, dispatch, getState } from 'react-redux'

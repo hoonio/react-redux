@@ -2,11 +2,13 @@ import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router';
 
 import Template from './template';
+
 import Home from './components/home';
-import Portfolio from './components/portfolio';
 import Profile from './components/profile';
 import Canvas from './components/canvas';
-import Blog from './components/blog'
+
+import Portfolio from './containers/portfolio';
+import Blog from './containers/blog'
 
 const routes = (
   <Route path="/" component={Template}>
