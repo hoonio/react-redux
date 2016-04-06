@@ -35,6 +35,18 @@ app.get('/error/:reqpage', function(req, res){
   res.status(404).send('No page named' + req.params.reqpage + ' found')
 })
 
+app.get('/blog/*', function(req, res){
+  res.redirect('http://blog.hoonio.com')
+})
+
+app.get('/wiki/CFA', function(req, res){
+  res.redirect('http://wiki.hoonio.com/sciences/cfa')
+})
+
+app.get('/wiki(/*)?', function(req, res){
+  res.redirect('http://wiki.hoonio.com')
+})
+
 app.get('/.well-known/acme-challenge/:fileid', function(req, res){
   res.send('Requesting '+fileid)
 })

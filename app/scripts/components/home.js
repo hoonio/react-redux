@@ -12,7 +12,7 @@ export default class extends React.Component {
       services: [
         {
           'heading': 'Web Development',
-          'body': 'HTML|CSS, JavaScript (React, Node.js, AngularJS) programming, hosting/|cloud deployment, CMS configuration, social media integration'
+          'body': 'HTML|CSS, JavaScript (React, Node.js, AngularJS) programming, hosting|cloud deployment, CMS configuration, social media integration'
         },
         {
           'heading': 'Online Marketing',
