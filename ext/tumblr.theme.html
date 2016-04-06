@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-	Hoonio v2.2
+	Hoonio v2.3
 	https://www.hoonio.com
 -->
 <html lang="en">
@@ -23,6 +23,7 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="{MetaDescription}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="icon" href="http://hoon.io/favicon64" type="image/x-icon">
   <link rel="apple-touch-icon-precomposed" href="http://hoon.io/favicon288" type="image/png">
@@ -158,7 +159,7 @@
         <div class="container-fluid" >
           <div class="row" >
             <button class="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" onclick="toggleMenu()" >☰</button>
-            <a class="navbar-brand" href="https://www.hoonio.com" >
+            <a class="navbar-brand" href="http://blog.hoonio.com" >
               <img class="logo" src="https://lh3.googleusercontent.com/-xLJDIl8LBcM/VV0GwIRMygI/AAAAAAACeA4/1IOmES6TSUA/w172-h30-Ic42/hoonio-logo-2014.png" >
             </a>
             <div class="navbar-toggleable-xs pull-sm-right" style="display:none;" id="exCollapsingNavbar2" >
@@ -618,7 +619,6 @@
       var showMenu = false
       function toggleMenu() {
         showMenu = !showMenu
-        console.log('toggle' + showMenu)
         if (showMenu) {
           document.getElementById("exCollapsingNavbar2").style.display = 'block';
         }

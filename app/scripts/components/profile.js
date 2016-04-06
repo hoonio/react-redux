@@ -10,6 +10,5 @@ export default (props) => (
 
 const getHeight = () => {
   let ifrHeight = window.innerHeight - 54;
-  console.log(ifrHeight);
   return ifrHeight;
 }

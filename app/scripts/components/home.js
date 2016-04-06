@@ -64,12 +64,12 @@ export default class extends React.Component {
         </header>
         <section id="services">
           <div className="container">
-            <div className="row">
+            <div className="row" id="who-we-are">
               <div className="col-sm-12 text-center">
                 <h2 className="section-heading text-muted">{this.state.company}</h2>
               </div>
             </div>
-            <div className="row text-center">
+            <div className="row text-center" id="what-we-do">
               {this.state.services.map((service, index)=>(<Service serv={service} key={index} />))}
             </div>
           </div>

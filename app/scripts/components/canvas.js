@@ -37,8 +37,6 @@ export default class extends React.Component {
       datum.r = Math.round(5 + Math.random() * 10);
     }
 
-    console.log('update the plot')
-
     this.state.svg.selectAll('circle')
       .filter((d) => d.x > 0)
       .each(newData)
@@ -136,7 +134,6 @@ export default class extends React.Component {
         </div>
         <div style={{marginTop: 5+'rem'}}></div>
         <div className="row">
-          <h1>Redux Todo App</h1>
         </div>
       </div>
     );
