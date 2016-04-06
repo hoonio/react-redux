@@ -9,13 +9,14 @@ import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 
-import { getBlog } from './actions'
-import * as reducers from './reducers'
+import blog from './reducers/blog-reducers'
+import portfolio from './reducers/portfolio-reducers'
 import routes from './routes'
 
 const store = createStore(
     combineReducers({
-      ...reducers,
+      blog,
+      portfolio,
       routing: routerReducer
     }),
     compose(

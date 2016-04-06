@@ -1,8 +1,8 @@
 {
   "name": "Hoonio-Root",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "Hoonio main website",
-  "repository": "github.com/hoonio/react",
+  "repository": "github.com/hoonio/root",
   "license": "MIT",
   "engines": {
     "node": ">=5.8.0"

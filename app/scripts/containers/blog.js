@@ -2,7 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as BlogActions from '../actions'
+import * as BlogActions from '../actions/blog-actions'
 import BlogSnippet from '../components/blog-snippet'
 
 class Blog extends React.Component {

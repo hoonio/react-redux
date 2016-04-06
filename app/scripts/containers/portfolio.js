@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { getPortfolioIfNeeded } from '../actions'
+import { getPortfolioIfNeeded } from '../actions/portfolio-actions'
 import WorkItem from '../components/WorkItem';
 
 class Portfolio extends React.Component {
@@ -11,7 +11,6 @@ class Portfolio extends React.Component {
   }
 
   componentDidMount() {
-    console.log('component did mount')
     this.props.dispatch( getPortfolioIfNeeded() )
   }
 
@@ -33,8 +32,6 @@ class Portfolio extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('bind below object')
-  console.log(state)
   return { items: state.portfolio.items }
 }
 
