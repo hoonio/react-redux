@@ -1,8 +1,9 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import BlogSnippet from './blog-snippet'
 import { connect } from 'react-redux'
+
 import * as BlogActions from '../actions'
+import BlogSnippet from './blog-snippet'
 
 class Blog extends React.Component {
 
@@ -12,9 +13,7 @@ class Blog extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.posts) {
-      this.constructor.fetchData(this.props.dispatch)
-    }
+    this.constructor.fetchData(this.props.dispatch)
   }
 
   render() {
