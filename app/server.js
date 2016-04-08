@@ -51,6 +51,11 @@ app.get('/.well-known/acme-challenge/:fileid', function(req, res){
   res.send('Requesting '+fileid)
 })
 
+app.get('/brainwave', function(req, res){
+  var data = fs.readFileSync(publicPath + '/brainwave.json').toString()
+  res.json(data)
+})
+
 app.get('/*', function(req, res){
   var page = fs.readFileSync(publicPath + '/index.html').toString()
   res.send(page)
