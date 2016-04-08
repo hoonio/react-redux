@@ -115,7 +115,7 @@ gulp.task('deploy', ['build'], function() {
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
       prefix: 'dist',
-      branches: ['master', 'brainwave']
+      branches: ['master', 'brainnwave']
     }));
 });
 
