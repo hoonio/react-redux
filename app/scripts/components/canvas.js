@@ -1,5 +1,4 @@
 import React from 'react';
-// import Todo from '../todo/TodoStore'
 import _ from 'lodash';
 
 export default class extends React.Component {
