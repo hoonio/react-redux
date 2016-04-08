@@ -8,8 +8,8 @@ import BlogSnippet from '../components/blog-snippet'
 class Blog extends React.Component {
 
   static fetchData(dispatch) {
-    let blogActions = bindActionCreators(BlogActions, dispatch)
-    return Promise.all([ blogActions.getBlogIfNeeded() ])
+    const blogActions = bindActionCreators(BlogActions, dispatch)
+    return Promise.all([blogActions.getBlogIfNeeded()])
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class Blog extends React.Component {
   render() {
     let blogPosts = null
     if (this.props.posts) {
-      blogPosts = ( this.props.posts.map((post, index) => {
+      blogPosts = (this.props.posts.map((post, index) => {
         const textPortion = post.summary.split('**')
         const title = (textPortion.length > 2) ? textPortion[1] : ''
         const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion
@@ -35,6 +35,12 @@ class Blog extends React.Component {
       </div>
     )
   }
+
+}
+
+Blog.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  posts: React.PropTypes.array.isRequired
 }
 
 function mapStateToProps(state) {
