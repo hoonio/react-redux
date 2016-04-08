@@ -5,7 +5,7 @@ var express = require('express')
   , path    = require('path')
 
 var app = express()
-app.set('port', process.env.PORT || 8000)
+app.set('port', process.env.PORT || 9001)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
 app.use(express.static(publicPath))
@@ -53,7 +53,8 @@ app.get('/.well-known/acme-challenge/:fileid', function(req, res){
 
 app.get('/brainwave', function(req, res){
   var data = fs.readFileSync(publicPath + '/brainwave.json').toString()
-  res.json(data)
+  res.setHeader('Content-Type', 'application/json')
+  res.jsonp(JSON.parse(data)['WIKI/ELRC'].data.slice(0, 100))
 })
 
 app.get('/*', function(req, res){

@@ -5,8 +5,8 @@ import Template from './template';
 
 import Home from './components/home';
 import Profile from './components/profile';
-import Canvas from './components/canvas';
 
+import Canvas from './containers/canvas';
 import Portfolio from './containers/portfolio';
 import Blog from './containers/blog'
 
