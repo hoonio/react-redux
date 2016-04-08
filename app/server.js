@@ -5,7 +5,7 @@ var express = require('express')
   , path    = require('path')
 
 var app = express()
-app.set('port', process.env.PORT || 8000)
+app.set('port', process.env.PORT || 9001)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
 app.use(express.static(publicPath))
