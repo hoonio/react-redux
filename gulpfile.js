@@ -111,7 +111,7 @@ gulp.task('serve', function() {
 });
 
 gulp.task('deploy', ['build'], function() {
-  return gulp.src('dist/**/*')
+  return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
       prefix: 'dist'
