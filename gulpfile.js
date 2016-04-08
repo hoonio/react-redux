@@ -114,7 +114,8 @@ gulp.task('deploy', ['build'], function() {
   return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
-      prefix: 'dist'
+      prefix: 'dist',
+      branches: ['master', 'brainwave']
     }));
 });
 
@@ -122,7 +123,8 @@ gulp.task('release', ['build:production'], function() {
   return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-root.scm.azurewebsites.net:443/hoonio-root.git',
-      prefix: 'dist'
+      prefix: 'dist',
+      branches: ['master']
     }));
 });
 
