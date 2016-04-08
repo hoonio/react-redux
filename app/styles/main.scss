@@ -110,8 +110,11 @@ body {
     padding: 5rem 0;
     h2.section-heading {
       font-size: 40px;
-      margin-top: 0;
-      margin-bottom: 15px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      @include media-breakpoint-down(md) {
+          margin-top: 1rem;
+      }
     }
     h3.section-subheading {
       font-size: 16px;
