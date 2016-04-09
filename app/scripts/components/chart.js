@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 const propTypes = {
   dataset: React.PropTypes.array.isRequired,
@@ -55,7 +54,7 @@ class Chart extends React.Component {
       .scale(yScale)
       .orient('left');
 
-    let lineFunc = d3.svg.line()
+    const lineFunc = d3.svg.line()
       .x((d) => (xScale(d[0])))
       .y((d) => (yScale(d[1])))
       .interpolate('linear')
@@ -71,6 +70,12 @@ class Chart extends React.Component {
       .attr('stroke-width', 2)
       .attr('fill', 'none')
 
+  }
+
+  componentDidMount(){
+    if (this.props.dataset.length > 0){
+      this.renderChart()
+    }
   }
 
   componentDidUpdate(){

@@ -5,12 +5,8 @@ import { getCanvasIfNeeded } from '../actions/canvas-actions'
 import Chart from '../components/chart'
 
 class Canvas extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
-    this.props.dispatch( getCanvasIfNeeded() )
+    this.props.dispatch(getCanvasIfNeeded())
   }
 
   render() {
@@ -22,7 +18,7 @@ class Canvas extends React.Component {
         dataToPlot.push([new Date(data.date), data.close])
         return (<li className="list-group-item" key={index}>{data.date}</li>)
       }))
-      chart = ( <Chart dataset={dataToPlot} /> )
+      chart = (<Chart dataset={dataToPlot} />)
     }
 
     return (
