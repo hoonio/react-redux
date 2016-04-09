@@ -1,14 +1,10 @@
 import React from 'react';
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { getPortfolioIfNeeded } from '../actions/portfolio-actions'
 import WorkItem from '../components/WorkItem';
 
 class Portfolio extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount() {
     this.props.dispatch( getPortfolioIfNeeded() )

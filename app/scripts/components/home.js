@@ -32,7 +32,7 @@ export default class extends React.Component {
           'imageOn': 'right'
         },
         {
-          'heading': 'Global AgeWatch Index 2015',
+          'heading': 'AgeWatch Index',
           'body': 'Data visualization for HelpAge International which aims to support elderly around the globe. The work was featured in press coverage by <a target="_blank" title="Best and worst places to be old: interactive map" href="http://bit.ly/19YDIBV">The Guardian</a> and <a target="_blank" title="Lepiej niż w Polsce seniorom żyje się w Albanii, na Litwie czy Białorusi. Najgorzej jest z opieką zdrowotną Cały tekst" href="http://bit.ly/1fIVwIv">Wyborcza.pl</a>',
           'target': 'http://www.helpage.org/global-agewatch/population-ageing-data/global-rankings-map',
           'img': 'https://lh3.googleusercontent.com/-TzWilRcgbbc/UktfVGEL8oI/AAAAAAAB5Sk/cPk3nN6PWOo/w980-h551/frontcover-agewatch.jpg',
