@@ -52,15 +52,33 @@ app.get('/.well-known/acme-challenge/:fileid', function(req, res){
 })
 
 app.get('/brainwave', function(req, res){
+  // Available symbols are: AIG, CPA, DST, ELRC, EXAM
+  var data = fs.readFileSync(publicPath + '/brainwave.json').toString()
+  var listStocks = getStocks(JSON.parse(data))
+  res.setHeader('Content-Type', 'application/json')
+  res.jsonp(listStocks)
+})
+
+app.get('/brainwave/:symbol', function(req, res){
   var data = fs.readFileSync(publicPath + '/brainwave.json').toString()
   res.setHeader('Content-Type', 'application/json')
-  res.jsonp(JSON.parse(data)['WIKI/ELRC'].data.slice(0, 100))
+  res.jsonp(JSON.parse(data)['WIKI/'+req.params.symbol].data)
 })
 
 app.get('/*', function(req, res){
   var page = fs.readFileSync(publicPath + '/index.html').toString()
   res.send(page)
 })
+
+var getStocks = function(data){
+  var stockSymbols = []
+  for (var key in data){
+    if (data.hasOwnProperty(key)) {
+      stockSymbols.push(key)
+    }
+  }
+  return stockSymbols
+}
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server running at http://localhost:'+ server.address().port)
