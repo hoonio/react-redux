@@ -51,7 +51,6 @@ export const getCanvas = () => {
 }
 
 export const getCanvasIfNeeded = () => {
-  console.log('get stock list')
   return (dispatch, getState) => {
     if (getState().canvas.ready) {
       return

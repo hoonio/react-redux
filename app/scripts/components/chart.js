@@ -16,8 +16,6 @@ class Chart extends React.Component {
   }
 
   renderChart() {
-
-    console.log(this.props.dataset)
     const margin = { top: 20, right: 20, bottom: 40, left: 40 }
     const w = 600
     const h = 300 - margin.top - margin.bottom
@@ -76,13 +74,6 @@ class Chart extends React.Component {
       .attr('stroke-width', 2)
       .attr('fill', 'none')
 
-  }
-
-  componentDidMount(){
-    // console.log('componentDidMount')
-    // if (this.props.dataset.length > 0){
-    //   this.renderChart()
-    // }
   }
 
   componentDidUpdate(){

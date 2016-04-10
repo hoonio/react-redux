@@ -32,7 +32,7 @@ class Canvas extends React.Component {
           <p>Playground for D3.js experiments</p>
         </div>
         <div className="row">
-          <div className="col-sm-3 hidden-xs-down" id="sidebar-frame">
+          <div className="col-sm-3 col-xs-12" id="sidebar-frame">
             <ul className="list-group">
               {stockList}
             </ul>
@@ -53,7 +53,6 @@ Canvas.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     stockList: state.canvas.stockList,
     dataset: state.canvas.dataset
