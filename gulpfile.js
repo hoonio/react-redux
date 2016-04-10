@@ -6,6 +6,7 @@ const webpack = require('webpack-stream');
 const browserify = require('browserify');
 const watchify   = require('watchify');
 const source     = require('vinyl-source-stream');
+const browserSync = require('browser-sync').create();
 
 const bundler = {
   w: null,
@@ -22,7 +23,8 @@ const bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('dist/public/scripts'));
+      .pipe(gulp.dest('dist/public/scripts'))
+      .pipe(browserSync.stream())
   },
   watch: function() {
     this.w && this.w.on('update', this.bundle.bind(this));
@@ -66,7 +68,8 @@ gulp.task('styles', function() {
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
     .pipe(gulp.dest('dist/public/styles'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(browserSync.stream())
 });
 
 gulp.task('scripts', function() {
@@ -87,7 +90,8 @@ gulp.task('html', function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe(gulp.dest('dist/public'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(browserSync.stream())
 });
 
 gulp.task('images', function() {
@@ -178,6 +182,11 @@ gulp.task('test', () => {
 gulp.task('default', ['watch']);
 
 gulp.task('watch', sync(['clean-bundle', 'serve', 'nodemon']), function() {
+  browserSync.init({
+    proxy: 'http://localhost:9001',
+    files: ['dist/public/**/*.*']
+  })
+
   bundler.watch();
   gulp.watch('app/*.html', ['html']);
   gulp.watch('app/scripts/**/*.js', ['scripts']);
