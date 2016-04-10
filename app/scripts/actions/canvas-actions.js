@@ -2,30 +2,56 @@ import 'babel-polyfill'
 import jsonp from 'jsonp-es6'
 import { dispatch } from 'react-redux'
 
-export const REQUEST_CANVAS = 'REQUEST_CANVAS'
+export const REQUEST_STOCKLIST = 'REQUEST_STOCKLIST'
 
-const requestCanvas = () => ({
-  type: REQUEST_CANVAS
+const requestStockList = () => ({
+  type: REQUEST_STOCKLIST
 })
 
-export const RECEIVE_CANVAS = 'RECEIVE_CANVAS'
+export const RECEIVE_STOCKLIST = 'RECEIVE_STOCKLIST'
 
-const receiveCanvas = (array) => ({
-  type: RECEIVE_CANVAS,
+const receiveStockList = (array) => ({
+  type: RECEIVE_STOCKLIST,
   stockList: array
 })
 
+export const REQUEST_STOCKDATA = 'REQUEST_STOCKDATA'
+
+const requestStockData = (string) => ({
+  type: REQUEST_STOCKDATA,
+  stockSymbol: string
+})
+
+export const RECEIVE_STOCKDATA = 'RECEIVE_STOCKDATA'
+
+const receiveStockData = (array) => ({
+  type: RECEIVE_STOCKDATA,
+  dataset: array
+})
+
+export const selectStock = (stockSymbol) => {
+  console.log('requesting '+stockSymbol)
+  return (dispatch) => {
+    dispatch(requestStockData(stockSymbol))
+    return jsonp(('/brainwave/'+stockSymbol))
+      .then(resp => {
+        dispatch(receiveStockData(resp))
+      })
+  }
+}
+
 export const getCanvas = () => {
   return (dispatch) => {
-    dispatch(requestCanvas())
+    dispatch(requestStockList())
     return jsonp('/brainwave')
       .then(resp => {
-        dispatch(receiveCanvas(resp))
+        dispatch(receiveStockList(resp))
       })
   }
 }
 
 export const getCanvasIfNeeded = () => {
+  console.log('get stock list')
   return (dispatch, getState) => {
     if (getState().canvas.ready) {
       return

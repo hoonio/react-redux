@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { getCanvasIfNeeded } from '../actions/canvas-actions'
+import { getCanvasIfNeeded, selectStock } from '../actions/canvas-actions'
 import Chart from '../components/chart'
 
 class Canvas extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getCanvasIfNeeded())
+    console.log('component did mount')
+    this.props.getStockList()
   }
 
   render() {
@@ -14,7 +15,8 @@ class Canvas extends React.Component {
     let chart = null
     if (this.props.stockList) {
       stockList = (this.props.stockList.map((stock, index) => {
-        return (<li className="list-group-item" key={index}>{stock.replace('WIKI/','')}</li>)
+        return (<li className="list-group-item" key={index} onClick={this.props.selectStock(stock.replace('WIKI/',''))} >{stock.replace('WIKI/','')}</li>)
+        // return (<li className="list-group-item" key={index} onClick={this.props.dispatch(selectStock(stock.replace('WIKI/','')))}>{stock.replace('WIKI/','')}</li>)
       }))
     }
 
@@ -40,14 +42,23 @@ class Canvas extends React.Component {
 }
 
 Canvas.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
   stockList: React.PropTypes.array.isRequired,
+  getStockList: React.PropTypes.func.isRequired,
   dataset: React.PropTypes.array
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   console.log(state)
-  return { stockList: state.canvas.stockList }
+  return {
+    stockList: state.canvas.stockList
+   }
 }
 
-export default connect(mapStateToProps)(Canvas)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getStockList: () => { dispatch(getCanvasIfNeeded()) },
+    selectStock: (symbol) => { dispatch(selectStock(symbol)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas)
