@@ -20,12 +20,16 @@ class Chart extends React.Component {
   updatePlot() {
   }
 
+  clearChart() {
+    d3.select('#chart').select('svg').remove()
+  }
+
   renderChart() {
+    this.clearChart()
+
     const margin = { top: 20, right: 20, bottom: 40, left: 40 }
     const w = 600
     const h = 300 - margin.top - margin.bottom
-
-    d3.select('#chart').select('svg').remove()
 
     let svg = d3.select('#chart').append('svg')
       .attr('width', '100%')
@@ -35,8 +39,6 @@ class Chart extends React.Component {
 
     const mindate = new Date(this.props.dataset[this.props.dataset.length-1].date)
     const maxdate = new Date(this.props.dataset[0].date)
-
-    console.log(mindate, maxdate)
 
     let xScale = d3.time.scale()
       .domain([mindate, maxdate])
@@ -82,8 +84,10 @@ class Chart extends React.Component {
   }
 
   componentDidUpdate(){
-    console.log('Chart: component did update')
-    if (this.props.dataset.length > 0){
+    if (this.props.isOver){
+      this.clearChart()
+    }
+    else if (this.props.dataset.length > 0){
       this.renderChart()
     }
   }
@@ -93,8 +97,7 @@ class Chart extends React.Component {
 
     return connectDropTarget(
       <div className="d3-canvas">
-        <p>{isOver}</p>
-        {isOver && <div><p>Drag here</p></div>}
+        {isOver && <div id="graph-dropzone"><p>Drop the item here</p></div>}
         <div id="chart"></div>
       </div>
     );
@@ -103,7 +106,6 @@ class Chart extends React.Component {
 
 const dragitemTarget = {
   drop(props, monitor) {
-    console.log('drop item, get stock data')
     props.ondrop()
   }
 }

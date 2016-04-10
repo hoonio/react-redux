@@ -178,7 +178,14 @@ body {
   #chart-frame{
     .d3-canvas {
       height: 20rem;
-      border: red 0.5rem solid;
+      #graph-dropzone {
+        border: red 0.5rem solid;
+        height: 20rem;
+        p {
+          margin-top: 9rem;
+          text-align: center;
+        }
+      }
     }
   }
   #chart {

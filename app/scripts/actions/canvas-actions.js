@@ -37,14 +37,12 @@ const receiveStockData = (array) => ({
 })
 
 export const selectStock = (stockSymbol) => {
-  console.log('selected '+stockSymbol)
   return (dispatch) => {
     dispatch(selectStockName(stockSymbol))
   }
 }
 
 export const getStockData = (stockSymbol) => {
-  console.log('requesting '+stockSymbol)
   return (dispatch) => {
     dispatch(requestStockData(stockSymbol))
     return jsonp(('/brainwave/'+stockSymbol))

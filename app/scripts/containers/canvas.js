@@ -23,14 +23,13 @@ class Canvas extends React.Component {
       }))
     }
 
-    console.log('updating chart component')
     chart = (<Chart dataset={this.props.dataset} ondrop={() => this.props.getStockData(this.props.selectedStock)} />)
 
     return (
       <div className="container" id="canvas">
         <div className="row">
           <h1>Time Series</h1>
-          <p>Drag the stock symbol from the list below to the box to plot</p>
+          <p>Drag any of the stock symbols below to area on the right</p>
         </div>
         <div className="row">
           <div className="col-sm-3 col-xs-12" id="sidebar-frame">
@@ -57,8 +56,6 @@ Canvas.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('canvas state updated')
-  console.log(state)
   return {
     stockList: state.canvas.stockList,
     dataset: state.canvas.dataset,

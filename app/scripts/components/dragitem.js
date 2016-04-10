@@ -5,8 +5,6 @@ import { ItemTypes } from '../constants';
 
 const dragitemSource = {
   beginDrag(props) {
-    console.log('drag item, select stock')
-    console.log(props)
     props.onclick(props.name)
     return {}
   }
