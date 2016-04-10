@@ -6,6 +6,7 @@ const webpack = require('webpack-stream');
 const browserify = require('browserify');
 const watchify   = require('watchify');
 const source     = require('vinyl-source-stream');
+const browserSync = require('browser-sync').create();
 
 const bundler = {
   w: null,
@@ -22,12 +23,13 @@ const bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('dist/public/scripts'));
+      .pipe(gulp.dest('dist/public/scripts'))
+      .pipe(browserSync.stream())
   },
   watch: function() {
     this.w && this.w.on('update', this.bundle.bind(this));
   },
-  test: () =>{
+  test: function() {
     console.log('test has begun')
     b.external('react-dom');
     b.external('react-dom/server');
@@ -39,6 +41,17 @@ const bundler = {
     this.w && this.w.close();
   }
 };
+
+gulp.task('nodemon', function(callback) {
+  var started = false;
+  return $.nodemon({script: 'dist/server.js'})
+    .on('start', function() {
+      if (!started){
+        callback();
+        started = true
+      }
+    })
+})
 
 gulp.task('webpack', () => {
   return gulp.src('app/scripts/app.js')
@@ -55,7 +68,8 @@ gulp.task('styles', function() {
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
     .pipe(gulp.dest('dist/public/styles'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(browserSync.stream())
 });
 
 gulp.task('scripts', function() {
@@ -76,7 +90,8 @@ gulp.task('html', function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe(gulp.dest('dist/public'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(browserSync.stream())
 });
 
 gulp.task('images', function() {
@@ -97,7 +112,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('extras', function () {
-  return gulp.src(['app/*.txt', 'app/*.ico'])
+  return gulp.src(['app/*.txt', 'app/*.ico', 'app/files/*'])
     .pipe(gulp.dest('dist/public/'))
     .pipe($.size());
 });
@@ -114,7 +129,8 @@ gulp.task('deploy', ['build'], function() {
   return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
-      prefix: 'dist'
+      prefix: 'dist',
+      branches: ['master', 'brainnwave']
     }));
 });
 
@@ -122,7 +138,8 @@ gulp.task('release', ['build:production'], function() {
   return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-root.scm.azurewebsites.net:443/hoonio-root.git',
-      prefix: 'dist'
+      prefix: 'dist',
+      branches: ['master']
     }));
 });
 
@@ -162,9 +179,14 @@ gulp.task('test', () => {
   bundler.test();
 })
 
-gulp.task('default', ['build']);
+gulp.task('default', ['watch']);
 
-gulp.task('watch', sync(['clean-bundle', 'serve']), function() {
+gulp.task('watch', sync(['clean-bundle', 'serve', 'nodemon']), function() {
+  browserSync.init({
+    proxy: 'http://localhost:9001',
+    files: ['dist/public/**/*.*']
+  })
+
   bundler.watch();
   gulp.watch('app/*.html', ['html']);
   gulp.watch('app/scripts/**/*.js', ['scripts']);
