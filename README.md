@@ -1,3 +1,4 @@
-``gulp watch`` to run only the front-end portion(React) of the code
-``npm start`` to run node server where React code will run through Express
-router
+- ``npm install`` to install dependencies
+- ``gulp watch`` to run locally
+
+Preview before each release is available on https://test.hoonio.com
