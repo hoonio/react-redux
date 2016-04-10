@@ -1,7 +1,7 @@
 import React from 'react';
 
 const propTypes = {
-  dataset: React.PropTypes.array.isRequired,
+  dataset: React.PropTypes.array.isRequired
 }
 
 class Chart extends React.Component {

@@ -10,15 +10,16 @@ class Canvas extends React.Component {
   }
 
   render() {
-    let dataset = null
+    let stockList = null
     let chart = null
-    let dataToPlot = []
-    if (this.props.dataset) {
-      dataset = (this.props.dataset.map((data, index) => {
-        dataToPlot.push([new Date(data.date), data.close])
-        return (<li className="list-group-item" key={index}>{data.date}</li>)
+    if (this.props.stockList) {
+      stockList = (this.props.stockList.map((stock, index) => {
+        return (<li className="list-group-item" key={index}>{stock.replace('WIKI/','')}</li>)
       }))
-      chart = (<Chart dataset={dataToPlot} />)
+    }
+
+    if (this.props.dataset) {
+      chart = (<Chart dataset={this.props.dataset} />)
     }
 
     return (
@@ -26,7 +27,7 @@ class Canvas extends React.Component {
         <div className="row">
           <div className="col-sm-3 hidden-xs-down" id="sidebar-frame">
             <ul className="list-group">
-              {dataset}
+              {stockList}
             </ul>
           </div>
           <div className="col-sm-9 col-xs-12" id="chart-frame">
@@ -40,11 +41,13 @@ class Canvas extends React.Component {
 
 Canvas.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  dataset: React.PropTypes.array.isRequired
+  stockList: React.PropTypes.array.isRequired,
+  dataset: React.PropTypes.array
 }
 
 function mapStateToProps(state) {
-  return { dataset: state.canvas.dataset }
+  console.log(state)
+  return { stockList: state.canvas.stockList }
 }
 
 export default connect(mapStateToProps)(Canvas)

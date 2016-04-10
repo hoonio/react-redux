@@ -10,9 +10,9 @@ const requestCanvas = () => ({
 
 export const RECEIVE_CANVAS = 'RECEIVE_CANVAS'
 
-const receiveCanvas = (json) => ({
+const receiveCanvas = (array) => ({
   type: RECEIVE_CANVAS,
-  dataset: json
+  stockList: array
 })
 
 export const getCanvas = () => {
