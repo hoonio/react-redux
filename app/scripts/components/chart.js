@@ -1,7 +1,12 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd'
+
+import { ItemTypes } from '../constants';
 
 const propTypes = {
-  dataset: React.PropTypes.array.isRequired
+  dataset: React.PropTypes.array.isRequired,
+  isOver: React.PropTypes.bool.isRequired,
+  ondrop: React.PropTypes.func.isRequired
 }
 
 class Chart extends React.Component {
@@ -77,21 +82,37 @@ class Chart extends React.Component {
   }
 
   componentDidUpdate(){
-    console.log('component did update')
+    console.log('Chart: component did update')
     if (this.props.dataset.length > 0){
       this.renderChart()
     }
   }
 
   render() {
-    return(
+    const { connectDropTarget, isOver } = this.props
+
+    return connectDropTarget(
       <div className="d3-canvas">
-        <div id="chart"></div>
+        {isOver && <div id="chart"></div>}
       </div>
     );
   }
 }
 
+const dragitemTarget = {
+  drop(props, monitor) {
+    console.log('drop item, get stock data')
+    props.ondrop()
+  }
+}
+
+const collect = (connect, monitor) => {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  }
+}
+
 Chart.propTypes = propTypes
 
-export default Chart
+export default DropTarget(ItemTypes.DRAGITEM, dragitemTarget, collect)(Chart)

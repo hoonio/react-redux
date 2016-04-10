@@ -15,6 +15,13 @@ const receiveStockList = (array) => ({
   stockList: array
 })
 
+export const SELECT_STOCK = 'SELECT_STOCK'
+
+const selectStockName = (string) => ({
+  type: SELECT_STOCK,
+  stockSymbol: string
+})
+
 export const REQUEST_STOCKDATA = 'REQUEST_STOCKDATA'
 
 const requestStockData = (string) => ({
@@ -30,6 +37,13 @@ const receiveStockData = (array) => ({
 })
 
 export const selectStock = (stockSymbol) => {
+  console.log('selected '+stockSymbol)
+  return (dispatch) => {
+    dispatch(selectStockName(stockSymbol))
+  }
+}
+
+export const getStockData = (stockSymbol) => {
   console.log('requesting '+stockSymbol)
   return (dispatch) => {
     dispatch(requestStockData(stockSymbol))

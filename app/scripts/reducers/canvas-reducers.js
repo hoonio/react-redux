@@ -1,6 +1,6 @@
-import { REQUEST_STOCKLIST, RECEIVE_STOCKLIST, REQUEST_STOCKDATA, RECEIVE_STOCKDATA } from '../actions/canvas-actions'
+import { REQUEST_STOCKLIST, RECEIVE_STOCKLIST, SELECT_STOCK, REQUEST_STOCKDATA, RECEIVE_STOCKDATA } from '../actions/canvas-actions'
 
-export default (state = { isFetching: false, ready: false, stockList:[], dataset:[] }, action) => {
+export default (state = { isFetching: false, ready: false, selectedStock: '', stockList:[], dataset:[] }, action) => {
   switch (action.type) {
     case REQUEST_STOCKLIST:
       return Object.assign({}, state, {
@@ -11,6 +11,10 @@ export default (state = { isFetching: false, ready: false, stockList:[], dataset
         isFetching: false,
         ready: true,
         stockList: action.stockList
+      })
+    case SELECT_STOCK:
+      return Object.assign({}, state, {
+        selectedStock: action.stockSymbol
       })
     case REQUEST_STOCKDATA:
       return Object.assign({}, state, {

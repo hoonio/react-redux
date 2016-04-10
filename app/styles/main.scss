@@ -175,6 +175,12 @@ body {
 /* canvas - D3 Visualization */
 #canvas {
   margin-top: 1rem;
+  #chart-frame{
+    .d3-canvas {
+      height: 20rem;
+      border: red 0.5rem solid;
+    }
+  }
   #chart {
     background-color: white;
     .bar {
