@@ -40,6 +40,17 @@ const bundler = {
   }
 };
 
+gulp.task('nodemon', function(callback) {
+  var started = false;
+  return $.nodemon({script: 'dist/server.js'})
+    .on('start', function() {
+      if (!started){
+        callback();
+        started = true
+      }
+    })
+})
+
 gulp.task('webpack', () => {
   return gulp.src('app/scripts/app.js')
     .pipe(webpack(require('./webpack.config.js')))
@@ -164,9 +175,9 @@ gulp.task('test', () => {
   bundler.test();
 })
 
-gulp.task('default', ['build']);
+gulp.task('default', ['watch']);
 
-gulp.task('watch', sync(['clean-bundle', 'serve']), function() {
+gulp.task('watch', sync(['clean-bundle', 'serve', 'nodemon']), function() {
   bundler.watch();
   gulp.watch('app/*.html', ['html']);
   gulp.watch('app/scripts/**/*.js', ['scripts']);

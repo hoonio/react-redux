@@ -29,8 +29,8 @@ class Canvas extends React.Component {
     return (
       <div className="container" id="canvas">
         <div className="row">
-          <h1>Canvas</h1>
-          <p>Playground for D3.js experiments</p>
+          <h1>Time Series</h1>
+          <p>Drag the stock symbol from the list below to the box to plot</p>
         </div>
         <div className="row">
           <div className="col-sm-3 col-xs-12" id="sidebar-frame">
