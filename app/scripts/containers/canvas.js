@@ -6,8 +6,10 @@ import Chart from '../components/chart'
 
 class Canvas extends React.Component {
   componentDidMount() {
-    console.log('component did mount')
     this.props.getStockList()
+  }
+
+  componentDidUpdate() {
   }
 
   render() {
@@ -15,8 +17,7 @@ class Canvas extends React.Component {
     let chart = null
     if (this.props.stockList) {
       stockList = (this.props.stockList.map((stock, index) => {
-        return (<li className="list-group-item" key={index} onClick={this.props.selectStock(stock.replace('WIKI/',''))} >{stock.replace('WIKI/','')}</li>)
-        // return (<li className="list-group-item" key={index} onClick={this.props.dispatch(selectStock(stock.replace('WIKI/','')))}>{stock.replace('WIKI/','')}</li>)
+        return (<li className="list-group-item" key={index} onClick={() => this.props.selectStock(stock.replace('WIKI/',''))} >{stock.replace('WIKI/','')}</li>)
       }))
     }
 
@@ -26,6 +27,10 @@ class Canvas extends React.Component {
 
     return (
       <div className="container" id="canvas">
+        <div className="row">
+          <h1>Canvas</h1>
+          <p>Playground for D3.js experiments</p>
+        </div>
         <div className="row">
           <div className="col-sm-3 hidden-xs-down" id="sidebar-frame">
             <ul className="list-group">
@@ -50,7 +55,8 @@ Canvas.propTypes = {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    stockList: state.canvas.stockList
+    stockList: state.canvas.stockList,
+    dataset: state.canvas.dataset
    }
 }
 

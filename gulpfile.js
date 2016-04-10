@@ -27,7 +27,7 @@ const bundler = {
   watch: function() {
     this.w && this.w.on('update', this.bundle.bind(this));
   },
-  test: () =>{
+  test: function() {
     console.log('test has begun')
     b.external('react-dom');
     b.external('react-dom/server');

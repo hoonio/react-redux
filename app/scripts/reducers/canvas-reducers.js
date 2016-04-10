@@ -14,7 +14,9 @@ export default (state = { isFetching: false, ready: false, stockList:[], dataset
       })
     case REQUEST_STOCKDATA:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        ready: false,
+        selectedStock: action.stockSymbol
       })
     case RECEIVE_STOCKDATA:
       return Object.assign({}, state, {

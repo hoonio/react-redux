@@ -16,9 +16,13 @@ class Chart extends React.Component {
   }
 
   renderChart() {
+
+    console.log(this.props.dataset)
     const margin = { top: 20, right: 20, bottom: 40, left: 40 }
     const w = 600
     const h = 300 - margin.top - margin.bottom
+
+    d3.select('#chart').select('svg').remove()
 
     let svg = d3.select('#chart').append('svg')
       .attr('width', '100%')
@@ -26,8 +30,10 @@ class Chart extends React.Component {
       .append('g')
       .attr('transform', 'translate(' + margin.left +', ' + margin.top + ')');
 
-    const mindate = this.props.dataset[this.props.dataset.length-1][0]
-    const maxdate = this.props.dataset[0][0]
+    const mindate = new Date(this.props.dataset[this.props.dataset.length-1].date)
+    const maxdate = new Date(this.props.dataset[0].date)
+
+    console.log(mindate, maxdate)
 
     let xScale = d3.time.scale()
       .domain([mindate, maxdate])
@@ -47,7 +53,7 @@ class Chart extends React.Component {
       .call(xAxis);
 
     let yScale = d3.scale.linear()
-      .domain([0, d3.max(this.props.dataset, (d) => d[1] )])
+      .domain([0, d3.max(this.props.dataset, (d) => d.close )])
       .range([h, 0]);
 
     const yAxis = d3.svg.axis()
@@ -55,8 +61,8 @@ class Chart extends React.Component {
       .orient('left');
 
     const lineFunc = d3.svg.line()
-      .x((d) => (xScale(d[0])))
-      .y((d) => (yScale(d[1])))
+      .x((d) => (xScale(new Date(d.date))))
+      .y((d) => (yScale(d.close)))
       .interpolate('linear')
 
     svg.append('g')
@@ -73,12 +79,14 @@ class Chart extends React.Component {
   }
 
   componentDidMount(){
-    if (this.props.dataset.length > 0){
-      this.renderChart()
-    }
+    // console.log('componentDidMount')
+    // if (this.props.dataset.length > 0){
+    //   this.renderChart()
+    // }
   }
 
   componentDidUpdate(){
+    console.log('component did update')
     if (this.props.dataset.length > 0){
       this.renderChart()
     }
@@ -87,11 +95,7 @@ class Chart extends React.Component {
   render() {
     return(
       <div className="d3-canvas">
-        <div className="row">
-          <h1>Canvas</h1>
-          <p>Playground for D3.js experiments</p>
-          <div id="chart"></div>
-        </div>
+        <div id="chart"></div>
       </div>
     );
   }
