@@ -93,7 +93,9 @@ class Chart extends React.Component {
 
     return connectDropTarget(
       <div className="d3-canvas">
-        {isOver && <div id="chart"></div>}
+        <p>{isOver}</p>
+        {isOver && <div><p>Drag here</p></div>}
+        <div id="chart"></div>
       </div>
     );
   }
