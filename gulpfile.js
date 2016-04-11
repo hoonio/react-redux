@@ -3,6 +3,8 @@ const $          = require('gulp-load-plugins')();
 const sync       = $.sync(gulp).sync;
 const del        = require('del');
 const webpack    = require('webpack-stream');
+var WebpackDevServer = require("webpack-dev-server");
+
 const browserify = require('browserify');
 const watchify   = require('watchify');
 const source     = require('vinyl-source-stream');
@@ -53,11 +55,34 @@ gulp.task('nodemon', function(callback) {
     })
 })
 
+gulp.task('test', function() {
+  return gulp.src('app/tests/components/portfolio.spec.js')
+    .pipe(webpack( require('./webpack.test.config.js') ))
+    .pipe(gulp.dest('dist/public/'))
+})
+
 gulp.task('webpack', function() {
   return gulp.src('app/scripts/app.js')
+    .pipe($.plumber())
     .pipe(webpack( require('./webpack.config.js') ))
     .pipe(gulp.dest('dist/public/'))
 })
+
+gulp.task('serve', function(callback) {
+    // Start a webpack-dev-server
+    var compiler = webpack( require('./webpack.config.js') );
+
+    new WebpackDevServer(compiler, {
+    // server and middleware options
+    }).listen(9002, "localhost", function(err) {
+        if(err) throw new $.util.PluginError("webpack-dev-server", err);
+        // Server listening
+        gutil.log("[webpack-dev-server]", "http://localhost:9002/webpack-dev-server/index.html");
+
+        // keep the server alive or continue?
+        callback();
+    });
+});
 
 gulp.task('styles', function() {
   return $.rubySass('app/styles/main.scss', {
@@ -117,7 +142,7 @@ gulp.task('extras', function () {
     .pipe($.size());
 });
 
-gulp.task('serve', function() {
+gulp.task('obs-serve', function() {
   gulp.src('dist/public')
     .pipe($.webserver({
       livereload: true,
@@ -175,13 +200,9 @@ gulp.task('build:production', sync(['set-production', 'build', 'minify']));
 
 gulp.task('serve:production', sync(['build:production', 'serve']));
 
-gulp.task('test', () => {
-  bundler.test();
-})
-
 gulp.task('default', ['watch']);
 
-gulp.task('watch', sync(['clean-bundle', 'serve', 'nodemon']), function() {
+gulp.task('watch', sync(['clean-bundle', 'nodemon']), function() {
   browserSync.init({
     proxy: 'http://localhost:9001',
     files: ['dist/public/**/*.*']

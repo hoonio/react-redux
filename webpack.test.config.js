@@ -1,7 +1,7 @@
 module.exports = {
   entry: "./app/tests/components/portfolio.spec.js",
   output: {
-    path: './app/tests',
+    path: require("path").resolve('./app/tests'),
     filename: "spec.js",
     publicPath: '/tests'
   },
