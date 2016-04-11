@@ -13,8 +13,12 @@ class Portfolio extends React.Component {
   render() {
     let workItems = null
     if (this.props.items) {
-      workItems = ( this.props.items.map((item, index) => ( <WorkItem item={item} key={index} />
-      )))
+      workItems = ( this.props.items.map((item, index) => {
+        if (item.gsx$portfolio.$t == 'TRUE') {
+          return <WorkItem item={item} key={index} />
+        }
+      }
+      ))
     }
 
     return (
