@@ -63,7 +63,7 @@ gulp.task('styles', function() {
   return $.rubySass('app/styles/main.scss', {
       style: 'expanded',
       precision: 10,
-      loadPath: ['app/bower_components']
+      loadPath: ['node_modules']
     })
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
@@ -106,7 +106,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src(['app/fonts/**/*', 'app/bower_components/bootstrap-sass-official/assets/fonts/**/*'])
+  return gulp.src(['app/fonts/**/*'])
     .pipe(gulp.dest('dist/public/fonts'))
     .pipe($.size());
 });

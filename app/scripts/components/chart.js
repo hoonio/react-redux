@@ -1,5 +1,6 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd'
+import d3 from 'd3'
 
 import { ItemTypes } from '../constants';
 
