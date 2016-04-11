@@ -15,7 +15,9 @@
     "lint": "./node_modules/.bin/eslint app/scripts/"
   },
   "dependencies": {
-    "express": "~4.0"
+    "compression": "^1.6.1",
+    "express": "~4.0",
+    "serve-static": "^1.10.2"
   },
   "devDependencies": {
     "babel-core": "^6.7.5",

@@ -3,13 +3,20 @@ var express = require('express')
   , http    = require('http')
   , https   = require('https')
   , path    = require('path')
+  , compression = require('compression')
+  , serveStatic = require('serve-static')
 
 var app = express()
 app.set('port', process.env.PORT || 9001)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
-app.use(express.static(publicPath))
-app.use('/.well-known', express.static('.well-known'));
+function setCacheControl(res, path) {
+  res.setHeader('Cache-Control', 'public, max-age=29030400')
+}
+
+app.use(serveStatic(publicPath, { maxAge: '1w', setHeaders: setCacheControl }))
+app.use('/.well-known', serveStatic('.well-known'))
+app.use(compression());
 
 app.use(function(req, res, next) {
   console.log(req.method, 'at', req.path)
