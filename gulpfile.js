@@ -23,7 +23,7 @@ const bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('dist/public/scripts'))
+      .pipe(gulp.dest('dist/public'))
       .pipe(browserSync.stream())
   },
   watch: function() {
@@ -56,7 +56,7 @@ gulp.task('nodemon', function(callback) {
 gulp.task('webpack', () => {
   return gulp.src('app/scripts/app.js')
     .pipe(webpack(require('./webpack.config.js')))
-    .pipe(gulp.dest('dist/public/scripts/'))
+    .pipe(gulp.dest('dist/public/'))
 })
 
 gulp.task('styles', function() {
@@ -67,7 +67,7 @@ gulp.task('styles', function() {
     })
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('dist/public/styles'))
+    .pipe(gulp.dest('dist/public'))
     .pipe($.size())
     .pipe(browserSync.stream())
 });
@@ -148,16 +148,16 @@ gulp.task('set-production', function() {
 });
 
 gulp.task('minify:js', function() {
-  return gulp.src('dist/public/scripts/**/*.js')
+  return gulp.src('dist/public/**/*.js')
     .pipe($.uglify())
-    .pipe(gulp.dest('dist/public/scripts/'))
+    .pipe(gulp.dest('dist/public/'))
     .pipe($.size());
 });
 
 gulp.task('minify:css', function() {
-  return gulp.src('dist/public/styles/**/*.css')
+  return gulp.src('dist/public/**/*.css')
     .pipe($.minifyCss())
-    .pipe(gulp.dest('dist/public/styles'))
+    .pipe(gulp.dest('dist/public'))
     .pipe($.size());
 });
 
