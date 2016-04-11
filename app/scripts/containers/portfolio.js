@@ -7,7 +7,7 @@ import WorkItem from '../components/WorkItem';
 class Portfolio extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch( getPortfolioIfNeeded() )
+    this.props.getPortfolioWorks()
   }
 
   render() {
@@ -27,8 +27,19 @@ class Portfolio extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+Portfolio.propTypes = {
+  items: React.PropTypes.array.isRequired,
+  getPortfolioWorks: React.PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => {
   return { items: state.portfolio.items }
 }
 
-export default connect(mapStateToProps)(Portfolio)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPortfolioWorks: () => { dispatch(getPortfolioIfNeeded()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio)

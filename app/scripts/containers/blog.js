@@ -1,19 +1,13 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as BlogActions from '../actions/blog-actions'
+import { getBlogIfNeeded } from '../actions/blog-actions'
 import BlogSnippet from '../components/blog-snippet'
 
 class Blog extends React.Component {
 
-  static fetchData(dispatch) {
-    const blogActions = bindActionCreators(BlogActions, dispatch)
-    return Promise.all([blogActions.getBlogIfNeeded()])
-  }
-
   componentDidMount() {
-    this.constructor.fetchData(this.props.dispatch)
+    this.props.getBlogPosts()
   }
 
   render() {
@@ -39,12 +33,18 @@ class Blog extends React.Component {
 }
 
 Blog.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  posts: React.PropTypes.array.isRequired
+  posts: React.PropTypes.array.isRequired,
+  getBlogPosts: React.PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return { posts: state.blog.posts }
 }
 
-export default connect(mapStateToProps)(Blog)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getBlogPosts: () => { dispatch(getBlogIfNeeded()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)
