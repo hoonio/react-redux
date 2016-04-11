@@ -1,9 +1,9 @@
 module.exports = {
   entry: "./app/scripts/app.js",
   output: {
-    path: './dist/public/scripts',
+    path: require("path").resolve("./dist/public"),
     filename: "app.js",
-    publicPath: '/scripts'
+    publicPath: '/'
   },
   module: {
     loaders: [{

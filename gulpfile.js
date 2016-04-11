@@ -2,7 +2,7 @@ const gulp       = require('gulp');
 const $          = require('gulp-load-plugins')();
 const sync       = $.sync(gulp).sync;
 const del        = require('del');
-const webpack = require('webpack-stream');
+const webpack    = require('webpack-stream');
 const browserify = require('browserify');
 const watchify   = require('watchify');
 const source     = require('vinyl-source-stream');
@@ -53,9 +53,9 @@ gulp.task('nodemon', function(callback) {
     })
 })
 
-gulp.task('webpack', () => {
+gulp.task('webpack', function() {
   return gulp.src('app/scripts/app.js')
-    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(webpack( require('./webpack.config.js') ))
     .pipe(gulp.dest('dist/public/'))
 })
 
@@ -165,7 +165,7 @@ gulp.task('minify', ['minify:js', 'minify:css']);
 
 gulp.task('clean', del.bind(null, 'dist'));
 
-gulp.task('bundle', ['html', 'styles', 'scripts', 'server', 'images', 'fonts', 'extras']);
+gulp.task('bundle', ['html', 'styles', 'webpack', 'server', 'images', 'fonts', 'extras']);
 
 gulp.task('clean-bundle', sync(['clean', 'bundle']));
 
@@ -187,9 +187,9 @@ gulp.task('watch', sync(['clean-bundle', 'serve', 'nodemon']), function() {
     files: ['dist/public/**/*.*']
   })
 
-  bundler.watch();
+  // bundler.watch();
   gulp.watch('app/*.html', ['html']);
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/scripts/**/*.js', ['webpack']);
   gulp.watch('app/server.js', ['server']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/images/**/*', ['images']);
