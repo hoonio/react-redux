@@ -69,16 +69,13 @@ gulp.task('server', () => (
     .pipe($.size())
 ))
 
-gulp.task('html', () => {
-  const assets = $.useref.assets()
-  return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe(assets.restore())
+gulp.task('html', () => (
+  gulp.src('app/*.html')
     .pipe($.useref())
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
     .pipe(browserSync.stream())
-})
+))
 
 gulp.task('images', () => (
   gulp.src('app/images/**/*')

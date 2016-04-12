@@ -23,6 +23,10 @@ class Blog extends React.Component {
 
     return (
       <div className="container" id="blog">
+        <div className="row">
+          <h1></h1>
+          <p></p>
+        </div>
         <div className="card-columns">
           {blogPosts}
         </div>
