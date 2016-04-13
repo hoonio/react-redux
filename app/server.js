@@ -1,10 +1,17 @@
 var express = require('express')
   , fs      = require('fs')
-  , http    = require('http')
-  , https   = require('https')
   , path    = require('path')
   , compression = require('compression')
   , serveStatic = require('serve-static')
+
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { createMemoryHistory, match, RouterContext } from 'react-router'
+import { Provider } from 'react-redux'
+import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
+
+import { configureStore } from './scripts/stores'
+import routes from './scripts/routes'
 
 var app = express()
 app.set('port', process.env.PORT || 9001)
@@ -73,9 +80,77 @@ app.get('/brainwave/:symbol', function(req, res){
 })
 
 app.get('/*', function(req, res){
-  var page = fs.readFileSync(publicPath + '/index.html').toString()
-  res.send(page)
+
+  const memoryHistory = createMemoryHistory(req.path)
+  let store = configureStore(memoryHistory)
+  const history = syncHistoryWithStore(memoryHistory, store)
+
+  match({ history, routes, location: req.url }, (err, redirect, props) => {
+    if (err) {
+      res.status(500).send(err.message)
+    } else if (redirect) {
+      res.redirect(302, redirect.pathname + redirect.search)
+    } else if (props) {
+      fetchData().then( () => {
+        store = createStore(memoryHistory, store.getState() )
+        const appHtml = renderToString(
+          <Provider store={store}>
+            <RouterContext {...props}/>
+          </Provider>
+        )
+        // res.send(renderFullPage(appHtml, initialState))
+        res.send('<!doctype html>\n' + renderToString(<HTML content={appHtml} store={store}/>))
+      })
+
+      /* fetch data promise */
+      function fetchData () {
+        console.log('fetch data')
+        console.log(props.components)
+        let { query, params } = props;
+        return new Promise(function(resolve, reject) {
+          let comp = props.components[props.components.length - 1].WrappedComponent;
+          let url = req.protocol + '://' + req.get('host')
+          resolve(comp.fetchData({ params, store, url }));
+        });
+      }
+    }
+
+    // res.render('./index.ejs',{ reactOutput:appHtml })
+
+  })
 })
+
+const HTML = ({ content, store }) => (
+  <html>
+    <head>
+      <link rel='stylesheet' type='text/css' href='/public/main.css' />
+    </head>
+    <body>
+      <div id='mount' dangerouslySetInnerHTML={{ __html: content }}/>
+      <script dangerouslySetInnerHTML={{ __html: `window.__initialState__=${serialize(store.getState())};` }}/>
+      <script src='/public/vendor.js' />
+      <script src='/public/app.js' />
+    </body>
+  </html>
+)
+
+function renderFullPage(html, initialState) {
+  return `
+    <!doctype html>
+    <html>
+      <head>
+        <title>Redux Universal Example</title>
+      </head>
+      <body>
+        <div id="root">${html}</div>
+        <script>
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+        </script>
+        <script src="/static/bundle.js"></script>
+      </body>
+    </html>
+    `
+}
 
 var getStocks = function(data){
   var stockSymbols = []

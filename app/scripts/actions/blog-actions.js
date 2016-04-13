@@ -1,6 +1,5 @@
 import 'babel-polyfill'
-import jsonp from 'jsonp-es6'
-import { dispatch } from 'react-redux'
+import fetch from 'isomorphic-fetch'
 
 export const REQUEST_BLOG = 'REQUEST_BLOG'
 
@@ -18,7 +17,7 @@ const receiveBlog = (json) => ({
 export const getBlog = () => {
   return (dispatch) => {
     dispatch(requestBlog())
-    return jsonp('https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6')
+    return fetch('https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6')
       .then(resp => {
         dispatch(receiveBlog(resp.response.posts))
       })

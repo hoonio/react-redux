@@ -63,8 +63,14 @@ gulp.task('styles', () => (
     .pipe(browserSync.stream())
 ))
 
-gulp.task('server', () => (
-  gulp.src(['app/server.js', 'package.json', 'web.config'])
+gulp.task('server', ['server:files'], () => (
+  gulp.src('app/server.js')
+    .pipe(webpack(require('./webpack.config.server.js')))
+    .pipe(gulp.dest('dist/'))
+))
+
+gulp.task('server:files', () => (
+  gulp.src(['app/index.ejs', 'package.json', 'web.config'])
     .pipe(gulp.dest('dist/'))
     .pipe($.size())
 ))

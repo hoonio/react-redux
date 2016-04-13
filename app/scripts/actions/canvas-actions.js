@@ -1,6 +1,5 @@
 import 'babel-polyfill'
-import jsonp from 'jsonp-es6'
-import { dispatch } from 'react-redux'
+import fetch from 'isomorphic-fetch'
 
 export const REQUEST_STOCKLIST = 'REQUEST_STOCKLIST'
 
@@ -45,7 +44,7 @@ export const selectStock = (stockSymbol) => {
 export const getStockData = (stockSymbol) => {
   return (dispatch) => {
     dispatch(requestStockData(stockSymbol))
-    return jsonp(('/brainwave/'+stockSymbol))
+    return fetch(('/brainwave/'+stockSymbol))
       .then(resp => {
         dispatch(receiveStockData(resp))
       })
