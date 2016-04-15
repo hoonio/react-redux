@@ -628,7 +628,8 @@
     }
   </script>
   <!-- Google Tag Manager -->
-  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-7NKB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <script type="text/javascript">
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-7NKB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script type="text/javascript">
     (function(w, d, s, l, i) {
       w[l] = w[l] || [];
       w[l].push({
@@ -643,6 +644,53 @@
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-7NKB');
   </script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "http://blog.hoonio.com",
+    "name": [
+      {
+        "@value": "Hoonio",
+        "@language": "en"
+      },{
+        "@value": "후니오",
+        "@language": "kr"
+      },{
+        "@value": "フニオ",
+        "@language": "jp"
+      }
+    ],
+    "logo": "https://www.hoonio.com/images/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "40 Grafton Terrace",
+      "addressLocality": "London",
+      "postalCode":"NW5 4HY",
+      "addressCountry": "GB"
+    },
+    "hasMap": "https://goo.gl/maps/4uhV7zWswm82"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.5497938",
+      "longitude": "-0.1574368"
+    },
+    "sameAs": [
+      "https://www.facebook.com/Hoonio-255313574878/",
+      "https://twitter.com/hoonio",
+      "https://plus.google.com/+Hoonio",
+      "https://www.instagram.com/hoon.io/",
+      "https://www.youtube.com/c/hoonio",
+      "https://www.linkedin.com/company/hoonio",
+      "https://github.com/hoonio",
+      "https://www.hoonio.com"
+    ]
+  }
+  </script>
+
+
   {block:IfShowLikeButton}
     <div id="fb-root"></div>
     <script type="text/javascript">
