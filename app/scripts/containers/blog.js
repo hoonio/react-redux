@@ -6,6 +6,10 @@ import BlogSnippet from '../components/blog-snippet'
 
 class Blog extends React.Component {
 
+  static fetchData({ params, store, url }) {
+    return store.dispatch(getBlogIfNeeded())
+  }
+
   componentDidMount() {
     this.props.getBlogPosts()
   }

@@ -2,11 +2,9 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './app/scripts/app.js',
+    app: ['babel-polyfill', './app/scripts/app.js'],
     vendor: [
-      'bootstrap',
       'd3',
-      'isomorphic-fetch',
       'react',
       'react-dnd',
       'react-dom',
@@ -14,7 +12,8 @@ module.exports = {
       'react-router',
       'react-router-redux',
       'redux',
-      'redux-thunk'
+      'redux-thunk',
+      'reqwest'
     ]
   },
   output: {

@@ -1,5 +1,4 @@
-import 'babel-polyfill'
-import fetch from 'isomorphic-fetch'
+import reqwest from 'reqwest'
 
 export const REQUEST_PORTFOLIO = 'REQUEST_PORTFOLIO'
 
@@ -17,11 +16,13 @@ const receivePortfolio = (json) => ({
 const getPortfolio = () => {
   return (dispatch) => {
     dispatch(requestPortfolio())
-    return fetch('https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script')
-      .then(resp => {
-        console.info('fetch portfolio', resp)
-        dispatch(receivePortfolio(resp.feed.entry))
-      })
+    return reqwest({
+      url: 'https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script',
+      type: 'jsonp'
+    })
+    .then(resp => {
+      dispatch(receivePortfolio(resp.feed.entry))
+    })
   }
 }
 

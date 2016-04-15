@@ -92,6 +92,7 @@ app.get('/*', function(req, res){
       res.redirect(302, redirect.pathname + redirect.search)
     } else if (props) {
       fetchData().then( () => {
+        console.log('Promise returned')
         store = createStore(memoryHistory, store.getState() )
         const appHtml = renderToString(
           <Provider store={store}>
@@ -103,13 +104,18 @@ app.get('/*', function(req, res){
       })
 
       /* fetch data promise */
-      function fetchData () {
+      function fetchData() {
         console.log('fetch data')
-        console.log(props.components)
         let { query, params } = props;
+        // return promise
         return new Promise(function(resolve, reject) {
+          console.log('promise request')
           let comp = props.components[props.components.length - 1].WrappedComponent;
           let url = req.protocol + '://' + req.get('host')
+          console.log(comp)
+          console.log('params '+ params)
+          console.log('store '+ store)
+          console.log('url '+ url)
           resolve(comp.fetchData({ params, store, url }));
         });
       }
@@ -123,7 +129,7 @@ app.get('/*', function(req, res){
 const HTML = ({ content, store }) => (
   <html>
     <head>
-      <link rel='stylesheet' type='text/css' href='/public/main.css' />
+      <link rel='stylesheet' type='text/css' href='/public/styles.css' />
     </head>
     <body>
       <div id='mount' dangerouslySetInnerHTML={{ __html: content }}/>

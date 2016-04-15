@@ -1,5 +1,4 @@
-import 'babel-polyfill'
-import fetch from 'isomorphic-fetch'
+import reqwest from 'reqwest'
 
 export const REQUEST_STOCKLIST = 'REQUEST_STOCKLIST'
 
@@ -44,7 +43,7 @@ export const selectStock = (stockSymbol) => {
 export const getStockData = (stockSymbol) => {
   return (dispatch) => {
     dispatch(requestStockData(stockSymbol))
-    return fetch(('/brainwave/'+stockSymbol))
+    return reqwest(('/brainwave/'+stockSymbol))
       .then(resp => {
         dispatch(receiveStockData(resp))
       })
@@ -54,7 +53,7 @@ export const getStockData = (stockSymbol) => {
 export const getCanvas = () => {
   return (dispatch) => {
     dispatch(requestStockList())
-    return jsonp('/brainwave')
+    return reqwest('/brainwave')
       .then(resp => {
         dispatch(receiveStockList(resp))
       })

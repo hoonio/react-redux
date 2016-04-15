@@ -1,5 +1,4 @@
-import 'babel-polyfill'
-import fetch from 'isomorphic-fetch'
+import reqwest from 'reqwest'
 
 export const REQUEST_BLOG = 'REQUEST_BLOG'
 
@@ -17,10 +16,13 @@ const receiveBlog = (json) => ({
 export const getBlog = () => {
   return (dispatch) => {
     dispatch(requestBlog())
-    return fetch('https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6')
-      .then(resp => {
-        dispatch(receiveBlog(resp.response.posts))
-      })
+    return reqwest({
+      url: 'https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6',
+      type: 'jsonp'
+    })
+    .then(resp => {
+      dispatch(receiveBlog(resp.response.posts))
+    })
   }
 }
 

@@ -6,6 +6,11 @@ import WorkItem from '../components/WorkItem';
 
 class Portfolio extends React.Component {
 
+  static fetchData({ params, store, url }) {
+    console.log('fetch data')
+    return store.dispatch(getPortfolioIfNeeded())
+  }
+
   componentDidMount() {
     this.props.getPortfolioWorks()
   }

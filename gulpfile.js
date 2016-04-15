@@ -8,10 +8,21 @@ const webpack = require('webpack-stream')
 const WebpackDevServer = require('webpack-dev-server')
 const browserSync = require('browser-sync').create()
 
-gulp.task('nodemon', (callback) => {
-  // replaces watch
+gulp.task('server:run', (callback) => {
+  // isomorphic server
   let started = false
   return $.nodemon({ script: 'dist/server.js' })
+    .on('start', () => {
+      if (!started) {
+        callback()
+        started = true
+      }
+    })
+})
+
+gulp.task('server:dev', (callback) => {
+  let started = false
+  return $.nodemon({ script: 'app/server.dev.js' })
     .on('start', () => {
       if (!started) {
         callback()
@@ -32,6 +43,12 @@ gulp.task('webpack', () => (
     .pipe($.plumber())
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist/public/'))
+))
+
+gulp.task('server:build', ['server:files'], () => (
+  gulp.src('app/server.js')
+    .pipe(webpack(require('./webpack.config.server.js')))
+    .pipe(gulp.dest('dist/'))
 ))
 
 gulp.task('serve', (callback) => {
@@ -61,12 +78,6 @@ gulp.task('styles', () => (
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
     .pipe(browserSync.stream())
-))
-
-gulp.task('server', ['server:files'], () => (
-  gulp.src('app/server.js')
-    .pipe(webpack(require('./webpack.config.server.js')))
-    .pipe(gulp.dest('dist/'))
 ))
 
 gulp.task('server:files', () => (
@@ -146,7 +157,7 @@ gulp.task('minify', ['minify:js', 'minify:css'])
 
 gulp.task('clean', del.bind(null, 'dist'))
 
-gulp.task('bundle', ['html', 'styles', 'webpack', 'server', 'images', 'fonts', 'extras'])
+gulp.task('bundle', ['html', 'styles', 'webpack', 'server:build', 'images', 'fonts', 'extras'])
 
 gulp.task('clean-bundle', sync(['clean', 'bundle']))
 
@@ -156,14 +167,14 @@ gulp.task('build:production', sync(['set-production', 'build', 'minify']))
 
 gulp.task('default', ['watch'])
 
-gulp.task('watch', sync(['clean-bundle', 'nodemon']), () => {
+gulp.task('watch', sync(['clean-bundle', 'server:run']), () => {
   browserSync.init({
     proxy: 'http://localhost:9001',
     files: ['dist/public/**/*.*'],
   })
   gulp.watch('app/*.html', ['html'])
   gulp.watch('app/scripts/**/*.js', ['webpack'])
-  gulp.watch('app/server.js', ['server'])
+  gulp.watch('app/server.js', ['server:build'])
   gulp.watch('app/styles/**/*.scss', ['styles'])
   gulp.watch('app/images/**/*', ['images'])
   gulp.watch('app/fonts/**/*', ['fonts'])
