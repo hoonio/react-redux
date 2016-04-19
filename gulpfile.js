@@ -1,18 +1,16 @@
-"use strict"
+var gulp = require('gulp')
+var $ = require('gulp-load-plugins')()
+var sync = $.sync(gulp).sync
+var del = require('del')
+var webpack = require('webpack-stream')
+var WebpackDevServer = require('webpack-dev-server')
+var browserSync = require('browser-sync').create()
 
-const gulp = require('gulp')
-const $ = require('gulp-load-plugins')()
-const sync = $.sync(gulp).sync
-const del = require('del')
-const webpack = require('webpack-stream')
-const WebpackDevServer = require('webpack-dev-server')
-const browserSync = require('browser-sync').create()
-
-gulp.task('server:run', (callback) => {
+gulp.task('server:run', function(callback) {
   // isomorphic server
-  let started = false
+  var started = false
   return $.nodemon({ script: 'dist/server.js' })
-    .on('start', () => {
+    .on('start', function() {
       if (!started) {
         callback()
         started = true
@@ -20,10 +18,10 @@ gulp.task('server:run', (callback) => {
     })
 })
 
-gulp.task('server:dev', (callback) => {
-  let started = false
+gulp.task('server:dev', function(callback) {
+  var started = false
   return $.nodemon({ script: 'app/server.dev.js' })
-    .on('start', () => {
+    .on('start', function() {
       if (!started) {
         callback()
         started = true
@@ -31,33 +29,33 @@ gulp.task('server:dev', (callback) => {
     })
 })
 
-gulp.task('test', () => (
-  gulp.src('app/tests/components/portfolio.spec.js')
+gulp.task('test', function() {
+  return gulp.src('app/tests/components/portfolio.spec.js')
     .pipe(webpack(require('./webpack.config.test.js')))
     .pipe(gulp.dest('dist/public/'))
-))
+})
 
-gulp.task('webpack', () => (
-  // replaces scripts
+gulp.task('webpack', function() {
+  return // replaces scripts
   gulp.src('app/scripts/app.js')
     .pipe($.plumber())
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist/public/'))
-))
+})
 
-gulp.task('server:build', ['server:files'], () => (
-  gulp.src('app/server.js')
+gulp.task('server:build', ['server:files'], function() {
+  return gulp.src('app/server.js')
     .pipe(webpack(require('./webpack.config.server.js')))
     .pipe(gulp.dest('dist/'))
-))
+})
 
-gulp.task('serve', (callback) => {
+gulp.task('serve', function(callback) {
   // webpack-dev-server, not working yet
-  const compiler = webpack(require('./webpack.config.dev.js'))
+  var compiler = webpack(require('./webpack.config.dev.js'))
 
   new WebpackDevServer(compiler, {
   // server and middleware options
-  }).listen(9002, 'localhost', (err) => {
+}).listen(9002, 'localhost', function(err) {
     if (err) throw new $.util.PluginError('webpack-dev-server', err)
     // Server listening
     $.util.log('[webpack-dev-server]', 'http://localhost:9002/webpack-dev-server/index.html')
@@ -67,8 +65,8 @@ gulp.task('serve', (callback) => {
   })
 })
 
-gulp.task('styles', () => (
-  $.rubySass('app/styles/main.scss', {
+gulp.task('styles', function() {
+  return $.rubySass('app/styles/main.scss', {
     style: 'expanded',
     precision: 10,
     loadPath: ['node_modules'],
@@ -78,24 +76,24 @@ gulp.task('styles', () => (
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
     .pipe(browserSync.stream())
-))
+})
 
-gulp.task('server:files', () => (
-  gulp.src(['app/index.ejs', 'package.json', 'web.config'])
+gulp.task('server:files', function() {
+  return gulp.src(['app/index.ejs', 'package.json', 'web.config'])
     .pipe(gulp.dest('dist/'))
     .pipe($.size())
-))
+})
 
-gulp.task('html', () => (
-  gulp.src('app/*.html')
+gulp.task('html', function() {
+  return gulp.src('app/*.html')
     .pipe($.useref())
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
     .pipe(browserSync.stream())
-))
+})
 
-gulp.task('images', () => (
-  gulp.src('app/images/**/*')
+gulp.task('images', function() {
+  return gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
@@ -103,55 +101,55 @@ gulp.task('images', () => (
     })))
     .pipe(gulp.dest('dist/public/images'))
     .pipe($.size())
-))
+})
 
-gulp.task('fonts', () => (
-  gulp.src(['app/fonts/**/*'])
+gulp.task('fonts', function() {
+  return gulp.src(['app/fonts/**/*'])
     .pipe(gulp.dest('dist/public/fonts'))
     .pipe($.size())
-))
+})
 
-gulp.task('extras', () => (
-  gulp.src(['app/*.txt', 'app/*.ico', 'app/files/*'])
+gulp.task('extras', function() {
+  return gulp.src(['app/*.txt', 'app/*.ico', 'app/files/*'])
     .pipe(gulp.dest('dist/public/'))
     .pipe($.size())
-))
+})
 
-gulp.task('deploy', ['build'], () => (
-  gulp.src('dist/**/*', { read: false })
+gulp.task('deploy', ['build'], function() {
+  return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-test.scm.azurewebsites.net:443/hoonio-test.git',
       prefix: 'dist',
       branches: ['master', 'test'],
     }))
-))
+})
 
-gulp.task('release', ['build:production'], () => (
-  gulp.src('dist/**/*', { read: false })
+gulp.task('release', ['build:production'], function() {
+  return gulp.src('dist/**/*', { read: false })
     .pipe($.deployGit({
       repository: 'https://hoonio@hoonio-root.scm.azurewebsites.net:443/hoonio-root.git',
       prefix: 'dist',
       branches: ['master'],
     }))
-))
+})
 
-gulp.task('set-production', () => {
+gulp.task('set-production', function() {
   process.env.NODE_ENV = 'production';
 })
 
-gulp.task('minify:js', () => (
-  gulp.src('dist/public/**/*.js')
+gulp.task('minify:js', function() {
+  return gulp.src('dist/public/**/*.js')
     .pipe($.uglify())
     .pipe(gulp.dest('dist/public/'))
     .pipe($.size())
-))
+})
 
-gulp.task('minify:css', () => (
-  gulp.src('dist/public/**/*.css')
+gulp.task('minify:css', function() {
+  return gulp.src('dist/public/**/*.css')
     .pipe($.minifyCss())
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
-))
+})
 
 gulp.task('minify', ['minify:js', 'minify:css'])
 
@@ -167,7 +165,7 @@ gulp.task('build:production', sync(['set-production', 'build', 'minify']))
 
 gulp.task('default', ['watch'])
 
-gulp.task('watch', sync(['clean-bundle', 'server:run']), () => {
+gulp.task('watch', sync(['clean-bundle', 'server:run']), function() {
   browserSync.init({
     proxy: 'http://localhost:9001',
     files: ['dist/public/**/*.*'],
