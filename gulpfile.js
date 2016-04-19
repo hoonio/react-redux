@@ -36,8 +36,8 @@ gulp.task('test', function() {
 })
 
 gulp.task('webpack', function() {
-  return // replaces scripts
-  gulp.src('app/scripts/app.js')
+  // replaces scripts
+  return gulp.src('app/scripts/app.js')
     .pipe($.plumber())
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist/public/'))
