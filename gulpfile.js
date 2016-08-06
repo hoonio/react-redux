@@ -58,7 +58,7 @@ gulp.task('styles', () => (
   })
     .on('error', $.util.log.bind($.util, 'Sass Error'))
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('dist/public'))
+    .pipe(gulp.dest('app/styles'))
     .pipe($.size())
     .pipe(browserSync.stream())
 ))
@@ -77,13 +77,19 @@ gulp.task('html', () => (
     .pipe(browserSync.stream())
 ))
 
-gulp.task('images', () => (
+gulp.task('images-compress', () => (
   gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true,
     })))
+    .pipe(gulp.dest('dist/public/images'))
+    .pipe($.size())
+))
+
+gulp.task('images', () => (
+  gulp.src('app/images/**/*')
     .pipe(gulp.dest('dist/public/images'))
     .pipe($.size())
 ))
@@ -130,7 +136,7 @@ gulp.task('minify:js', () => (
 ))
 
 gulp.task('minify:css', () => (
-  gulp.src('dist/public/**/*.css')
+  gulp.src('app/styles/*.css')
     .pipe($.minifyCss())
     .pipe(gulp.dest('dist/public'))
     .pipe($.size())
@@ -140,17 +146,17 @@ gulp.task('minify', ['minify:js', 'minify:css'])
 
 gulp.task('clean', del.bind(null, 'dist'))
 
-gulp.task('bundle', ['html', 'styles', 'webpack', 'server', 'fonts', 'extras'])
+gulp.task('bundle', ['html', 'styles', 'webpack', 'server', 'images-compress', 'fonts', 'extras'])
 
-gulp.task('clean-bundle', sync(['clean', 'bundle']))
+gulp.task('bundle-production', ['html', 'styles', 'webpack', 'server', 'images', 'fonts', 'extras'])
 
-gulp.task('build', ['clean-bundle'])
+gulp.task('build', sync(['clean', 'bundle']))
 
-gulp.task('build:production', sync(['set-production', 'build', 'minify']))
+gulp.task('build:production', sync(['set-production', 'clean', 'bundle-production', 'minify']))
 
 gulp.task('default', ['watch'])
 
-gulp.task('watch', sync(['clean-bundle', 'nodemon']), () => {
+gulp.task('watch', sync(['build', 'nodemon']), () => {
   browserSync.init({
     proxy: 'http://localhost:9001',
     files: ['dist/public/**/*.*'],
