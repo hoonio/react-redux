@@ -11,8 +11,10 @@ WORKDIR app/
 
 # Install app dependencies
 RUN npm install \
-  && npm install -g gulp \
-  && gulp build:production
+  && npm install -g gulp
+
+# Build production version of the website
+RUN gulp build:production
 
 EXPOSE 8080
 CMD [ "node", "dist/server.js" ]
