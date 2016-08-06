@@ -7,7 +7,7 @@ var express = require('express')
   , serveStatic = require('serve-static')
 
 var app = express()
-app.set('port', process.env.PORT || 9001)
+app.set('port', process.env.PORT || 8080)
 var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
 
 function setCacheControl(res, path) {
