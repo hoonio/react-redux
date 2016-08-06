@@ -148,7 +148,7 @@ gulp.task('clean', del.bind(null, 'dist'))
 
 gulp.task('bundle', ['html', 'styles', 'webpack', 'server', 'images-compress', 'fonts', 'extras'])
 
-gulp.task('bundle-production', ['html', 'styles', 'webpack', 'server', 'images', 'fonts', 'extras'])
+gulp.task('bundle-production', ['html', 'webpack', 'server', 'images', 'fonts', 'extras'])
 
 gulp.task('build', sync(['clean', 'bundle']))
 
