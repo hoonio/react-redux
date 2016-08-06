@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { getPortfolioIfNeeded } from '../actions/portfolio-actions'
-import WorkItem from '../components/WorkItem';
+import WorkItem from '../components/workitem';
 
 class Portfolio extends React.Component {
 
