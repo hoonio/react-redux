@@ -8,7 +8,7 @@ var express = require('express')
 
 var app = express()
 app.set('port', process.env.PORT || 8080)
-var publicPath = (process.env.NODE_ENV === 'production') ? './public' : './dist/public';
+var publicPath = './dist/public';
 
 function setCacheControl(res, path) {
   res.setHeader('Cache-Control', 'public, max-age=29030400')
