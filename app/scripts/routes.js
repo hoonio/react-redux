@@ -9,7 +9,7 @@ import Profile from './components/profile';
 import Canvas from './containers/canvas';
 import Portfolio from './containers/portfolio';
 import Blog from './containers/blog'
-// import '../styles/main.scss'
+import '../styles/main.scss'
 
 const routes = (
   <Route path="/" component={Template}>
