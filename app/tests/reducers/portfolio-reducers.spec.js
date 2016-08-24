@@ -5,7 +5,7 @@ import * as actions from '../../scripts/actions/portfolio-actions'
 describe('Portfolio reducer', () => {
   it('update status during data fetch', () => {
     expect(
-      reducer([]], {
+      reducer([], {
         type: actions.REQUEST_PORTFOLIO
       })
     ).toEqual(
@@ -19,15 +19,13 @@ describe('Portfolio reducer', () => {
 
   const portfolioFeed = () => {
     return jsonp('https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script')
-     .then(resp => (
-       return (resp.feed.entry))
-     ))
+     .then(resp => (resp.feed.entry))
   };
   console.log(portfolioFeed);
 
   it('update state with data feed from Google sheets', () => {
     expect(
-      reducer([]], {
+      reducer([], {
         type: actions.RECEIVE_PORTFOLIO,
         items: portfolioFeed
       })
