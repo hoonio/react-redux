@@ -24,3 +24,12 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
     console.log('index.html written to /dist'.green);
   });
 });
+
+fs.readFile('app/helpage.html', 'utf8', (err, markup) => {
+  fs.writeFile('dist/helpage.html', $.html(), 'utf8', function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('helpage.html written to /dist'.green);
+  });
+});
