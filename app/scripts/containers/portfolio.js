@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getPortfolioIfNeeded } from '../actions/portfolio-actions'
 import WorkItem from '../components/workitem';
 
-class Portfolio extends React.Component {
+export class Portfolio extends React.Component {
 
   componentDidMount() {
     this.props.getPortfolioWorks()

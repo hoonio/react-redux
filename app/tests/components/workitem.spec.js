@@ -23,7 +23,7 @@ const setupPortfolio = () => {
   return shallow(<WorkItem {...props} />);
 }
 
-describe('Render Portfolio', () => {
+describe('Portfolio works component', () => {
   const wrapper = setupPortfolio();
   it('renders catalog item name', () => {
     expect(wrapper.find('h4').text()).toEqual('Portfolio item title')
