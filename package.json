@@ -15,7 +15,7 @@
   "main": "dist/server.js",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:src",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
@@ -100,6 +100,7 @@
     "rimraf": "2.5.2",
     "sass-loader": "^4.0.0",
     "serve-static": "^1.10.2",
+    "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "0.5.7",
     "webpack": "^1.12.14",
