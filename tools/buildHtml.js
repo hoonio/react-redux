@@ -15,7 +15,7 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
   const $ = cheerio.load(markup);
 
   // since a separate spreadsheet is only utilized for the production build, need to dynamically add this here.
-  $('head').prepend('<link rel="stylesheet" href="styles.css">');
+  $('head').append('<link rel="stylesheet" href="styles.css">');
 
   fs.writeFile('dist/index.html', $.html(), 'utf8', function (err) {
     if (err) {
@@ -26,7 +26,7 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
 });
 
 fs.readFile('app/helpage.html', 'utf8', (err, markup) => {
-  fs.writeFile('dist/helpage.html', $.html(), 'utf8', function (err) {
+  fs.writeFile('dist/helpage.html', 'utf8', function (err) {
     if (err) {
       return console.log(err);
     }
