@@ -21,7 +21,6 @@ describe('Portfolio reducer', () => {
     return jsonp('https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script')
      .then(resp => (resp.feed.entry))
   };
-  console.log(portfolioFeed);
 
   it('update state with data feed from Google sheets', () => {
     expect(

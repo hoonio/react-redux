@@ -3,7 +3,7 @@ import jsonp from 'jsonp-es6'
 import { dispatch } from 'react-redux'
 import * as types from './actionTypes'
 
-const requestPortfolio = () => ({
+export const requestPortfolio = () => ({
   type: types.REQUEST_PORTFOLIO
 })
 
