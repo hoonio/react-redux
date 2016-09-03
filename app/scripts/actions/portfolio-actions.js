@@ -1,17 +1,14 @@
 import 'babel-polyfill'
 import jsonp from 'jsonp-es6'
 import { dispatch } from 'react-redux'
-
-export const REQUEST_PORTFOLIO = 'REQUEST_PORTFOLIO'
+import * as types from './actionTypes'
 
 const requestPortfolio = () => ({
-  type: REQUEST_PORTFOLIO
+  type: types.REQUEST_PORTFOLIO
 })
 
-export const RECEIVE_PORTFOLIO = 'RECEIVE_PORTFOLIO'
-
 const receivePortfolio = (json) => ({
-  type: RECEIVE_PORTFOLIO,
+  type: types.RECEIVE_PORTFOLIO,
   items: json
 })
 

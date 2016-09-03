@@ -77,7 +77,6 @@ app.listen(port, function(err) {
   }
 });
 
-
 const data = fs.readFileSync(path.join( __dirname, '../app/files/brainwave.json')).toString();
 
 const getStocks = function(data){
