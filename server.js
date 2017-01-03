@@ -1,7 +1,7 @@
 import express from 'express';
 import webpack from 'webpack';
 import path from 'path';
-import config from '../webpack.config.dev';
+import config from './webpack.config.dev';
 import open from 'open';
 import fs from 'fs';
 
@@ -34,7 +34,7 @@ app.get('/express', function(req, res) {
 
 // to prevent embedded maps in news articles from disappearing
 app.get('/helpage(.html)?', function(req, res) {
-  res.sendFile(path.join( __dirname, '../app/helpage.html'));
+  res.sendFile(path.join( __dirname, './app/helpage.html'));
 })
 
 app.get('/error/:reqpage', function(req, res){
@@ -66,7 +66,7 @@ app.get('/brainwave/:symbol', function(req, res){
 })
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../app/index.html'));
+  res.sendFile(path.join( __dirname, './app/index.html'));
 });
 
 app.listen(port, function(err) {
@@ -77,7 +77,7 @@ app.listen(port, function(err) {
   }
 });
 
-const data = fs.readFileSync(path.join( __dirname, '../app/files/brainwave.json')).toString();
+const data = fs.readFileSync(path.join( __dirname, './app/files/brainwave.json')).toString();
 
 const getStocks = function(data){
   var stockSymbols = [];

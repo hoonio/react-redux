@@ -12,11 +12,7 @@ WORKDIR app/
 ENV NODE_ENV=production PORT=8080
 
 # Install app dependencies
-RUN npm install \
-  && npm install -g gulp
-
-# Build production version of the website
-RUN gulp build:production
+RUN npm install
 
 EXPOSE 8080
-CMD [ "node", "dist/server.js" ]
+CMD [ "npm", "run", "build" ]

@@ -25,7 +25,12 @@ export default {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
+      {test: /\.js$/, include: path.join(__dirname, 'app'),
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+      }},
       {test: /\.scss$/, loaders: ['style', 'css', 'sass']},
       {test: /(\.css)$/, loaders: ['style', 'css']},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
