@@ -9,7 +9,7 @@ WORKDIR app/
 #  && apt-get install -y ruby \
 #  && gem install sass -v 3.2.19
 
-ENV NODE_ENV=production PORT=8080
+ENV NODE_ENV production
 
 # Install app dependencies
 RUN npm install

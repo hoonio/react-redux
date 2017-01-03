@@ -7,6 +7,12 @@ import colors from 'colors';
 
 /*eslint-disable no-console */
 
+fs.access('dist', fs.constants.W_OK, (err) => {
+  if (err) {
+    fs.mkdir('dist', (err) => { console.log('Creating dist folder'); })
+  }
+});
+
 fs.readFile('app/index.html', 'utf8', (err, markup) => {
   if (err) {
     return console.log(err);

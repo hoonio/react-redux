@@ -7,7 +7,7 @@ const GLOBALS = {
 };
 
 export default {
-  debug: true,
+  debug: false,
   devtool: 'source-map',
   noInfo: false,
   entry: './app/scripts/app',
