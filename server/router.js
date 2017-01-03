@@ -40,7 +40,9 @@ router.get('/wiki(/*)?', function(req, res){
 router.use('/brainwave(/*)', brainwave);
 
 router.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../dist/index.html'));
+  console.log(req.path);
+  const indexPath = process.env.NODE_ENV === 'develop' ? '../app/index.html' : '../dist/index.html';
+  res.sendFile(path.join( __dirname, indexPath));
 });
 
 module.exports = router;

@@ -12,7 +12,7 @@ export default {
   ],
   target: 'web',
   output: {
-    path: __dirname + '/dist/public', // Note: Physical files are only output by the production build task `npm run build`.
+    path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
     filename: 'app.js'
   },
@@ -25,12 +25,7 @@ export default {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'app'),
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-      }},
+      {test: /\.js$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
       {test: /\.scss$/, loaders: ['style', 'css', 'sass']},
       {test: /(\.css)$/, loaders: ['style', 'css']},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
