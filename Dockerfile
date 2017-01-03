@@ -12,7 +12,8 @@ WORKDIR app/
 ENV NODE_ENV production
 
 # Install app dependencies
-RUN npm install
+RUN npm install && \
+  npm run build
 
 EXPOSE 8080
-CMD [ "npm", "run", "build" ]
+CMD [ "npm", "start" ]

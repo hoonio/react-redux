@@ -26,6 +26,7 @@ router.get('/error/:reqpage', function(req, res){
 })
 
 router.get('/blog/*', function(req, res){
+  console.log('redirecting to blog')
   res.redirect('http://blog.hoonio.com')
 })
 
@@ -34,6 +35,7 @@ router.get('/wiki/CFA', function(req, res){
 })
 
 router.get('/wiki(/*)?', function(req, res){
+  console.log('redirecting to wiki')
   res.redirect('http://wiki.hoonio.com')
 })
 
