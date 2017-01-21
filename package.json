@@ -20,7 +20,7 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter spec tools/testSetup.js \"app/tests/**/*.spec.js\"",
     "test:watch": "npm run test -- --watch",
-    "prebuild": "babel-node tools/buildHtml.js",
+    "modhtml": "babel-node tools/buildHtml.js",
     "build": "babel-node tools/build.js",
     "start": "babel-node server/production.js"
   },
