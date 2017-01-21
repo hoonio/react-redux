@@ -9,7 +9,7 @@ const app = express();
 
 app.set('port', port);
 app.use(compression());
-app.use(express.static('dist'));
+app.use(express.static(__dirname + '/../dist'));
 
 app.use(function(req, res, next) {
   console.log(req.method, 'at', req.path);
@@ -52,8 +52,7 @@ app.get('/wiki(/*)?', function(req, res){
 })
 
 app.get('*', function(req, res) {
-  const indexPath = process.env.NODE_ENV === 'develop' ? '../app/index.html' : '../dist/index.html';
-  res.sendFile(path.join( __dirname, indexPath));
+  res.sendFile(path.join( __dirname, '../dist/index.html'));
 });
 
 app.listen(port, (err) => console.log(err ? err: 'Starting Express server') );

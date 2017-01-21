@@ -59,8 +59,7 @@ app.get('/wiki(/*)?', function(req, res){
 })
 
 app.get('*', function(req, res) {
-  const indexPath = process.env.NODE_ENV === 'develop' ? '../app/index.html' : '../dist/index.html';
-  res.sendFile(path.join( __dirname, indexPath));
+  res.sendFile(path.join( __dirname, '../app/index.html'));
 });
 
 // app.set('port', port);

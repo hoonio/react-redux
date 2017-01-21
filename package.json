@@ -22,7 +22,7 @@
     "test:watch": "npm run test -- --watch",
     "prebuild": "babel-node tools/buildHtml.js",
     "build": "babel-node tools/build.js",
-    "start": "babel-node server"
+    "start": "babel-node server/production.js"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
@@ -46,8 +46,8 @@
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.4.1",
     "react-redux": "4.4.5",
-    "react-router": "2.4.0",
-    "react-router-redux": "4.0.4",
+    "react-router": "^2.4.0",
+    "react-router-redux": "^4.0.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
     "sass-loader": "^4.0.0",
