@@ -6,7 +6,7 @@ export default (props) => (
     <div className="container-fluid">
       <div className="row">
         <div className={(props.prod.imageOn=='right') ?
-         'col-lg-5 col-lg-offset-1 col-sm-6 col-sm-push-6' :
+         'col-lg-5 push-lg-7 col-sm-6 push-sm-6' :
          'col-lg-5 col-sm-6' }>
           <div className="row">
             <a href={props.prod.target}>
@@ -15,8 +15,8 @@ export default (props) => (
           </div>
         </div>
         <div className={(props.prod.imageOn=='right') ?
-        'col-lg-5 col-lg-offset-1 col-sm-6 col-sm-pull-6' :
-        'col-lg-5 col-lg-offset-1 col-sm-6' }>
+        'col-lg-7 pull-lg-5 col-sm-6 pull-sm-6' :
+        'col-lg-7 col-sm-6' }>
           <a href={props.prod.target}>
             <h2 className="section-heading">{props.prod.heading}</h2>
           </a>
