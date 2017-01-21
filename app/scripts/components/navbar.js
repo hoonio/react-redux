@@ -9,11 +9,15 @@ export default class extends React.Component {
     };
   }
 
+  toggleMenu = () => {
+    this.setState({showMenu: !this.state.showMenu});
+  }
+
   render() {
     let toggleStyle = (this.state.showMenu) ? {display:'block'}:{display:'none'};
     return (
       <nav className="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>
+        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" onClick={this.toggleMenu}>
           &#9776;
         </button>
         <a className="navbar-brand" href="/">
@@ -21,11 +25,11 @@ export default class extends React.Component {
         </a>
         <div className="collapse navbar-collapse justify-content-end" style={toggleStyle}>
           <ul className="nav navbar-nav">
-            <NavLink to="/" id="nav-home" onlyActiveOnIndex>Home</NavLink>
-            <NavLink to="/profile" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Profile</NavLink>
-            <NavLink to="/portfolio" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Portfolio</NavLink>
-            <NavLink to="/canvas" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Canvas</NavLink>
-            <NavLink to="/blog" onClick={ ()=> this.setState({showMenu: !this.state.showMenu})}>Blog</NavLink>
+            <NavLink to="/" id="nav-home" onClick={this.toggleMenu} onlyActiveOnIndex>Home</NavLink>
+            <NavLink to="/profile" onClick={this.toggleMenu}>Profile</NavLink>
+            <NavLink to="/portfolio" onClick={this.toggleMenu}>Portfolio</NavLink>
+            <NavLink to="/canvas" onClick={this.toggleMenu}>Canvas</NavLink>
+            <NavLink to="/blog" onClick={this.toggleMenu}>Blog</NavLink>
             <li className="nav-item"><a className="nav-link" href='/#contact'>Contact</a></li>
           </ul>
         </div>
