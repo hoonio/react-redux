@@ -30,7 +30,7 @@ app.get('/express', function(req, res) {
 
 // to prevent embedded maps in news articles from disappearing
 app.get('/helpage(.html)?', function(req, res) {
-  res.sendFile(path.join( __dirname, '../app/helpage.html'));
+  res.sendFile(path.join( __dirname, '../dist/helpage.html'));
 })
 
 app.get('/error/:reqpage', function(req, res){
