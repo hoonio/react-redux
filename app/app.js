@@ -1,5 +1,3 @@
-import 'babel-polyfill'
-
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
@@ -9,10 +7,10 @@ import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { routerReducer, routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 
-import blog from './reducers/blog-reducers'
-import portfolio from './reducers/portfolio-reducers'
-import canvas from './reducers/canvas-reducers'
-import routes from './routes'
+import blog from './scripts/reducers/blog-reducers'
+import portfolio from './scripts/reducers/portfolio-reducers'
+import canvas from './scripts/reducers/canvas-reducers'
+import routes from './scripts/routes'
 
 const store = createStore(
     combineReducers({

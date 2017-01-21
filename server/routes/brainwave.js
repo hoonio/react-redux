@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import bodyParser from 'body-parser';
 const router = express.Router();
 
+router.use(bodyParser.json());
+
 router.get('/:symbol', function(req, res){
+  console.log(req.params.symbol);
   res.setHeader('Content-Type', 'application/json')
   res.jsonp(JSON.parse(data)['WIKI/'+req.params.symbol].data)
 })
