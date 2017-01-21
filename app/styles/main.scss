@@ -26,9 +26,6 @@ body {
 /* Navbar */
 .navbar {
   // background: $md-navy;
-  a {color: #CCC;}
-  a:hover {color: #FFF;}
-  a.active {color: $md-red;}
   img.logo {
     height: 30px;
   }
@@ -38,14 +35,6 @@ body {
     height: 38px;
   }
 
-  @include media-breakpoint-down(xs) {
-    #nav-home {
-      display: none;
-    }
-    .navbar-nav .nav-item {
-      width: 100%;
-    }
-  }
 }
 
 /* page general */
