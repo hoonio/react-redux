@@ -16,7 +16,7 @@ export default class extends React.Component {
   render() {
     let toggleStyle = (this.state.showMenu) ? {display:'block'}:{display:'none'};
     return (
-      <nav className="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
+      <nav className="navbar navbar-toggleable-md navbar-inverse bg-primary sticky-top">
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" onClick={this.toggleMenu}>
           &#9776;
         </button>
