@@ -35,6 +35,12 @@ body {
     height: 38px;
   }
 
+  .navbar-collapse {
+    @include media-breakpoint-down(sm) {
+      margin-top: 1rem;
+    }
+  }
+
 }
 
 /* page general */
