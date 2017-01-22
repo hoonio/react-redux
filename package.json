@@ -18,11 +18,11 @@
     "open:src": "NODE_ENV=develop babel-node server/debug",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter spec tools/testSetup.js \"app/tests/**/*.spec.js\"",
+    "test": "mocha --reporter spec tools/testSetup \"app/tests/**/*.spec.js\"",
     "test:watch": "npm run test -- --watch",
-    "modhtml": "babel-node tools/buildHtml.js",
-    "build": "babel-node tools/build.js",
-    "production": "babel-node server/production.js"
+    "prebuild": "babel-node tools/buildHtml",
+    "build": "babel-node tools/build",
+    "production": "babel-node server/production"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
