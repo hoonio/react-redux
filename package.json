@@ -14,7 +14,7 @@
   },
   "main": "dist/server.js",
   "scripts": {
-    "dev": "npm-run-all --parallel open:src",
+    "start": "npm-run-all --parallel open:src",
     "open:src": "NODE_ENV=develop babel-node server/debug",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
@@ -22,7 +22,7 @@
     "test:watch": "npm run test -- --watch",
     "modhtml": "babel-node tools/buildHtml.js",
     "build": "babel-node tools/build.js",
-    "start": "babel-node server/production.js"
+    "production": "babel-node server/production.js"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
