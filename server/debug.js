@@ -29,7 +29,7 @@ app.use(function(err, req, res, next){
   next();
 })
 
-app.use('/brainwave(/*)', brainwave);
+app.use('/brainwave', brainwave);
 
 app.get('/express', function(req, res) {
   res.send('Hello from express')

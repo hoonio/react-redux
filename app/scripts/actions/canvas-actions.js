@@ -45,7 +45,7 @@ export const selectStock = (stockSymbol) => {
 export const getStockData = (stockSymbol) => {
   return (dispatch) => {
     dispatch(requestStockData(stockSymbol))
-    return jsonp(('/brainwave/'+stockSymbol))
+    return jsonp(('/brainwave/stock/'+stockSymbol))
       .then(resp => {
         dispatch(receiveStockData(resp))
       })
@@ -55,7 +55,7 @@ export const getStockData = (stockSymbol) => {
 export const getCanvas = () => {
   return (dispatch) => {
     dispatch(requestStockList())
-    return jsonp('/brainwave')
+    return jsonp('/brainwave/list')
       .then(resp => {
         dispatch(receiveStockList(resp))
       })

@@ -6,13 +6,13 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-router.get('/:symbol', function(req, res){
+router.get('/stock/:symbol', function(req, res){
   console.log(req.params.symbol);
   res.setHeader('Content-Type', 'application/json')
   res.jsonp(JSON.parse(data)['WIKI/'+req.params.symbol].data)
 })
 
-router.get('*', function(req, res){
+router.get('/list', function(req, res){
   // Available symbols are: AIG, CPA, DST, ELRC, EXAM
   var listStocks = getStocks(JSON.parse(data))
   res.setHeader('Content-Type', 'application/json')
