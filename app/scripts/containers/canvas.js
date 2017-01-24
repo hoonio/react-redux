@@ -27,10 +27,8 @@ class Canvas extends React.Component {
 
     return (
       <div className="container" id="canvas">
-        <div className="row">
           <h1>Time Series</h1>
-          <p>Drag any of the stock symbols below to area on the right</p>
-        </div>
+          <p className="lead">Drag any of the stock symbols below to area on the right</p>
         <div className="row">
           <div className="col-sm-3 col-xs-12" id="sidebar-frame">
             <ul className="list-group">
