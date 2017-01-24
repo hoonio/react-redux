@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>AgeWatch Index 2013 - Hoonio</title>
-<!-- Colour codes
+  <title>AgeWatch Index 2013 - Hoonio</title>
+  <!-- Colour codes
 	var COLOUR_DARK_GREEN = '#479042';
 	var COLOUR_MID_GREEN = '#5baa46';
 	var COLOUR_LIGHT_GREEN = '#89c540';
@@ -23,115 +24,124 @@
 	var COLOUR_DARKRED = '#9D1C28';
 -->
 
-<style type="text/css">
-html, body, #googft-mapCanvas {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-#legend {
-background: white;
-padding: 5px;
-}
-</style>
+  <style type="text/css">
+    html,
+    body,
+    #googft-mapCanvas {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
 
-<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyC2OigUrGT2Jhb0T7g5wzroASFt5eRhCG4&sensor=false"></script>
+    #legend {
+      background: white;
+      padding: 5px;
+    }
+  </style>
 
-<script type="text/javascript">
+  <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyC2OigUrGT2Jhb0T7g5wzroASFt5eRhCG4&sensor=false"></script>
 
-  function initialize() {
-    google.maps.visualRefresh = true;
-	var helpAgeMapStyles = [
-	  {
-		"featureType": "water",
-		"elementType": "labels",
-		"stylers": [
-		  { "visibility": "off" }
-		]
-	  },{
-		"featureType": "administrative",
-		"stylers": [
-		  { "visibility": "off" }
-		]
-	  },{
-		"featureType": "landscape",
-		"stylers": [
-		  { "visibility": "off" }
-		]
-	  },{
-		"featureType": "road",
-		"stylers": [
-		  { "visibility": "off" }
-		]
-	  },{
-	  }
-	];
+  <script type="text/javascript">
+    function initialize() {
+      google.maps.visualRefresh = true;
+      var helpAgeMapStyles = [{
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "landscape",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {}];
 
-	var mapOptions = {
-      center: new google.maps.LatLng(24.346596615611777, 7.2),
-      zoom: 2,
-      minZoom:2,
-      maxZoom:6,
-	  mapTypeId: 'helpagemap',
-	  mapTypeControl: false,
-	  };
+      var mapOptions = {
+        center: new google.maps.LatLng(24.346596615611777, 7.2),
+        zoom: 2,
+        minZoom: 2,
+        maxZoom: 6,
+        mapTypeId: 'helpagemap',
+        mapTypeControl: false,
+      };
 
-    var map = new google.maps.Map(document.getElementById('googft-mapCanvas'), mapOptions);
+      var map = new google.maps.Map(document.getElementById('googft-mapCanvas'), mapOptions);
 
-	var helpAgeMapType = new google.maps.StyledMapType(helpAgeMapStyles, styledMapOptions);
+      var helpAgeMapType = new google.maps.StyledMapType(helpAgeMapStyles, styledMapOptions);
 
-	var styledMapOptions = {
-		name: 'HelpAge'
-	};
+      var styledMapOptions = {
+        name: 'HelpAge'
+      };
 
-	map.mapTypes.set('helpagemap', helpAgeMapType);
-	map.setMapTypeId('helpagemap');
+      map.mapTypes.set('helpagemap', helpAgeMapType);
+      map.setMapTypeId('helpagemap');
 
-	var legend = document.getElementById('legend');
-	var div = document.createElement('div');
-	div.innerHTML = '<img src="http://bit.ly/helpagemapscale"><br> <span style="display: block; font-family: Verdana; font-size: 12px; color: #666666; text-align: right;"> Map created by <a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.hoonio.com" target="_blank">Hoonio</a> / <a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.datakind.org.uk/" target="_blank">DataKind UK</a>.</span>'
-	legend.appendChild(div);
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
-    layer = new google.maps.FusionTablesLayer({
-      map: map,
-      heatmap: { enabled: false },
-      query: {
-        select: "col22",
-        from: "14xx_lenMF_hlUl3-xHCqzC-uehh05sknRpgnKqo",
-        where: ""
-      },
-	  styles: [{
-		where: "col20 = 0",
-		polygonOptions: {
-		  fillColor: "#cccccc"
-		}
-	  }, {
-		where: "col20 matches 'N/A'",
-		polygonOptions: {
-		  fillColor: "#cccccc",
-		  fillOpacity: 1.0
-		}
-	  }],
-      options: {
-        styleId: 2,
-        templateId: 2
-      }
-    });
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+      var legend = document.getElementById('legend');
+      var div = document.createElement('div');
+      div.innerHTML =
+        '<img src="http://bit.ly/helpagemapscale"><br> <span style="display: block; font-family: Verdana; font-size: 12px; color: #666666; text-align: right;"> Map created by <a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.hoonio.com" target="_blank">Hoonio</a> / <a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.datakind.org.uk/" target="_blank">DataKind UK</a>.</span>'
+      legend.appendChild(div);
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
+      layer = new google.maps.FusionTablesLayer({
+        map: map,
+        heatmap: {
+          enabled: false
+        },
+        query: {
+          select: "col22",
+          from: "14xx_lenMF_hlUl3-xHCqzC-uehh05sknRpgnKqo",
+          where: ""
+        },
+        styles: [{
+          where: "col20 = 0",
+          polygonOptions: {
+            fillColor: "#cccccc"
+          }
+        }, {
+          where: "col20 matches 'N/A'",
+          polygonOptions: {
+            fillColor: "#cccccc",
+            fillOpacity: 1.0
+          }
+        }],
+        options: {
+          styleId: 2,
+          templateId: 2
+        }
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
 </head>
 
 <body>
-    <div id="legend" style="font-family: Verdana; font-size: 12px; color: #666666"><a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.helpage.org/global-agewatch/data/global-rankings/" target="_blank">AgeWatch</a> index rankings</div>
+  <div id="legend" style="font-family: Verdana; font-size: 12px; color: #666666;"><a style="font-family: Verdana; font-size: 12px; font-weight:bold; color: #F25821; text-decoration: none" href="http://www.helpage.org/global-agewatch/data/global-rankings/" target="_blank">AgeWatch</a> index rankings</div>
   <div id="googft-mapCanvas"></div>
-<!-- google analytics code -->
+  <!-- google analytics code -->
   <script>
-      var _gaq=[['_setAccount','UA-3890189-1'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
+    var _gaq = [
+      ['_setAccount', 'UA-3890189-1'],
+      ['_trackPageview']
+    ];
+    (function(d, t) {
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g, s)
+    }(document, 'script'));
   </script>
 </body>
+
 </html>
