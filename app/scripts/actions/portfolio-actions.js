@@ -12,21 +12,17 @@ const receivePortfolio = (json) => ({
   items: json,
 });
 
-const getPortfolio = () => {
-  return (dispatch) => {
-    dispatch(requestPortfolio());
-    return jsonp('https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script')
-      .then(resp => {
-        dispatch(receivePortfolio(resp.feed.entry));
-      });
-  };
+const getPortfolio = () => (dispatch) => {
+  dispatch(requestPortfolio());
+  return jsonp('https://spreadsheets.google.com/feeds/list/1LNTNp3n_DYYq_dDLf7YdZyJWjI0soMn3MjYPeVLFSfk/1/public/values?alt=json-in-script')
+    .then(resp => {
+      dispatch(receivePortfolio(resp.feed.entry));
+    });
 };
 
-export const getPortfolioIfNeeded = () => {
-  return (dispatch, getState) => {
-    if (getState().portfolio.ready) {
-      return;
-    }
-    return dispatch(getPortfolio());
-  };
+export const getPortfolioIfNeeded = () => (dispatch, getState) => {
+  if (getState().portfolio.ready) {
+    return;
+  }
+  dispatch(getPortfolio());
 };

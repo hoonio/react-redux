@@ -36,37 +36,29 @@ const receiveStockData = (array) => ({
   dataset: array,
 });
 
-export const selectStock = (stockSymbol) => {
-  return (dispatch) => {
-    dispatch(selectStockName(stockSymbol));
-  };
+export const selectStock = (stockSymbol) => (dispatch) => {
+  dispatch(selectStockName(stockSymbol));
 };
 
-export const getStockData = (stockSymbol) => {
-  return (dispatch) => {
-    dispatch(requestStockData(stockSymbol));
-    return jsonp(('/brainwave/stock/' + stockSymbol))
-      .then(resp => {
-        dispatch(receiveStockData(resp));
-      });
-  };
+export const getStockData = (stockSymbol) => (dispatch) => {
+  dispatch(requestStockData(stockSymbol));
+  return jsonp(('/brainwave/stock/' + stockSymbol))
+    .then(resp => {
+      dispatch(receiveStockData(resp));
+    });
 };
 
-export const getCanvas = () => {
-  return (dispatch) => {
-    dispatch(requestStockList());
-    return jsonp('/brainwave/list')
-      .then(resp => {
-        dispatch(receiveStockList(resp));
-      });
-  };
+export const getCanvas = () => (dispatch) => {
+  dispatch(requestStockList());
+  return jsonp('/brainwave/list')
+    .then(resp => {
+      dispatch(receiveStockList(resp));
+    });
 };
 
-export const getCanvasIfNeeded = () => {
-  return (dispatch, getState) => {
-    if (getState().canvas.ready) {
-      return;
-    }
-    return dispatch(getCanvas());
-  };
+export const getCanvasIfNeeded = () => (dispatch, getState) => {
+  if (getState().canvas.ready) {
+    return;
+  }
+  dispatch(getCanvas());
 };

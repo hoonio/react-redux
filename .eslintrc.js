@@ -31,7 +31,7 @@ module.exports = {
       "ignoreComments": true,
     }],
     "no-shadow": ["error", {
-      "allow": ["err"],
+      "allow": ["err", "dispatch"],
     }],
     "no-unused-vars": ["error", {
       "args": "after-used",

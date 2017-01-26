@@ -13,11 +13,10 @@ export class Portfolio extends React.Component {
   render() {
     let workItems = null;
     if (this.props.items) {
-      workItems = (this.props.items.map((item, index) => {
-        if (item.gsx$portfolio.$t == 'TRUE') {
-          return <WorkItem item={item} key={index} />;
-        }
-      }
+      workItems = this.props.items.map((item, index) => (
+        (item.gsx$portfolio.$t === 'TRUE') ?
+          <WorkItem item={item} key={index} /> :
+          null
       ));
     }
 
@@ -36,14 +35,10 @@ Portfolio.propTypes = {
   getPortfolioWorks: React.PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return { items: state.portfolio.items };
-};
+const mapStateToProps = (state) => ({ items: state.portfolio.items });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPortfolioWorks: () => { dispatch(getPortfolioIfNeeded()) },
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  getPortfolioWorks: () => dispatch(getPortfolioIfNeeded()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);

@@ -41,14 +41,12 @@ Blog.propTypes = {
   getBlogPosts: React.PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return { posts: state.blog.posts };
-};
+const mapStateToProps = (state) => ({
+  posts: state.blog.posts,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getBlogPosts: () => { dispatch(getBlogIfNeeded()) },
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  getBlogPosts: () => { dispatch(getBlogIfNeeded()) },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
