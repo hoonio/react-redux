@@ -1,24 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import { getPortfolioIfNeeded } from '../actions/portfolio-actions'
+import { getPortfolioIfNeeded } from '../actions/portfolio-actions';
 import WorkItem from '../components/workitem';
 
 export class Portfolio extends React.Component {
 
   componentDidMount() {
-    this.props.getPortfolioWorks()
+    this.props.getPortfolioWorks();
   }
 
   render() {
-    let workItems = null
+    let workItems = null;
     if (this.props.items) {
-      workItems = ( this.props.items.map((item, index) => {
+      workItems = (this.props.items.map((item, index) => {
         if (item.gsx$portfolio.$t == 'TRUE') {
-          return <WorkItem item={item} key={index} />
+          return <WorkItem item={item} key={index} />;
         }
       }
-      ))
+      ));
     }
 
     return (
@@ -33,17 +33,17 @@ export class Portfolio extends React.Component {
 
 Portfolio.propTypes = {
   items: React.PropTypes.array.isRequired,
-  getPortfolioWorks: React.PropTypes.func.isRequired
-}
+  getPortfolioWorks: React.PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
-  return { items: state.portfolio.items }
-}
+  return { items: state.portfolio.items };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPortfolioWorks: () => { dispatch(getPortfolioIfNeeded()) }
-  }
-}
+    getPortfolioWorks: () => { dispatch(getPortfolioIfNeeded()) },
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Portfolio)
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);

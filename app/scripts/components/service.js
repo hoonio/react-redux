@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default (props) => (
   <div className="col-sm-4">
@@ -9,4 +9,4 @@ export default (props) => (
     <h4 className="service-heading">{props.serv.heading}</h4>
     <p className="text-muted">{props.serv.body}</p>
   </div>
-)
+);

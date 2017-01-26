@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default (props) => (
   <div id="profile" className="container-fluid">
@@ -11,4 +11,4 @@ export default (props) => (
 const getHeight = () => {
   let ifrHeight = window.innerHeight - 54;
   return ifrHeight;
-}
+};

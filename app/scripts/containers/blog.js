@@ -1,24 +1,24 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { getBlogIfNeeded } from '../actions/blog-actions'
-import BlogSnippet from '../components/blog-snippet'
+import { getBlogIfNeeded } from '../actions/blog-actions';
+import BlogSnippet from '../components/blog-snippet';
 
 class Blog extends React.Component {
 
   componentDidMount() {
-    this.props.getBlogPosts()
+    this.props.getBlogPosts();
   }
 
   render() {
-    let blogPosts = null
+    let blogPosts = null;
     if (this.props.posts) {
       blogPosts = (this.props.posts.map((post, index) => {
-        const textPortion = post.summary.split('**')
-        const title = (textPortion.length > 2) ? textPortion[1] : ''
-        const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion
-        return <BlogSnippet post={post} title={title} snippet={snippet} key={index} />
-      }))
+        const textPortion = post.summary.split('**');
+        const title = (textPortion.length > 2) ? textPortion[1] : '';
+        const snippet = (textPortion.length > 2) ? textPortion[2] : textPortion;
+        return <BlogSnippet post={post} title={title} snippet={snippet} key={index} />;
+      }));
     }
 
     return (
@@ -31,24 +31,24 @@ class Blog extends React.Component {
           {blogPosts}
         </div>
       </div>
-    )
+    );
   }
 
 }
 
 Blog.propTypes = {
   posts: React.PropTypes.array.isRequired,
-  getBlogPosts: React.PropTypes.func.isRequired
-}
+  getBlogPosts: React.PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
-  return { posts: state.blog.posts }
-}
+  return { posts: state.blog.posts };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBlogPosts: () => { dispatch(getBlogIfNeeded()) }
-  }
-}
+    getBlogPosts: () => { dispatch(getBlogIfNeeded()) },
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog)
+export default connect(mapStateToProps, mapDispatchToProps)(Blog);

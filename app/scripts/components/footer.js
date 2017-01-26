@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
 export default () => (
   <footer>
@@ -26,9 +26,9 @@ export default () => (
       </div>
     </div>
   </footer>
-)
+);
 
 const currentYear = () => {
   let thisYear = new Date().getFullYear();
   return thisYear;
-}
+};

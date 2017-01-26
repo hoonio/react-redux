@@ -1,29 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { connect } from 'react-redux';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-import { getCanvasIfNeeded, selectStock, getStockData } from '../actions/canvas-actions'
-import Dragitem from '../components/dragitem'
-import Chart from '../components/chart'
+import { getCanvasIfNeeded, selectStock, getStockData } from '../actions/canvas-actions';
+import Dragitem from '../components/dragitem';
+import Chart from '../components/chart';
 
 class Canvas extends React.Component {
   componentDidMount() {
-    this.props.getStockList()
+    this.props.getStockList();
   }
 
   render() {
-    let stockList = null
-    let chart = null
+    let stockList = null;
+    let chart = null;
     if (this.props.stockList) {
       stockList = (this.props.stockList.map((stock, index) => {
         return (
-          <Dragitem key={index} onclick={() => this.props.selectStock(stock.replace('WIKI/',''))} name={stock.replace('WIKI/','')} />
-        )
-      }))
+          <Dragitem key={index} onclick={() => this.props.selectStock(stock.replace('WIKI/', ''))} name={stock.replace('WIKI/', '')} />
+        );
+      }));
     }
 
-    chart = (<Chart dataset={this.props.dataset} ondrop={() => this.props.getStockData(this.props.selectedStock)} />)
+    chart = (<Chart dataset={this.props.dataset} ondrop={() => this.props.getStockData(this.props.selectedStock)} />);
 
     return (
       <div className="container" id="canvas">
@@ -40,7 +40,7 @@ class Canvas extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -50,23 +50,23 @@ Canvas.propTypes = {
   selectedStock: React.PropTypes.string.isRequired,
   getStockList: React.PropTypes.func.isRequired,
   selectStock: React.PropTypes.func.isRequired,
-  getStockData: React.PropTypes.func.isRequired
-}
+  getStockData: React.PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {
     stockList: state.canvas.stockList,
     dataset: state.canvas.dataset,
-    selectedStock: state.canvas.selectedStock
-   }
-}
+    selectedStock: state.canvas.selectedStock,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getStockList: () => { dispatch(getCanvasIfNeeded()) },
     selectStock: (symbol) => { dispatch(selectStock(symbol)) },
-    getStockData: (symbol) => { dispatch(getStockData(symbol)) }
-  }
-}
+    getStockData: (symbol) => { dispatch(getStockData(symbol)) },
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)((DragDropContext(HTML5Backend)(Canvas)))
+export default connect(mapStateToProps, mapDispatchToProps)((DragDropContext(HTML5Backend)(Canvas)));

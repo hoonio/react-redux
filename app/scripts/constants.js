@@ -1,3 +1,3 @@
 export const ItemTypes = {
-  DRAGITEM: 'dragitem'
-}
+  DRAGITEM: 'dragitem',
+};
