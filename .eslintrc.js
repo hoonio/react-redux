@@ -22,6 +22,15 @@ module.exports = {
     ],
     "semi": ["warn", "always", {
       "omitLastInOneLineBlock": true
+    }],
+    "max-len": ["warn", {
+      "code": 100,
+      "ignoreUrls": true,
+      "ignoreTrailingComments": true,
+      "ignoreComments": true
+    }],
+    "no-shadow": ["error", {
+      "allow": ["err"]
     }]
   }
 };
