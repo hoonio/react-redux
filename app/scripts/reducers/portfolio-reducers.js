@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux'
-import * as types from '../actions/actionTypes'
+import * as types from '../actions/actionTypes';
 
 export default (state = { isFetching: false, ready: false, items:[] }, action) => {
   switch (action.type) {

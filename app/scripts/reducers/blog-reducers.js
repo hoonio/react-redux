@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux'
-import { REQUEST_BLOG, RECEIVE_BLOG } from '../actions/blog-actions'
+import { REQUEST_BLOG, RECEIVE_BLOG } from '../actions/blog-actions';
 
 export default (state = { isFetching: false, ready: false, posts:[] }, action) => {
   switch (action.type) {
