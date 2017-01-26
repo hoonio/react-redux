@@ -1,36 +1,41 @@
 module.exports = {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
   },
   "extends": "airbnb",
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "jsx": true,
     },
-    "sourceType": "module"
+    "sourceType": "module",
   },
   "plugins": ["react"],
   "rules": {
     "indent": [2, 2],
     "linebreak-style": [
-      "warn", "unix"
+      "warn", "unix",
     ],
     "quotes": [
-      "warn", "single"
+      "warn", "single",
     ],
-    "semi": ["warn", "always", {
-      "omitLastInOneLineBlock": true
+    "quote-props": ["error", "consistent-as-needed"],
+    "semi": ["error", "always", {
+      "omitLastInOneLineBlock": true,
     }],
     "max-len": ["warn", {
       "code": 100,
       "ignoreUrls": true,
       "ignoreTrailingComments": true,
-      "ignoreComments": true
+      "ignoreComments": true,
     }],
     "no-shadow": ["error", {
-      "allow": ["err"]
-    }]
-  }
+      "allow": ["err"],
+    }],
+    "no-unused-vars": ["error", {
+      "args": "after-used",
+      "varsIgnorePattern": "dispatch",
+    }],
+  },
 };
