@@ -37,5 +37,6 @@ module.exports = {
       "args": "after-used",
       "varsIgnorePattern": "dispatch",
     }],
+    "prefer-template": "warn",
   },
 };
