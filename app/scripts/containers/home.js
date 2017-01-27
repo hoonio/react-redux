@@ -1,7 +1,7 @@
 import React from 'react';
-import Product from './product';
-import Service from './service';
-import Contact from './contact';
+import Product from '../components/product';
+import Service from '../components/service';
+import Contact from '../components/contact';
 
 export default class extends React.Component {
   constructor(props) {
