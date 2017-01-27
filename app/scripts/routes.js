@@ -8,6 +8,7 @@ import Profile from './containers/profile';
 import Canvas from './containers/canvas';
 import Portfolio from './containers/portfolio';
 import Blog from './containers/blog';
+import Voyage from './containers/voyage';
 
 import '../styles/main.scss';
 
@@ -20,6 +21,7 @@ const routes = (
     <Route path="profile.html" component={Profile} />
     <Route path="canvas" component={Canvas} />
     <Route path="blog" component={Blog} />
+    <Route path="voyage" component={Voyage} />
     <Route path="*" component={Home} />
   </Route>
 );
