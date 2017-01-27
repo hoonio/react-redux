@@ -23,14 +23,12 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
   // since a separate spreadsheet is only utilized for the production build, need to dynamically add this here.
   // $('head').append('<link rel="stylesheet" href="styles.css">');
 
-  return () => {
-    fs.writeFile('dist/index.html', $.html(), 'utf8', (err) => {
-      if (err) {
-        return console.log(err);
-      }
-      return console.log(colors.green('index.html written to /dist'));
-    });
-  };
+  fs.writeFile('dist/index.html', $.html(), 'utf8', (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    return console.log(colors.green('index.html written to /dist'));
+  });
 });
 
 fs.readFile('app/helpage.html', 'utf8', (err) => {
@@ -38,12 +36,10 @@ fs.readFile('app/helpage.html', 'utf8', (err) => {
     return console.log(err);
   }
 
-  return () => {
-    fs.writeFile('dist/helpage.html', 'utf8', (err) => {
-      if (err) {
-        return console.log(err);
-      }
-      return console.log('helpage.html written to /dist'.green);
-    });
-  };
+  fs.writeFile('dist/helpage.html', 'utf8', (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    return console.log('helpage.html written to /dist'.green);
+  });
 });
