@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import jsonp from 'jsonp-es6';
 import { dispatch } from 'react-redux';
 
 export const REQUEST_BLOG = 'REQUEST_BLOG';
@@ -17,9 +16,10 @@ const receiveBlog = (json) => ({
 
 export const getBlog = () => (dispatch) => {
   dispatch(requestBlog());
-  return jsonp('/feed/blog')
-    .then(resp => {
-      dispatch(receiveBlog(resp.response.posts));
+  return fetch('/feed/blog')
+    .then(resp => resp.json())
+    .then(json => {
+      dispatch(receiveBlog(json.response.posts));
     });
 };
 
