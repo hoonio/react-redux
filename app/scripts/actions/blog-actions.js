@@ -17,7 +17,7 @@ const receiveBlog = (json) => ({
 
 export const getBlog = () => (dispatch) => {
   dispatch(requestBlog());
-  return jsonp('https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=o5UJwOYSdRtRCzAwTRfkHVuwUWmTKvmzevn31oTaZ854hHU2r6')
+  return jsonp('/feed/blog')
     .then(resp => {
       dispatch(receiveBlog(resp.response.posts));
     });

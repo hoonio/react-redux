@@ -4,6 +4,7 @@ import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
 import brainwave from './routes/brainwave';
+import feed from './routes/feed';
 
 /* eslint-disable no-console */
 
@@ -30,6 +31,8 @@ app.use(function(err, req, res, next){
 })
 
 app.use('/brainwave', brainwave);
+
+app.use('/feed', feed);
 
 app.get('/express', function(req, res) {
   res.send('Hello from express')

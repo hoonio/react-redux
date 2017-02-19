@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import compression from 'compression';
 import brainwave from './routes/brainwave';
+import feed from './routes/feed';
 /*eslint-disable no-console */
 
 const port = process.env.PORT || 8080;
@@ -23,6 +24,8 @@ app.use(function(err, req, res, next){
 })
 
 app.use('/brainwave', brainwave);
+
+app.use('/feed', feed);
 
 app.get('/express', function(req, res) {
   res.send('Hello from express')
