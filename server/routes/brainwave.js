@@ -19,7 +19,7 @@ router.get('/list', function(req, res){
   res.jsonp(listStocks)
 })
 
-const data = fs.readFileSync(path.join( __dirname, './brainwave.json')).toString();
+const data = fs.readFileSync(path.join( __dirname, '../data/brainwave.json')).toString();
 
 const getStocks = function(data){
   var stockSymbols = [];
