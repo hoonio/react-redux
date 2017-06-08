@@ -32,7 +32,12 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
 });
 
 fs.readFile('app/helpage.html', 'utf8', (err, markup) => {
-  fs.writeFile('dist/helpage.html', 'utf8', function (err) {
+  if (err) {
+    return console.log(err);
+  }
+
+  const $ = cheerio.load(markup);
+  fs.writeFile('dist/helpage.html', $.html(), 'utf8', (err) => {
     if (err) {
       return console.log(err);
     }
