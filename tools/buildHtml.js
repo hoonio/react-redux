@@ -31,12 +31,13 @@ fs.readFile('app/index.html', 'utf8', (err, markup) => {
   });
 });
 
-fs.readFile('app/helpage.html', 'utf8', (err) => {
+fs.readFile('app/helpage.html', 'utf8', (err, markup) => {
   if (err) {
     return console.log(err);
   }
 
-  fs.writeFile('dist/helpage.html', 'utf8', (err) => {
+  const $ = cheerio.load(markup);
+  fs.writeFile('dist/helpage.html', $.html(), 'utf8', (err) => {
     if (err) {
       return console.log(err);
     }
