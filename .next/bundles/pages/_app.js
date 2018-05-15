@@ -252,20 +252,24 @@ var warnUrl = (0, _utils.execOnce)(function () {
 });
 
 function createUrl(router) {
+  // This is to make sure we don't references the router object at call time
+  var pathname = router.pathname,
+      asPath = router.asPath,
+      query = router.query;
   return {
     get query() {
       warnUrl();
-      return router.query;
+      return query;
     },
 
     get pathname() {
       warnUrl();
-      return router.pathname;
+      return pathname;
     },
 
     get asPath() {
       warnUrl();
-      return router.asPath;
+      return asPath;
     },
 
     back: function back() {

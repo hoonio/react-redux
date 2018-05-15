@@ -1,7 +1,6 @@
 {
-  "name": "hoonio-root",
+  "name": "hn-root",
   "version": "2.6.0",
-  "description": "Hoonio main website",
   "license": "MIT",
   "engines": {
     "node": ">=9.11.0"
@@ -34,7 +33,9 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^5.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "github.com/hoonio/root"

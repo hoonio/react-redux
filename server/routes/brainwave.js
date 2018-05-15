@@ -1,13 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import express from 'express';
-import bodyParser from 'body-parser';
+const fs = require('fs')
+const path = require('path')
+const express = require('express')
 const router = express.Router();
 
-router.use(bodyParser.json());
-
 router.get('/stock/:symbol', function(req, res){
-  console.log(req.params.symbol);
   res.setHeader('Content-Type', 'application/json')
   res.jsonp(JSON.parse(data)['WIKI/'+req.params.symbol].data)
 })
@@ -19,7 +15,7 @@ router.get('/list', function(req, res){
   res.jsonp(listStocks)
 })
 
-const data = fs.readFileSync(path.join( __dirname, '../data/brainwave.json')).toString();
+const data = fs.readFileSync(path.join( __dirname, '../static/brainwave.json')).toString();
 
 const getStocks = function(data){
   var stockSymbols = [];
