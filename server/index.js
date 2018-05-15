@@ -1,6 +1,9 @@
 const express = require('express')
 const next = require('next')
 
+const path = require('path')
+const favicon = require('serve-favicon')
+
 const dev = process.env.NODE_ENV !== 'production'
 dev && require('dotenv').config()
 const port = process.env.PORT || 8080;
@@ -14,6 +17,7 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('/ping', (req, res) => res.send('pong'))
+  // server.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 
   server.use('/brainwave', brainwave);
   server.use('/feed', feed);
