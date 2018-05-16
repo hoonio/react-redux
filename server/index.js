@@ -3,6 +3,7 @@ const next = require('next')
 
 const path = require('path')
 const favicon = require('serve-favicon')
+const fetch = require('isomorphic-unfetch')
 
 const dev = process.env.NODE_ENV !== 'production'
 dev && require('dotenv').config()
@@ -11,7 +12,7 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const brainwave = require('./routes/brainwave')
-const feed = require('./routes/feed')
+const blog = require('./routes/feed')
 
 app.prepare().then(() => {
   const server = express()
@@ -20,7 +21,7 @@ app.prepare().then(() => {
   // server.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 
   server.use('/brainwave', brainwave);
-  server.use('/feed', feed);
+  server.use('/feed', (req, res) => blog(req, res));
 
   server.get('/helpage(.html)?', (req, res) => res.sendFile(path.join( __dirname, './static/helpage.html')))
 
