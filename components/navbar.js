@@ -25,10 +25,10 @@ export default class extends React.Component {
         </a>
         <div className="collapse navbar-collapse justify-content-end" style={toggleStyle}>
           <ul className="nav navbar-nav">
-            <NavLink to="/" id="nav-home" onClick={this.toggleMenu} onlyActiveOnIndex>Home</NavLink>
-            <NavLink to="/profile" onClick={this.toggleMenu}>Profile</NavLink>
-            <NavLink to="/portfolio" onClick={this.toggleMenu}>Portfolio</NavLink>
-            <NavLink to="/blog" onClick={this.toggleMenu}>Blog</NavLink>
+            <NavLink href="/" id="nav-home" onClick={this.toggleMenu} onlyActiveOnIndex>Home</NavLink>
+            <NavLink href="/profile" onClick={this.toggleMenu}>Profile</NavLink>
+            <NavLink href="/portfolio" onClick={this.toggleMenu}>Portfolio</NavLink>
+            <NavLink href="/blog" onClick={this.toggleMenu}>Blog</NavLink>
             <li className="nav-item"><a className="nav-link" href='/#contact'>Contact</a></li>
           </ul>
         </div>

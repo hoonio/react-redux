@@ -2,6 +2,7 @@ import React from 'react';
 import Product from '../components/product';
 import Service from '../components/service';
 import Contact from '../components/contact';
+import '../styles/index.scss'
 
 export default class extends React.Component {
   constructor(props) {
