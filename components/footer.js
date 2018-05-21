@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router';
+import Link from 'next/link'
 
 export default () => (
   <footer>
@@ -17,7 +16,7 @@ export default () => (
         </div>
         <div className="col-sm-4 col-xs-12">
           <ul className="list-inline">
-            <Link className="list-inline-item" to="/canvas">Canvas</Link>
+            <Link className="list-inline-item" href="/canvas">Canvas</Link>
             <li className="list-inline-item"><a href="http://dory.hoonio.com">Dory</a></li>
             <li className="list-inline-item"><a href="http://feria.hoonio.com">Feria</a></li>
             <li className="list-inline-item"><a href="http://wiki.hoonio.com">Wiki</a></li>
