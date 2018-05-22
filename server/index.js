@@ -13,6 +13,7 @@ const handle = app.getRequestHandler()
 
 const brainwave = require('./routes/brainwave')
 const blog = require('./routes/feed')
+const gist = require('./routes/gist')
 
 app.prepare().then(() => {
   const server = express()
@@ -22,7 +23,8 @@ app.prepare().then(() => {
   server.use('/static', express.static(path.join(__dirname, 'static')))
 
   server.use('/brainwave', brainwave);
-  server.use('/feed', (req, res) => blog(req, res));
+  server.use('/feed', blog);
+  server.use('/gist', gist);
 
   server.get('/helpage(.html)?', (req, res) => res.sendFile(path.join( __dirname, './static/helpage.html')))
 
