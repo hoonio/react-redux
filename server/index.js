@@ -18,7 +18,8 @@ app.prepare().then(() => {
   const server = express()
 
   server.get('/ping', (req, res) => res.send('pong'))
-  // server.use(favicon(path.join(__dirname, "static", "favicon.ico")));
+  server.use(favicon(path.join(__dirname, "static", "favicon.ico")))
+  server.use('/static', express.static(path.join(__dirname, 'static')))
 
   server.use('/brainwave', brainwave);
   server.use('/feed', (req, res) => blog(req, res));

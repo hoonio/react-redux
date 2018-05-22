@@ -2,8 +2,22 @@ import React from 'react';
 import Product from '../components/product';
 import Service from '../components/service';
 import Contact from '../components/contact';
+import '../styles/index.scss'
 
 export default class extends React.Component {
+  static async getInitialProps({ req }) {
+    const res = await fetch('https://gist.githubusercontent.com/hoonio/eb011950b60e13a016085023203d579c/raw/38ac77e78b38891ae443432d24520ed10d726742/homepage', {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    const json = await res.json()
+    console.log(json)
+    // const content = JSON.parse(json.files.homepage.content)
+    // console.log(content.services)
+    // return { services: content.services }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +69,7 @@ export default class extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div id="home">
         <header>

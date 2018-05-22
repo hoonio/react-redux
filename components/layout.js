@@ -1,6 +1,5 @@
-import React from 'react';
-import Nav from './components/navbar';
-import Footer from './components/footer';
+import Nav from './navbar'
+import Footer from './footer'
 
 export default (props) => (
   <div className="index">

@@ -23,11 +23,14 @@
     "dev": "next"
   },
   "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
     "babel-plugin-inline-dotenv": "^1.1.2",
+    "bootstrap": "^4.1.1",
     "express": "^4.16.3",
     "isomorphic-unfetch": "^2.0.0",
     "next": "^6.0.0",
     "next-redux-wrapper": "^2.0.0-beta.6",
+    "node-sass": "^4.9.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",

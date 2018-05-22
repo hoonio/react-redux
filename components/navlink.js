@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router';
+import Link from 'next/link'
 
 export default (props) => (
   <li className="nav-item">
