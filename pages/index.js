@@ -6,21 +6,21 @@ import '../styles/index.scss'
 
 export default class extends React.Component {
   static async getInitialProps({ req }) {
-    const res = await fetch('https://gist.githubusercontent.com/hoonio/eb011950b60e13a016085023203d579c/raw/38ac77e78b38891ae443432d24520ed10d726742/homepage', {
+    const res = await fetch('https://gist.githubusercontent.com/hoonio/eb011950b60e13a016085023203d579c/raw/cf547a0fed04645229f083d206d0b3b12f02823c/home', {
       headers: {
         'content-type': 'application/json'
       }
     })
-    const json = await res.json()
-    console.log(json)
+    // const json = await res.json()
+    // console.log(json)
     // const content = JSON.parse(json.files.homepage.content)
     // console.log(content.services)
-    // return { services: content.services }
+    return { contents: await res.json() }
   }
 
-  constructor(props) {
+/*  constructor(props) {
     super(props);
-    this.state = {
+    this.props.content = {
       slogan: 'Bridging the gap between ideas and technology',
       company: 'Turning your ideas into technical implementation',
       services: [
@@ -67,33 +67,33 @@ export default class extends React.Component {
       },
     };
   }
-
+*/
   render() {
-    console.log(this.state)
+    console.log(this.props.contents)
     return (
       <div id="home">
         <header>
           <div className="intro-text">
-            <p>{this.state.slogan}</p>
+            <p>{this.props.contents.slogan}</p>
           </div>
         </header>
         <section id="services">
           <div className="container">
             <div className="row" id="who-we-are">
               <div className="col-sm-12 text-center">
-                <h2 className="section-heading text-muted">{this.state.company}</h2>
+                <h2 className="section-heading text-muted">{this.props.contents.company}</h2>
               </div>
             </div>
             <div className="row text-center" id="what-we-do">
-              {this.state.services.map((service, index) => (<Service serv={service} key={index} />))}
+              {this.props.contents.services.map((service, index) => (<Service serv={service} key={index} />))}
             </div>
           </div>
         </section>
         <section id="products">
-          {this.state.products.map((product, index) => (<Product prod={product} key={index} />))}
+          {this.props.contents.products.map((product, index) => (<Product prod={product} key={index} />))}
         </section>
         <section id="contact">
-          <Contact form={this.state.contact} />
+          <Contact form={this.props.contents.contact} />
         </section>
       </div>
     );
