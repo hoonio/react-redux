@@ -6,16 +6,11 @@ import '../styles/index.scss'
 
 export default class extends React.Component {
   static async getInitialProps({ req }) {
-    const res = await fetch(process.env.GIST_HOME, {
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
+    const res = await fetch(process.env.GIST_HOME)
      return { contents: await res.json() }
   }
 
   render() {
-    console.log(this.props.contents)
     return (
       <div id="home">
         <header>
