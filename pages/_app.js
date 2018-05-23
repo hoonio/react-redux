@@ -5,6 +5,7 @@ import App, {Container} from 'next/app'
 // import withRedux from 'next-redux-wrapper'
 
 import Layout from '../components/layout'
+import '../styles/index.scss'
 // import actions from '../components/actions'
 // import reducer from '../components/reducers'
 
