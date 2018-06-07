@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const { blog, brainwave, gist } = require('./routes')
+const { blog, brainwave, contact, gist } = require('./routes')
 
 app.prepare().then(() => {
   const server = express()
@@ -23,6 +23,7 @@ app.prepare().then(() => {
   server.use('/brainwave', brainwave);
   server.use('/feed', blog);
   server.use('/gist', gist);
+  server.use('/contact', contact)
 
   server.get('/helpage(.html)?', (req, res) => res.sendFile(path.join( __dirname, './static/helpage.html')))
 

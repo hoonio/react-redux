@@ -21,26 +21,40 @@ export default class extends React.Component {
     });
   }
 
-  handleSubmit(form) {
-    try {
-      var data = [].slice.call(form).map(function(control) {
-        return 'value' in control && control.name ?
-          control.name + '=' + (control.value === undefined ? '' : control.value) :
-          '';
-      }).join('&');
-      var xhr = new XMLHttpRequest();
+  handleSubmit(event) {
+    const formDest = `https://docs.google.com/forms/d/e/1FAIpQLSdS_X4maRW2sNw1GPyOMZJGjLCi_FvCyGXamuHp1OOvArztGA/formResponse`
 
-      xhr.open('POST', form.action + '/formResponse', true);
-      xhr.setRequestHeader('Accept',
-          'application/xml, text/xml, */*; q=0.01');
-      xhr.setRequestHeader('Content-type',
-          'application/x-www-form-urlencoded; charset=UTF-8');
-      xhr.send(data);
-    } catch(e) {}
+    // alert(`name:  ${this.state.name}, email:  ${this.state.email}, message:  ${this.state.message}`);
+    event.preventDefault();
 
-    // form.parentNode.className += ' submitted';
+    var xhr = new XMLHttpRequest();
 
-    return false;
+    xhr.open('POST', formDest, true);
+    xhr.setRequestHeader('Accept',
+        'application/xml, text/xml, */*; q=0.01');
+    xhr.setRequestHeader('Content-type',
+        'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send({
+      'entry.1000001': this.state.name,
+      'entry.1000002': this.state.email,
+      'entry.1000003': this.state.message,
+    });
+
+    // fetch(formDest, {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*'
+    //   },
+    //   mode: 'cors',
+    //   body: JSON.stringify({
+    //     'entry.1000001': this.state.name,
+    //     'entry.1000002': this.state.email,
+    //     'entry.1000003': this.state.message,
+    //   }),
+    // })
+    // .then(response => response.json())
+    // .then(data => console.log(data))
   }
 
   render() {
@@ -52,17 +66,17 @@ export default class extends React.Component {
             <h3 className="section-subheading text-muted">{this.props.form.body}</h3>
           </div>
         </div>
-        <form method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSdS_X4maRW2sNw1GPyOMZJGjLCi_FvCyGXamuHp1OOvArztGA/formResponse" id="ss-form" name="ss-form">
+        <form onSubmit={this.handleSubmit} action={this.props.form.url} id="ss-form" name="ss-form">
           <div className="row">
             <div className="col-md-6">
               <div className="form-group">
-                <input type="text" className="form-control" name="entry.1000001" id="entry_0" placeholder="Name" required data-validation-required-message="Please enter your name." />
+                <input name="name" type="text" className="form-control" placeholder="Name" required value={this.state.name} onChange={this.handleChange} />
                 <p className="help-block text-danger"></p>
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group">
-                <input type="email" className="form-control" name="entry.1000002" id="entry_1" placeholder="Email" required data-validation-required-message="Please enter your email address." />
+                <input name="email" type="email" className="form-control" placeholder="Email" required value={this.state.email} onChange={this.handleChange} />
                 <p className="help-block text-danger"></p>
               </div>
             </div>
@@ -70,7 +84,7 @@ export default class extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-12 text-center">
-              <textarea className="form-control" name="entry.1000003" id="entry_2" placeholder="Message" rows="6" required data-validation-required-message="Please enter a message."></textarea>
+              <textarea name="message" className="form-control" placeholder="Message" rows="6" required value={this.state.message} onChange={this.handleChange} />
               <p className="help-block text-danger"></p>
             </div>
           </div>
