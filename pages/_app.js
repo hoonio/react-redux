@@ -1,24 +1,22 @@
 import React from 'react'
 import App, {Container} from 'next/app'
-// import {createStore} from 'redux'
-// import {Provider} from 'react-redux'
-// import withRedux from 'next-redux-wrapper'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import withRedux from 'next-redux-wrapper'
 
 import Layout from '../components/layout'
 import '../styles/index.scss'
-// import actions from '../components/actions'
-// import reducer from '../components/reducers'
+import actions from '../components/actions'
+import reducer from '../components/reducers'
 
-// let devtools = f => f
-// if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
-//   devtools = window.__REDUX_DEVTOOLS_EXTENSION__()
-// }
+let devtools = f => f
+if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  devtools = window.__REDUX_DEVTOOLS_EXTENSION__()
+}
 
-// const makeStore = (initialState, options) => createStore(reducer, initialState, devtools)
+const makeStore = (initialState, options) => createStore(reducer, initialState, devtools)
 
-
-
-export default class Root extends App {
+class Root extends App {
   static async getInitialProps({Component, ctx}) {
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
@@ -26,15 +24,17 @@ export default class Root extends App {
   }
 
   render() {
-    const {Component, pageProps} = this.props
+    const {Component, pageProps, store} = this.props
     return (
       <Container>
+        <Provider store={store}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
+        </Provider>
       </Container>
     )
   }
 }
 
-// export default withRedux(makeStore)(Merx)
+export default withRedux(makeStore)(Root)

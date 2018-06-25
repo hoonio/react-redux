@@ -1,12 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Product from '../components/product';
 import Service from '../components/service';
 import Contact from '../components/contact';
 
-export default class extends React.Component {
-  static async getInitialProps({ req }) {
+class Home extends React.Component {
+  static async getInitialProps({ req, store, isServer, pathname }) {
+    store.dispatch({type: 'CHANGING_PAGE', status: 'home'})
     const res = await fetch(process.env.GIST_HOME)
-     return { contents: await res.json() }
+    return {
+      contents: await res.json(),
+      page: store.getState().page, isServer 
+    }
   }
 
   render() {
@@ -39,3 +44,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export default connect()(Home)
