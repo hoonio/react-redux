@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 const BlogSnippet = ({ post, title, snippet }) => (
   <div className="card">
@@ -13,11 +14,16 @@ const BlogSnippet = ({ post, title, snippet }) => (
   </div>
 )
 
-export default class extends React.Component {
-  static async getInitialProps({ req }) {
-    return fetch(`https://api.tumblr.com/v2/blog/blog.hoonio.com/posts/photo?api_key=${process.env.TUMBLR_API_KEY}`)
+class Blog extends React.Component {
+  static async getInitialProps({ req, store, isServer, pathname}) {
+    store.dispatch({type: 'CHANGING_PAGE', status: pathname})
+    return fetch(`/feed`)
     .then(res => res.json())
-    .then(data => ({posts: data.response.posts}))
+    .then(data => ({
+      posts: data.response.posts,
+      page: store.getState().page,
+      isServer,
+    }))
   }
 
   render() {
@@ -40,5 +46,6 @@ export default class extends React.Component {
       </div>
     );
   }
-
 }
+
+export default connect()(Blog)

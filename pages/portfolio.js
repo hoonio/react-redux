@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 const WorkItem = ({ item, index }) => (
   <div className="card">
@@ -25,11 +26,16 @@ const listStacks = (stringText) => {
   return arr;
 }
 
-export default class extends React.Component {
-  static async getInitialProps({ req }) {
+class Portfolio extends React.Component {
+  static async getInitialProps({ req, store, isServer, pathname}) {
+    store.dispatch({type: 'CHANGING_PAGE', status: pathname})
     return fetch(process.env.PORTFOLIO_LIST)
     .then(res => res.json())
-    .then(data => ({posts: data.feed.entry}))
+    .then(data => ({
+      posts: data.feed.entry,
+      page: store.getState().page,
+      isServer,
+    }))
   }
 
   render() {
@@ -49,3 +55,5 @@ export default class extends React.Component {
   }
 
 }
+
+export default connect()(Portfolio)
