@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const { blog, brainwave, contact, gist } = require('./routes')
+const { blog, brainwave, contact, gist, portfolio } = require('./routes')
 
 app.prepare().then(() => {
   const server = express()
@@ -22,6 +22,7 @@ app.prepare().then(() => {
 
   server.use('/brainwave', brainwave);
   server.use('/feed', blog);
+  server.use('/work', portfolio);
   server.use('/gist', gist);
   server.use('/contact', contact)
 

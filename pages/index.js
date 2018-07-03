@@ -7,7 +7,8 @@ import Contact from '../components/contact';
 class Home extends React.Component {
   static async getInitialProps({ req, store, isServer, pathname }) {
     store.dispatch({type: 'CHANGING_PAGE', status: 'home'})
-    const res = await fetch(`/gist`)
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    const res = await fetch(baseUrl + '/gist')
     return {
       contents: await res.json(),
       page: store.getState().page, isServer

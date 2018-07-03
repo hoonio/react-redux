@@ -17,7 +17,8 @@ const BlogSnippet = ({ post, title, snippet }) => (
 class Blog extends React.Component {
   static async getInitialProps({ req, store, isServer, pathname}) {
     store.dispatch({type: 'CHANGING_PAGE', status: pathname})
-    return fetch(`/feed`)
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    return fetch(baseUrl + '/feed')
     .then(res => res.json())
     .then(data => ({
       posts: data.response.posts,

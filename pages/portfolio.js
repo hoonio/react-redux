@@ -29,10 +29,11 @@ const listStacks = (stringText) => {
 class Portfolio extends React.Component {
   static async getInitialProps({ req, store, isServer, pathname}) {
     store.dispatch({type: 'CHANGING_PAGE', status: pathname})
-    return fetch(process.env.PORTFOLIO_LIST)
+    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
+    return fetch(baseUrl + '/work')
     .then(res => res.json())
     .then(data => ({
-      posts: data.feed.entry,
+      posts: data,
       page: store.getState().page,
       isServer,
     }))
