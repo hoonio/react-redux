@@ -1,5 +1,5 @@
-dist/
-.git/
-node_modules/
-bower_components/
-.sass-cache/
+node_modules
+npm-debug.log
+.git
+.sass-cache
+.next
