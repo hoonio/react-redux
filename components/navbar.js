@@ -1,4 +1,3 @@
-import React from 'react'
 import NavLink from './navlink'
 
 export default class extends React.Component {
@@ -16,13 +15,13 @@ export default class extends React.Component {
   render() {
     let toggleStyle = (this.state.showMenu) ? {display:'block'}:{display:'none'};
     return (
-      <nav className="navbar navbar-toggleable-sm navbar-inverse sticky-top">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" onClick={this.toggleMenu}>
-          &#9776;
-        </button>
+      <nav className="navbar navbar-expand-md navbar-inverse sticky-top">
         <a className="navbar-brand" href="/">
           <img className="logo" src="https://lh3.googleusercontent.com/-xLJDIl8LBcM/VV0GwIRMygI/AAAAAAACeA4/1IOmES6TSUA/w172-h30-Ic42/hoonio-logo-2014.png"/>
         </a>
+        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" onClick={this.toggleMenu}>
+          &#9776;
+        </button>
         <div className="collapse navbar-collapse justify-content-end" style={toggleStyle}>
           <ul className="nav navbar-nav">
             <NavLink href="/" id="nav-home" onClick={this.toggleMenu} onlyActiveOnIndex>Home</NavLink>
