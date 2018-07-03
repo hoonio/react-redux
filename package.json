@@ -20,7 +20,9 @@
   "scripts": {
     "start": "node server/index.js",
     "build": "next build",
-    "dev": "next"
+    "dev": "next",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
@@ -35,7 +37,8 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "snyk": "^1.88.1"
   },
   "devDependencies": {
     "dotenv": "^5.0.1"
@@ -43,5 +46,6 @@
   "repository": {
     "type": "git",
     "url": "github.com/hoonio/root"
-  }
+  },
+  "snyk": true
 }
