@@ -9,7 +9,6 @@ export default class extends React.Component {
       message: '',
       sent: false,
     }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,42 +21,22 @@ export default class extends React.Component {
   }
 
   handleSubmit(event) {
-    const formDest = `https://docs.google.com/forms/d/e/1FAIpQLSdS_X4maRW2sNw1GPyOMZJGjLCi_FvCyGXamuHp1OOvArztGA/formResponse`
-
-    // alert(`name:  ${this.state.name}, email:  ${this.state.email}, message:  ${this.state.message}`);
     event.preventDefault();
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('POST', formDest, true);
-    xhr.setRequestHeader('Accept',
-        'application/xml, text/xml, */*; q=0.01');
-    xhr.setRequestHeader('Content-type',
-        'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.send({
-      'entry.1000001': this.state.name,
-      'entry.1000002': this.state.email,
-      'entry.1000003': this.state.message,
-    });
-
-    // fetch(formDest, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*'
-    //   },
-    //   mode: 'cors',
-    //   body: JSON.stringify({
-    //     'entry.1000001': this.state.name,
-    //     'entry.1000002': this.state.email,
-    //     'entry.1000003': this.state.message,
-    //   }),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log(data))
+    console.log(this.state)
+    // alert(`name:  ${this.state.name}, email:  ${this.state.email}, message:  ${this.state.message}`);
+    fetch('/contact', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: this.state,
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
   }
 
   render() {
+    // console.log(document.location)
     return (
       <div className="container">
         <div className="row">

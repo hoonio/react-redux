@@ -24,7 +24,7 @@ app.prepare().then(() => {
   server.use('/feed', blog);
   server.use('/work', portfolio);
   server.use('/gist', gist);
-  server.use('/contact', contact)
+  server.post('/contact', contact)
 
   server.get('/helpage(.html)?', (req, res) => res.sendFile(path.join( __dirname, './static/helpage.html')))
 

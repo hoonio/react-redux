@@ -20,7 +20,8 @@
   "scripts": {
     "start": "node server/index.js",
     "build": "next build",
-    "dev": "next"
+    "dev": "nodemon -w server/index.js server/index.js",
+    "next": "next"
   },
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
