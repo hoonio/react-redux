@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const bodyParser = require('body-parser')
 
 const path = require('path')
 const favicon = require('serve-favicon')
@@ -15,6 +16,7 @@ const { blog, brainwave, contact, gist, portfolio } = require('./routes')
 
 app.prepare().then(() => {
   const server = express()
+  server.use(bodyParser())
 
   server.get('/ping', (req, res) => res.send('pong'))
   server.use(favicon(path.join(__dirname, "static", "favicon.ico")))
