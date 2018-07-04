@@ -1,7 +1,7 @@
 var querystring = require('querystring');
 
 module.exports = async (req, res) => {
-  return fetch('https://docs.google.com/forms/d/e/1FAIpQLSdS_X4maRW2sNw1GPyOMZJGjLCi_FvCyGXamuHp1OOvArztGA/formResponse', {
+  return fetch(process.env.CONTACT_FORM, {
     method: 'POST',
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
@@ -13,12 +13,10 @@ module.exports = async (req, res) => {
     }),
   })
   .then(resp => {
-    console.log(resp)
-    return resp.data()
+    const {status, statusText, ok} = resp
+    return res.status(status).send({
+      statusText,
+      ok
+    })
   })
-  .then(data => {
-    console.log(data)
-    return res.send(data)
-  })
-  .catch(err => console.log(err))
 }

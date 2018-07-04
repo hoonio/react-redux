@@ -16,7 +16,7 @@ const { blog, brainwave, contact, gist, portfolio } = require('./routes')
 
 app.prepare().then(() => {
   const server = express()
-  server.use(bodyParser())
+  server.use(bodyParser.json())
 
   server.get('/ping', (req, res) => res.send('pong'))
   server.use(favicon(path.join(__dirname, "static", "favicon.ico")))
