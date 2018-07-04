@@ -20,6 +20,8 @@
   "scripts": {
     "start": "node server/index.js",
     "build": "next build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect",
     "dev": "nodemon -w server/index.js server/index.js",
     "next": "next"
   },
@@ -36,7 +38,8 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "snyk": "^1.88.1"
   },
   "devDependencies": {
     "dotenv": "^5.0.1"
@@ -44,5 +47,6 @@
   "repository": {
     "type": "git",
     "url": "github.com/hoonio/root"
-  }
+  },
+  "snyk": true
 }
