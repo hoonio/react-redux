@@ -23,20 +23,20 @@ export default class extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state)
+    const {name, email, message} = this.state
     // alert(`name:  ${this.state.name}, email:  ${this.state.email}, message:  ${this.state.message}`);
     fetch('/contact', {
-      method: 'POST',
+      method: 'post',
       headers: {
+        'Accept': '*/*',
         'content-type': 'application/json',
       },
-      body: this.state,
+      body: JSON.stringify({name, email, message}),
     })
-    .then(response => response.json())
     .then(data => console.log(data))
   }
 
   render() {
-    // console.log(document.location)
     return (
       <div className="container">
         <div className="row">
