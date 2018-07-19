@@ -2,8 +2,6 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 import d3 from 'd3';
 
-import { ItemTypes } from '../constants';
-
 const propTypes = {
   dataset: React.PropTypes.array.isRequired,
   isOver: React.PropTypes.bool.isRequired,
@@ -119,4 +117,4 @@ const collect = (connect, monitor) => {
 
 Chart.propTypes = propTypes;
 
-export default DropTarget(ItemTypes.DRAGITEM, dragitemTarget, collect)(Chart);
+export default DropTarget('dragitem', dragitemTarget, collect)(Chart);

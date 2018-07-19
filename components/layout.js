@@ -3,10 +3,10 @@ import Footer from './footer'
 
 export default (props) => (
   <div className="index">
-    <Nav />
+    {/*<Nav />*/}
     <div className="page">
       {props.children}
     </div>
-    <Footer />
+    {/*<Footer />*/}
   </div>
 );

@@ -1,8 +1,6 @@
 import React from 'react';
 import { DragSource } from 'react-dnd';
 
-import { ItemTypes } from '../constants';
-
 const dragitemSource = {
   beginDrag(props) {
     props.onclick(props.name);
@@ -37,4 +35,4 @@ Dragitem.propTypes = {
   isDragging: React.PropTypes.bool.isRequired,
 };
 
-export default DragSource(ItemTypes.DRAGITEM, dragitemSource, collect)(Dragitem);
+export default DragSource('dragitem', dragitemSource, collect)(Dragitem);
