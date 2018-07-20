@@ -47,15 +47,6 @@ class Canvas extends React.Component {
   }
 }
 
-Canvas.propTypes = {
-  stockList: React.PropTypes.array.isRequired,
-  dataset: React.PropTypes.array,
-  selectedStock: React.PropTypes.string.isRequired,
-  getStockList: React.PropTypes.func.isRequired,
-  selectStock: React.PropTypes.func.isRequired,
-  getStockData: React.PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   stockList: state.canvas.stockList,
   dataset: state.canvas.dataset,

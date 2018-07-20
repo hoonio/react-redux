@@ -2,12 +2,6 @@ import React from 'react';
 import { DropTarget } from 'react-dnd';
 import d3 from 'd3';
 
-const propTypes = {
-  dataset: React.PropTypes.array.isRequired,
-  isOver: React.PropTypes.bool.isRequired,
-  ondrop: React.PropTypes.func.isRequired,
-};
-
 class Chart extends React.Component {
 
   constructor(props) {
@@ -92,7 +86,7 @@ class Chart extends React.Component {
 
   render() {
     const { connectDropTarget, isOver } = this.props;
-
+    console.log(this.props)
     return connectDropTarget(
       <div className="d3-canvas">
         {isOver && <div id="graph-dropzone"><p>Drop the item here</p></div>}
@@ -114,7 +108,5 @@ const collect = (connect, monitor) => {
     isOver: monitor.isOver(),
   };
 };
-
-Chart.propTypes = propTypes;
 
 export default DropTarget('dragitem', dragitemTarget, collect)(Chart);

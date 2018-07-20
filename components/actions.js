@@ -11,3 +11,10 @@ export const changeState = (newState) => {
     });
   };
 };
+
+export const selectStock = (stockSymbol) => (dispatch) => {
+  dispatch({
+    type: 'SELECT_STOCK',
+    stockSymbol,
+  })
+}

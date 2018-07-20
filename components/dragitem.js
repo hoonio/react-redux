@@ -17,6 +17,7 @@ const collect = (connect, monitor) => {
 
 class Dragitem extends React.Component {
   render() {
+    console.log(this.props.name)
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
       <li style={{
@@ -27,12 +28,5 @@ class Dragitem extends React.Component {
     );
   }
 }
-
-Dragitem.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  onclick: React.PropTypes.func.isRequired,
-  connectDragSource: React.PropTypes.func.isRequired,
-  isDragging: React.PropTypes.bool.isRequired,
-};
 
 export default DragSource('dragitem', dragitemSource, collect)(Dragitem);
