@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
+
+import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
 import Dragitem from '../components/dragitem';
@@ -61,4 +63,4 @@ const mapDispatchToProps = (dispatch) => ({
   selectStock: (symbol) => { dispatch(selectStock(symbol)) },
 })
 
-export default connect(mapStateToProps)(Canvas)
+export default connect(mapStateToProps)(DragDropContext(HTML5Backend)(Canvas))
