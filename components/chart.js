@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
-import d3 from 'd3';
+import * as d3 from 'd3';
 
 class Chart extends React.Component {
 
@@ -33,7 +33,7 @@ class Chart extends React.Component {
     const mindate = new Date(this.props.dataset[this.props.dataset.length - 1].date);
     const maxdate = new Date(this.props.dataset[0].date);
 
-    let xScale = d3.time.scale()
+    let xScale = d3.scaleTime()
       .domain([mindate, maxdate])
       .range([0, w - margin.right]);
 
@@ -50,7 +50,7 @@ class Chart extends React.Component {
       .attr('transform', 'translate(0, ' + (h + 0) + ')')
       .call(xAxis);
 
-    let yScale = d3.scale.linear()
+    let yScale = d3.scaleLinear()
       .domain([0, d3.max(this.props.dataset, (d) => d.close)])
       .range([h, 0]);
 
