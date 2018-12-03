@@ -1,9 +1,9 @@
 {
-  "name": "hn-root",
-  "version": "2.6.0",
+  "name": "root",
+  "version": "2.6.1",
   "license": "MIT",
   "engines": {
-    "node": ">=9.11.0"
+    "node": ">=9.7.0"
   },
   "babel": {
     "presets": [
