@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "license": "MIT",
   "engines": {
     "node": ">=9.7.0"
