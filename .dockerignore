@@ -1,5 +1,9 @@
-node_modules
+Dockerfile
+node_modules/
 npm-debug.log
-.git
+.git/
+.gitignore
+.dockerignore
 .sass-cache
 .next
+.env

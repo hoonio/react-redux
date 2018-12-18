@@ -25,7 +25,6 @@
 *.log
 *.sql
 *.sqlite
-.env
 
 # OS generated files #
 ######################
@@ -46,3 +45,7 @@ dist/
 .sass-cache/
 .tmp/
 .next/
+
+# Credentials #
+###############
+.env
