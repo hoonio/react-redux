@@ -42,6 +42,14 @@ body {
     }
   }
 
+  .nav-link {
+    color: white;
+    &:focus, &:hover {
+      color: $md-red;
+      text-decoration: none;
+    }
+  }
+
 }
 
 /* page general */
