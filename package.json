@@ -26,7 +26,7 @@
     "next": "next"
   },
   "dependencies": {
-    "@zeit/next-sass": "^0.2.0",
+    "@zeit/next-sass": "^1.0.1",
     "babel-plugin-inline-dotenv": "^1.1.2",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
