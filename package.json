@@ -23,7 +23,8 @@
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect",
     "dev": "nodemon -w server/index.js server/index.js",
-    "next": "next"
+    "next": "next",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@zeit/next-sass": "^0.2.0",
@@ -40,7 +41,7 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "serve-favicon": "^2.5.0",
-    "snyk": "^1.88.1"
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "dotenv": "^5.0.1",
