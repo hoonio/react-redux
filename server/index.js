@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const logger = require('morgan')
 const bodyParser = require('body-parser')
 
 const path = require('path')
@@ -16,6 +17,7 @@ const { blog, brainwave, contact, gist, portfolio } = require('./routes')
 
 app.prepare().then(() => {
   const server = express()
+  server.use(logger('dev'))
   server.use(bodyParser.json())
 
   server.get('/ping', (req, res) => res.send('pong'))
