@@ -14,13 +14,13 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const { blog, brainwave, contact, gist, portfolio } = require('./routes')
+const version = require('./version')
 
 app.prepare().then(() => {
   const server = express()
   server.use(logger('dev'))
   server.use(bodyParser.json())
 
-  server.get('/ping', (req, res) => res.send('pong'))
   server.use(favicon(path.join(__dirname, "static", "favicon.ico")))
   server.use('/static', express.static(path.join(__dirname, 'static')))
 
@@ -37,6 +37,8 @@ app.prepare().then(() => {
   server.get('/wiki(/*)?', (req, res) => res.redirect('http://wiki.hoonio.com'))
   server.get('/wiki/CFA', (req, res) => res.redirect('http://wiki.hoonio.com/sciences/cfa'))
 
+  server.get('/ping', (req, res) => res.send('pong'))
+  server.get('/version', version)
   server.get('/error/:reqpage', function(req, res){
     res.status(404).send('No page named' + req.params.reqpage + ' found')
   })
