@@ -26,22 +26,22 @@
     "next": "next"
   },
   "dependencies": {
-    "@zeit/next-sass": "^0.2.0",
+    "@zeit/next-sass": "^1.0.1",
     "babel-plugin-inline-dotenv": "^1.1.2",
     "body-parser": "^1.18.3",
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.3",
     "isomorphic-unfetch": "^2.0.0",
     "morgan": "^1.9.1",
-    "next": "^6.0.0",
+    "next": "^7.0.0",
     "next-redux-wrapper": "^2.0.0-beta.6",
     "node-sass": "^4.9.0",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "serve-favicon": "^2.5.0",
-    "snyk": "^1.88.1"
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "dotenv": "^5.0.1",
