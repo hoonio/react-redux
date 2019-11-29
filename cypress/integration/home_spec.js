@@ -1,6 +1,6 @@
 describe('Home page', function() {
-  it('finds content homeyes', function() {
-    cy.visit('https://test.hoonio.com')
+  it('finds home content', function() {
+    cy.visit('https://root.hoon.io')
     cy.contains('Bridging the gap between ideas and technology')
   })
 })
