@@ -37,7 +37,7 @@ app.prepare().then(() => {
   server.get('/wiki(/*)?', (req, res) => res.redirect('http://wiki.hoonio.com'))
   server.get('/wiki/CFA', (req, res) => res.redirect('http://wiki.hoonio.com/sciences/cfa'))
 
-  server.get('/ping', (req, res) => res.send('pong'))
+  server.get('/ping', (req, res) => res.send('root'))
   server.get('/version', version)
   server.get('/error/:reqpage', function(req, res){
     res.status(404).send('No page named' + req.params.reqpage + ' found')
