@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:13.1-alpine
 
 # Bundle app source
 COPY . app/
