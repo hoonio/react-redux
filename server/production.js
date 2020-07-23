@@ -5,6 +5,7 @@ const compression = require('compression')
 const brainwave = require('./routes/brainwave')
 const version = require('./version')
 /*eslint-disable no-console */
+var favicon = require('serve-favicon')
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -12,6 +13,8 @@ const app = express();
 app.set('port', port);
 app.use(compression());
 app.use(express.static(__dirname + '/../dist'));
+app.use(favicon(path.join(__dirname, 'favicon.ico')))
+
 
 app.use(function(req, res, next) {
   console.log(req.method, 'at', req.path);
