@@ -1,7 +1,9 @@
-import express from 'express';
-import path from 'path';
-import compression from 'compression';
-import brainwave from './routes/brainwave';
+const express = require('express')
+const serverless = require('serverless-http')
+const path = require('path')
+const compression = require('compression')
+const brainwave = require('./routes/brainwave')
+const version = require('./version')
 /*eslint-disable no-console */
 
 const port = process.env.PORT || 8080;
@@ -27,6 +29,9 @@ app.use('/brainwave', brainwave);
 app.get('/express', function(req, res) {
   res.send('Hello from express')
 })
+
+app.get('/ping', (req, res) => res.send('pong'))
+app.get('/version', version)
 
 // to prevent embedded maps in news articles from disappearing
 app.get('/helpage(.html)?', function(req, res) {
@@ -56,3 +61,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(port, (err) => console.log(err ? err: 'Starting Express server') );
+
+module.exports.handler = serverless(app)

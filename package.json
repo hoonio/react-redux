@@ -22,7 +22,8 @@
     "test:watch": "npm run test -- --watch",
     "prebuild": "babel-node tools/buildHtml",
     "build": "babel-node tools/build",
-    "production": "babel-node server/production"
+    "production": "babel-node server/production",
+    "sls": "node server/production"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
@@ -54,6 +55,7 @@
     "redux-thunk": "2.0.1",
     "sass-loader": "^4.0.0",
     "serve-static": "^1.10.2",
+    "serverless-http": "^2.5.0",
     "style-loader": "^0.13.1",
     "toastr": "2.1.2",
     "webpack": "^1.14.0"
@@ -84,6 +86,7 @@
     "redux-devtools": "^3.2.0",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-mock-store": "1.0.2",
+    "serverless-domain-manager": "^4.2.0",
     "sinon": "^1.17.5",
     "url-loader": "0.5.7",
     "webpack-dev-middleware": "1.6.1",

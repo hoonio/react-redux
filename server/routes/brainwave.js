@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import express from 'express';
-import bodyParser from 'body-parser';
+const fs = require('fs')
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
 const router = express.Router();
 
 router.use(bodyParser.json());

@@ -1,0 +1,27 @@
+service: root
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: us-west-2
+  environment:
+    NODE_ENV: production
+
+plugins:
+  - serverless-domain-manager
+
+functions:
+  web:
+    handler: server/production.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+custom:
+  customDomain:
+    domainName: www.hoonio.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    certificateName: 'hoonio.com'
+    createRoute53Record: true
